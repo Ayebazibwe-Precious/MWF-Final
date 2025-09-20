@@ -1,0 +1,39 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title User Information Table
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
+link(rel="stylesheet", href="css/userTable.css")
+//  Sidebar 
+aside.sidebar
+  .sidebar-header
+    h2 MWF System
+  nav.sidebar-nav
+    ul
+      li
+        a.active(href="/usersTable")
+          i.fa-solid.fa-table-list
+          |  Users Table
+      li
+        a(href="/managerDashboard")
+          i.fa-solid.fa-clipboard
+          |  Dashboard
+      li
+        a(href="/signup")
+          i.fa-solid.fa-user
+          | Register User
+.container
+  h1 User Management
+  //  Search Bar 
+  .search-box
+    input#searchInput(type="text", placeholder="Search by name, email or role...")
+  //  User Table 
+  .table-wrapper
+    table#userTable
+      thead
+        tr
+          th Full Name
+          th Email Address
+          th Phone Number
+          th Role
+      tbody
+script(src="users.js")

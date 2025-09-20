@@ -1,0 +1,61 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title MWF - Attendant Dashboard
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
+link(rel="stylesheet", href="css/attendantDashboard.css")
+aside.sidebar
+  .sidebar-header
+    h2 MWF System
+  nav.sidebar-nav
+    ul
+      li
+        a.active(href="/attendantDashboard")
+          i.fa-solid.fa-clipboard
+          |  Dashboard
+      li
+        a(href="/stockAttendant")
+          i.fa-solid.fa-rectangle-list
+          |  Stock Entry
+      li
+        a(href="/salesEntry")
+          i.fa-solid.fa-rectangle-list
+          |  Sales Entry
+      li
+        a(href="/saleslist")
+          i.fa-solid.fa-table
+          |  Sales List
+      li
+        a(href="/salestable")
+          i.fa-solid.fa-table-list
+          |  Sales Table
+      li
+        a(href="Reciepts/receipt.html")
+          i.fa-solid.fa-receipt
+          |  Sales Receipt
+.container
+  //  Overview Cards 
+  .cards
+    .card
+      h3 Today's Sales Total
+      p#todaySales UGX 0
+    .card
+      h3 Total Transactions
+      p#transactionCount 0
+    .card
+      h3 Products Available
+      p#productCount 0
+  //  Stock Overview 
+  .panel
+    h3 Stock Overview
+    .table-container
+      table
+        thead
+          tr
+            th Product
+            th Type
+            th Qty
+            th Price
+        tbody#stockTable
+//
+   
+    <script src="at.js"></script> 

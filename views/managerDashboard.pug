@@ -1,0 +1,109 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title Dashboard Overview
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
+link(rel="stylesheet", href="css/managerDashboard.css")
+script(src="https://cdn.jsdelivr.net/npm/chart.js")
+//  Sidebar 
+aside.sidebar
+  .sidebar-header
+    h2 MWF System
+  nav.sidebar-nav
+    ul
+      li
+        a.active(href="dashboard.html")
+          i.fa-solid.fa-clipboard
+          |  Dashboard
+      li
+        a(href="../Stock management/stockManager.html")
+          i.fa-solid.fa-rectangle-list
+          |  Stock Entry
+      li
+        a(href="../Stock management/stocklist.html")
+          i.fa-solid.fa-table
+          |  Stocklist
+      li
+        a(href="../Stock management/stockreport.html")
+          i.fa-brands.fa-microsoft
+          |  Stock Report
+      li
+        a(href="../sales/salestable.html")
+          i.fa-solid.fa-table-list
+          |  Sales Table
+      li
+        a(href="/signUp")
+          i.fa-solid.fa-user
+          |  User Management
+      li
+        a(href="../Receipt/SalesReceipt.html")
+          i.fa-solid.fa-receipt
+          | Sales Reciept
+.main
+  .dashboard-container
+    header
+      h1 Business Dashboard
+    section.grid.stats
+      .card
+        h3 Total Stock
+        p 12,500 units
+      .card
+        h3 Monthly Sales
+        p Shs85,000
+      .card
+        h3 Orders
+        p 1,245
+      .card
+        h3 Returns
+        p 120
+    section.charts
+      .chart-card
+        h3 Sales vs Stock
+        canvas#salesStockChart
+      .chart-card
+        h3 Most Sold Products
+        canvas#topProductsChart
+    //  start 
+    //
+       <section class="reports">
+        <section class="report-section"> 
+    section.grid.reports
+      .card
+        h2 Stock Reports
+        .inner-card
+          h3 Current Available Stock
+          ul#stock-list
+        .inner-card.alert
+          h3 Low Stock Alerts
+          ul#low-stock-list
+      //  </section> 
+      //  <section class="report-section"> 
+      .card
+        h2 Sales Reports
+        .inner-card
+          h3 Total Sales
+          p#total-sales Shs0
+        .inner-card
+          h3 Top Customers
+          ul#top-customers
+        .inner-card
+          h3 Payment Methods
+          ul#payment-methods
+    //  end 
+    section.grid.reports
+      .card
+        h3 Recent Activities
+        ul
+          li Order 1024 placed
+          li Stock updated for tables
+          li New customer registered
+          li Refund issued for Order 1008
+      .card
+        h3 Quick Reports
+        ul
+          li
+            a(href="#") Download Sales Report
+          li
+            a(href="#") Export Inventory Data
+          li
+            a(href="#") Generate Invoice Summary
+script(src="js/managerDashboard.js")

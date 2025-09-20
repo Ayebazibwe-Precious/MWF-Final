@@ -1,0 +1,25 @@
+doctype html
+head
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title Login | MWF
+link(rel="stylesheet", href="css/login.css")
+.login-container
+  h2 MWF Login
+  form#loginForm(action="/login" method="post")
+    .form-group
+      label(for="email") Email
+      input#email(type="email",name="email" placeholder="Enter your email", required)
+      small.error#emailError
+    .form-group
+      label(for="password") Password
+      input#password(type="password",name="password" placeholder="Enter your password", required)
+      small.error#passwordError
+      .show-password
+        input#togglePassword(type="checkbox" name="checkbox")
+        label(for="togglePassword") Show Password
+  button.btn-login(type="submit") Login
+  p.account-text  
+    | Don't have an account? 
+    a.signup-link(href="/signup") Signup
+script(src="js/login.js")

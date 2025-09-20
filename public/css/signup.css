@@ -1,0 +1,257 @@
+/* Reset & Fonts */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #F5F5DC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+/* Container */
+.signup-container {
+    margin-left: 250px;
+    background: #fff;
+    padding: 1.2rem;
+    border-radius: 20px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.header .logo {
+    border-radius: 50%;
+    margin-bottom: 0.8rem;
+}
+
+.header h2 {
+    font-size: 1.6rem;
+    color: #27ae60;
+}
+
+.header p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Form */
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* two equal columns */
+    gap: 0.6rem;
+    /* space between inputs */
+}
+
+/* Make fields span both columns if needed */
+.form-group.full {
+    grid-column: span 2;
+}
+
+/* .form-group {
+    margin-bottom: 1rem;
+} */
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 0.2rem;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    transition: 0.2s ease-in-out;
+}
+
+input:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.terms {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.terms input {
+    margin-right: 0.5rem;
+}
+
+.terms a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+/* Button */
+.btn {
+    width: 100%;
+    padding: 0.5rem;
+    background: #007bff;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+/* Redirect */
+.redirect {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.redirect a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.redirect a:hover {
+    text-decoration: underline;
+}
+
+/* Wrapper */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+/* Hide the default checkbox */
+.checkbox-group input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: background 0.3s ease;
+}
+
+/* Checked state */
+.checkbox-group input[type="checkbox"]:checked {
+    background: #007bff;
+    border-color: #007bff;
+}
+
+/* Add checkmark when checked */
+.checkbox-group input[type="checkbox"]:checked::after {
+    content: "✔";
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    left: 3px;
+}
+
+/* Label link styling */
+.checkbox-group label a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.checkbox-group label a:hover {
+    text-decoration: underline;
+}
+
+
+/* Sidebar container */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    /* full height */
+    background: #2c3e50;
+    /* dark blue-grey */
+    color: #ecf0f1;
+    /* light text */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Sidebar header */
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Navigation list */
+.sidebar-nav {
+    flex-grow: 1;
+    padding: 20px 0;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 10px;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #ecf0f1;
+    border-radius: 8px;
+    transition: background 0.3s, padding-left 0.3s;
+}
+
+/* Hover and active states */
+.sidebar-nav a:hover {
+    background: #34495e;
+    padding-left: 25px;
+}
+
+.sidebar-nav a.active {
+    background: #27ae60;
+    color: #fff;
+    font-weight: bold;
+}

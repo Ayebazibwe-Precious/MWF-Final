@@ -1,0 +1,68 @@
+meta(charset="UTF-8")
+title New Sale Entry
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
+link(rel="stylesheet", href="css/salesEntry.css")
+//  Sidebar 
+aside.sidebar
+  .sidebar-header
+    h2 MWF System
+  nav.sidebar-nav
+    ul
+      li
+        a.active(href="/salesEntry")
+          i.fa-solid.fa-rectangle-list
+          |  Sales Entry
+      li
+        a(href="/salesTable")
+          i.fa-solid.fa-table-list
+          |  Sales Table
+      li
+        a(href="/saleslist")
+          i.fa-solid.fa-table
+          |  Sales List
+      li
+        a(href="/attendantDashboard")
+          i.fa-solid.fa-clipboard
+          |  Dashboard
+      li
+        a(href="/receipt")
+          i.fa-solid.fa-receipt
+          |  Sales Reciept
+.main
+  .form-container
+    h2 Record New Sale
+    form#salesForm(action="/salesEntry", method="post")
+      label
+        | Customer Name:
+        input#customerName(type="text",name="customerName" required)
+      label
+        | Product Type:
+        input#productType(type="text",name="productType" required)
+      label
+        | Product Name:
+        input#productName(type="text",name="productName" required)
+      label
+        | Quantity:
+        input#quantity(type="number", name="quantity" required, min="1")
+      label
+        | Unit Price:
+        input#unitPrice(type="number",name="unitPrice" required, min="0")
+      label
+        | Date of Sale:
+        input#saleDate(type="date",name="saleDate" required)
+      label
+        | Type of Payment:
+        select#paymentType(name="paymentType" required)
+          option(value='') -- Select --
+          option(value="Card") Card
+          option(value="Cash") Cash
+          option(value="Bank Overdraft") Bank Overdraft
+          option(value="Cheque") Cheque
+      label.checkbox-label(for transportfee)
+        input#transportfee(type="checkbox" name="transportfee")
+        | Transport Required (+5%)
+      p
+        | Total Price: 
+        strong#totalDisplay Shs0.00
+      button(type="submit") Save Sale
+script(src="sales_form.js")
