@@ -1,25 +1,26 @@
 doctype html
-head
-meta(charset="UTF-8")
-meta(name="viewport", content="width=device-width,initial-scale=1")
-title Login | MWF
-link(rel="stylesheet", href="css/login.css")
-.login-container
-  h2 MWF Login
-  form#loginForm(action="/login" method="post")
-    .form-group
-      label(for="email") Email
-      input#email(type="email",name="email" placeholder="Enter your email", required)
-      small.error#emailError
-    .form-group
-      label(for="password") Password
-      input#password(type="password",name="password" placeholder="Enter your password", required)
-      small.error#passwordError
-      .show-password
-        input#togglePassword(type="checkbox" name="checkbox")
-        label(for="togglePassword") Show Password
-  button.btn-login(type="submit") Login
-  p.account-text  
-    | Don't have an account? 
-    a.signup-link(href="/signup") Signup
-script(src="js/login.js")
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Login Page
+    link(rel='stylesheet' href='/css/login.css')
+  body
+    .login-box
+      h2 LOGIN
+      form(action='/login' method='post' autocomplete='off')
+        input#email(type='text' name='email' placeholder='Enter email' required='' autocomplete='off')
+        input#password(type='password' name='password' placeholder='Enter password' required='' autocomplete='off')
+
+        .show-password
+          input#showPassword(type='checkbox')
+          label(for='showPassword') Show Password
+
+        button(type='submit') Login
+
+      // Sign-up section stays inside .login-box
+      p.signup-text
+        | Don't have an account? 
+        a(href='/signup') Sign Up
+
+    script(src='/js/login.js')

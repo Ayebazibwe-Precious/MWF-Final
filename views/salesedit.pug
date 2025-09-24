@@ -1,7 +1,7 @@
 meta(charset="UTF-8")
 title New Sale Entry
 link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
-link(rel="stylesheet", href="css/salesEntry.css")
+link(rel="stylesheet", href="/css/salesEntry.css")
 //  Sidebar 
 aside.sidebar
   .sidebar-header
@@ -11,7 +11,7 @@ aside.sidebar
       li
         a.active(href="/salesEntry")
           i.fa-solid.fa-rectangle-list
-          |  Sales Entry
+          |  Sales Edit
       li
         a(href="/salesTable")
           i.fa-solid.fa-table-list
@@ -30,45 +30,43 @@ aside.sidebar
           |  Sales Reciept
 .main
   .form-container
-    h2 Record New Sale
-    form#salesForm(action="/salesEntry", method="POST")
+    h2 Update Sale
+    form#salesForm(action=`/editsale/${sale._id}?_method=PUT`, method="POST")
       label
         | Customer Name:
-        input#customerName(type="text",name="customerName" required)
+        input#customerName(type="text",name="customerName" required='' value=sale.customerName)
       label
         | Product Name:
-        select#productName(name="productName" required='')
+        select#productName(name="productName" required='' value=sale.productName)
           if stocks && stocks.length 
             each stock in stocks 
               option(value = stock.name)= stock.name
       label
         | Product Type:
-        select#productType(type="text",name="productType" required='')
+        select#productType(type="text",name="productType" required='' value=sale.productType)
           if stocks && stocks.length
             each stock in stocks
               option(value=stock.type)= stock.type
       label
         | Quantity:
-        input#quantity(type="number", name="quantity" required='', min="1")
+        input#quantity(type="number", name="quantity" required='', min="1" value=sale.quantity)
       label
         | Unit Price:
-        input#unitPrice(type="number",name="unitPrice" required='', min="0")
+        input#unitPrice(type="number",name="unitPrice" required='', min="0" value=sale.unitPrice)
       label
         | Date of Sale:
-        input#saleDate(type="date",name="saleDate" required='')
+        input#saleDate(type="date",name="saleDate" required='' value=sale.saleDate)
       label
         | Type of Payment:
-        select#paymentType(name="paymentType" required='')
-          option(value='') -- Select --
+        select#paymentType(name="paymentType", required='', value=sale.paymentType)
+          option(value='' selected) -- Select --
           option(value="Cash") Cash
           option(value="Cheque") Cheque
           option(value="Bank Overdraft") Bank Overdraft
       label.checkbox-label(for transportfee)
-        input#transportfee(type="checkbox" name="transportfee")
+        input#transportfee(type="checkbox" name="transportfee" value=sale.transportfee)
         | Transport Required (+5%)
       label
           | Total Cost:
-          input#total(type='number' name="total" readonly)
-      button(type="submit") Save Sale
-    script(src='/js/calctotal.js')  
-script(src="sales_form.js")
+          input#total(type='number' name="total" readonly value=sale.total)
+      button(type="submit") Update Sale

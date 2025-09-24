@@ -5,11 +5,11 @@ const salesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  productType: {
+  productName: {
     type: String,
     required: true,
   },
-  productName: {
+  productType: {
     type: String,
     required: true,
   },
@@ -36,7 +36,10 @@ const salesSchema = new mongoose.Schema({
   },
   transportfee: {
     type: Boolean,
-    // required: true,
+  },
+  total: {
+    type: Number,
+    required: true,
   },
 });
 

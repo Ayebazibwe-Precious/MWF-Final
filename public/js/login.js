@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const togglePassword = document.getElementById("togglePassword");
   const passwordField = document.getElementById("password");
+  const showPasswordCheckbox = document.getElementById("showPassword");
 
-  togglePassword.addEventListener("change", () => {
-    if (togglePassword.checked) {
-      passwordField.type = "text"; // show password
-    } else {
-      passwordField.type = "password"; // hide password
-    }
+  // Clear password field on page load
+  passwordField.value = "";
+
+  showPasswordCheckbox.addEventListener("change", () => {
+    passwordField.type = showPasswordCheckbox.checked ? "text" : "password";
   });
 });

@@ -1,0 +1,90 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title Product Entry Form
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
+link(rel="stylesheet", href="/css/stockManager.css")
+//  Sidebar 
+aside.sidebar
+  .sidebar-header
+    h2 MWF System
+  nav.sidebar-nav
+    ul
+      li
+        a.active(href="stockManager.html")
+          i.fa-solid.fa-rectangle-list
+          |  Stock Edit
+      li
+        a(href="/managerDashboard")
+          i.fa-solid.fa-clipboard
+          |  Dashboard
+      li
+        a(href="/stocklist")
+          i.fa-solid.fa-table
+          |  Stock List
+      li
+        a(href="/stockreport")
+          i.fa-brands.fa-microsoft
+          | Stock Report
+.form-wrapper
+  form#productForm(action=`/editstock/${item._id}?_method=PUT`, method="POST")
+    h2 Update Product
+    //  Section: Basic Info 
+    fieldset
+      legend Basic Information
+      .form-grid
+        div
+          label Product Name
+          input(type="text", name="name", required='' value=item.name)
+        div
+          label Product Type
+          select(name="type", required=''  value=item.type)
+            option(value) Select Type
+            option(value="Wood") Wood
+            option(value="Furniture") Furniture
+        div
+          label Status
+          select(name="status", required='' value=item.status)
+            option(value="Pending") Pending
+            option(value="Active") Active
+            option(value="Archived") Archived
+    //  Section: Stock & Pricing 
+    fieldset
+      legend Stock & Pricing
+      .form-grid
+        div
+          label Quantity Available
+          input(type="number", name="qty", min="0", value=item.qty required='')
+        div
+          label Cost Price
+          input(type="number", name="cost", min="0", value=item.cost required='')
+        div
+          label Selling Price
+          input(type="number", name="price", min="0", value=item.price required='')
+    //  Section: Supplier 
+    fieldset
+      legend Supplier
+      .form-grid
+        div
+          label Supplier Name
+          input(type="text", name="supplier", required='' value=item.supplier)
+        div
+          label Date Received
+          input(type="date", name="dateReceived", required='' value=item.dateReceived)
+    //  Section: Product Attributes 
+    fieldset
+      legend Product Attributes
+      .form-grid
+        div
+          label Quality
+          select(name="quality", required='' value=item.quality)
+            option(value="High") High
+            option(value="Medium") Medium
+            option(value="Low") Low
+        div
+          label Color
+          input(type="text", name="color" value=item.color)
+        div
+          label Measurements (L×W×H)
+          input(type="text", name="measurements", placeholder="e.g. 40×40×90cm" value=item.measurements)
+    //  Submit 
+    button(type="submit") Update Product

@@ -34,6 +34,7 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 router.post("/login",passport.authenticate("local", {failureRedirect:'/login'}), (req, res) => {
+  console.log("Login called")
     req.session.user = req.user;
     if (req.user.role === "Manager") {
       res.redirect("/managerDashboard");
@@ -74,5 +75,39 @@ router.post("/login",passport.authenticate("local", {failureRedirect:'/login'}),
       res.status(400).send("User not found!");
     }
   });
+
+//Usetable Actions
+//UPDATING USERS
+//Edit
+router.get("/editUser/:id", async (req, res) => {
+  let user = await UserModel.findById(req.params.id);
+  // console.log(item)
+  res.render("editUser", { user });
+});
+router.put("/editUser/:id", async (req, res) => {
+  try {
+    console.log("Updating User", req.params.id);
+    const user = await UserModel.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    console.log(user);
+    if (!user) {
+      return res.status(404).send("User not found!");
+    }
+    res.redirect("/usersTable");
+  } catch (error) {}
+});
+
+//deleting
+router.post("/deleteuser", async (req, res) => {
+  try {
+    await UserModel.deleteOne({ _id: req.body.id });
+    res.redirect("/usersTable");
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).send("Unable to delete user form the DB!");
+  }
+});
+
 
 module.exports = router;

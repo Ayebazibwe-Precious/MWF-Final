@@ -1,0 +1,73 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title Supplier Registration
+link(rel="stylesheet", href="css/supplier.css")
+//  Sidebar 
+aside.sidebar
+  .sidebar-header
+    h2 MWF System
+  nav.sidebar-nav
+    ul
+      li
+        a.active(href="dashboard.html")
+          i.fa-solid.fa-clipboard
+          |  Dashboard
+      li
+        a(href="../Stock management/stockManager.html")
+          i.fa-solid.fa-rectangle-list
+          |  Stock Entry
+      li
+        a(href="../Stock management/stocklist.html")
+          i.fa-solid.fa-table
+          |  Stocklist
+      li
+        a(href="../Stock management/stockreport.html")
+          i.fa-brands.fa-microsoft
+          |  Stock Report
+      li
+        a(href="../sales/salestable.html")
+          i.fa-solid.fa-table-list
+          |  Sales Table
+      li
+        a(href="../User Management/signUp.html")
+          i.fa-solid.fa-user
+          |  User Management
+      li
+        a(href="../Receipt/SalesReceipt.html")
+          i.fa-solid.fa-receipt
+          | Sales Reciept
+.form-container
+  h2 Supplier Registration
+  form(action="/supplier", method="POST")
+    //  Two inputs side by side 
+    .form-row
+      .form-group
+        label(for="name") Supplier Name
+        input#name(type="text", name="name", required)
+      .form-group
+        label(for="company") Company Name
+        input#company(type="text", name="company", required)
+    .form-row
+      .form-group
+        label(for="email") Email
+        input#email(type="email", name="email", required)
+      .form-group
+        label(for="phone") Phone Number
+        input#phone(type="tel", name="phone", required, pattern="[0-9]{10,15}", placeholder="e.g. 0701234567")
+    .form-row
+      .form-group
+        label(for="address") Address
+        input#address(type="text", name="address")
+      .form-group
+        label(for="bank") Bank Details
+        input#bank(type="text", name="bank")
+    .form-row
+      .form-group
+        label(for="productName") Product Name
+        input#productName(type="text", name="productName")
+      .form-group
+        label(for="productType") Product Type
+        input#productType(type="text", name="productType", required)
+    //  Submit 
+    .form-group
+      button(type="submit") Register Supplier

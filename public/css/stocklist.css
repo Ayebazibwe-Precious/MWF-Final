@@ -1,0 +1,177 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+    overflow-y: auto;/* Enables vertical scrolling */
+}
+
+.main {
+    margin-left: 250px;
+    padding: 20px;
+    flex: 1;
+    overflow-x: auto;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+}
+
+h1,
+h2 {
+    color: #27ae60;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.table-section {
+    width: 100%;
+    overflow-x: auto;
+}
+.table-section table {
+    width: 100%;
+    min-width: 1200px;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table-section th,
+.table-section td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    white-space: nowrap;/* prevents text from wrapping awkwardly */
+}
+
+.table-section th {
+    background-color: #007bff;
+    color: white;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* Shared styles */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+/* Edit button */
+.action-btn.edit {
+    background: #3498db;
+    color: #fff;
+}
+
+.action-btn.edit:hover {
+    background: #2980b9;
+}
+
+/* Delete button */
+.action-btn.delete {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.action-btn.delete:hover {
+    background: #c0392b;
+}
+
+/* Add User button */
+.btn-add {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 16px;
+    background: #27ae60;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.btn-add:hover {
+    background: #1e8449;
+}
+/* Sidebar container */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    /* full height */
+    background: #2c3e50;
+    /* dark blue-grey */
+    color: #ecf0f1;
+    /* light text */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Sidebar header */
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Navigation list */
+.sidebar-nav {
+    flex-grow: 1;
+    padding: 20px 0;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 10px;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #ecf0f1;
+    border-radius: 8px;
+    transition: background 0.3s, padding-left 0.3s;
+}
+
+/* Hover and active states */
+.sidebar-nav a:hover {
+    background: #34495e;
+    padding-left: 25px;
+}
+
+.sidebar-nav a.active {
+    background: #27ae60;
+    color: #fff;
+    font-weight: bold;
+}
+

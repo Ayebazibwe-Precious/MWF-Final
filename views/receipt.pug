@@ -1,0 +1,56 @@
+meta(charset="UTF-8")
+title Sales History
+link(rel="stylesheet", href="/css/receipt.css")
+
+// Sidebar 
+aside.sidebar
+  .sidebar-header
+    h2 MWF System
+  nav.sidebar-nav
+    ul
+      li
+        a.active(href="/sales") Sales
+      li
+        a(href="/stock") Stock
+      li
+        a(href="/dashboard") Dashboard
+      li
+        a(href="/logout") Logout
+
+.main
+  .table-container
+    h2.text-center MWF-LTD
+    p.text-center MWF is B2B wood and furniture company
+    hr
+
+    h3.text-center RECEIPT 
+    p Date: #{new Date(sale.saleDate).toLocaleDateString()}
+    p Customer: #{sale.customerName}
+    p Sales Agent: #{sale.salesAgent.email}
+
+    table.table
+      thead
+        tr
+          th Product Name
+          th Product Type
+          th Quantity
+          th Unit Price
+          th Payment Type
+          th Transport
+          th Total Price
+      tbody
+        if sales && sales.length 
+          each sale in sales 
+            tr  
+              td #{sale.productName}
+              td #{sale.productType}
+              td #{sale.quantity}
+              td #{sale.unitPrice} 
+              td #{sale.paymentType}
+              td #{sale.transportfee}
+              td #{sale.totalPrice}
+
+    p Payment Type: #{sale.paymentType}
+    hr
+    h4.text-center Thank you for your support!
+    button(onclick="window.print()" class="btn btn-primary") Print Receipt

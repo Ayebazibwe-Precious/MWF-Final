@@ -1,0 +1,200 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin-left: 250px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #27ae60;
+}
+table th {
+    background: #007bff;
+    color: white;
+}
+
+/* Table wrapper for responsiveness */
+.table-section {
+    width: 100%;
+    overflow-x: auto;
+    /* horizontal scroll on small screens */
+}
+
+.table-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    min-width: 900px;
+    /* keep columns readable */
+}
+
+.table-section th,
+.table-section td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+    /* prevent text breaking */
+}
+
+/* Action Buttons */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Variants */
+.action-btn.edit {
+    background: #f39c12;
+    color: white;
+}
+
+.action-btn.edit:hover {
+    background: #e67e22;
+    transform: translateY(-2px);
+}
+
+.action-btn.delete {
+    background: #e74c3c;
+    color: white;
+}
+
+.action-btn.delete:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+.action-btn.receipt {
+    background: #27ae60;
+    color: white;
+}
+
+.action-btn.receipt:hover {
+    background: #27ae60;
+    transform: translateY(-2px);
+}
+
+.action-btn.add {
+    background: #27ae60;
+    color: white;
+    font-weight: bold;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.action-btn.add:hover {
+    background: #1e8449;
+    transform: translateY(-2px);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .container {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .table-section table {
+        font-size: 0.85rem;
+        min-width: 600px;
+    }
+
+    .action-btn {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .table-section table {
+        min-width: 500px;
+    }
+}
+
+/* Sidebar container */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    /* full height */
+    background: #2c3e50;
+    /* dark blue-grey */
+    color: #ecf0f1;
+    /* light text */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Sidebar header */
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Navigation list */
+.sidebar-nav {
+    flex-grow: 1;
+    padding: 20px 0;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 10px;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #ecf0f1;
+    border-radius: 8px;
+    transition: background 0.3s, padding-left 0.3s;
+}
+
+/* Hover and active states */
+.sidebar-nav a:hover {
+    background: #34495e;
+    padding-left: 25px;
+}
+
+.sidebar-nav a.active {
+    background: #27ae60;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Adjust page content to make space for sidebar */
+.main {
+    margin-left: 250px;
+    padding: 20px;
+}
