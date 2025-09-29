@@ -1,0 +1,75 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title Stock Report
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", crossorigin="anonymous", referrerpolicy="no-referrer")
+link(rel="stylesheet", href="css/attendantStockreport.css")
+//  Sidebar 
+aside.sidebar
+  .sidebar-header
+    h2 MWF System
+  nav.sidebar-nav
+    ul
+      li
+        a.active(href="dashboard.html")
+          i.fa-solid.fa-clipboard
+          |  Dashboard
+      li
+        a(href="../Stock management/stockManager.html")
+          i.fa-solid.fa-rectangle-list
+          |  Stock Entry
+      li
+        a(href="../Stock management/stocklist.html")
+          i.fa-solid.fa-table
+          |  Stock List
+      li
+        a(href="../Stock management/stockreport.html")
+          i.fa-brands.fa-microsoft
+          |  Stock Report
+      li
+        a(href="../sales/salestable.html")
+          i.fa-solid.fa-table-list
+          |  Sales Table
+      li
+        a(href="../User Management/signUp.html")
+          i.fa-solid.fa-user
+          |  User Management
+      li
+        a(href="../Receipt/SalesReceipt.html")
+          i.fa-solid.fa-receipt
+          |  Sales Receipt
+//  Main Content 
+.main-content
+  header
+    h1 Attendant's Stock Report
+    p
+      | Date: 
+      span#reportDate
+  //  Summary Section 
+  section.summary
+    h3 Summary
+    ul
+      li
+        | Total Stock Value: 
+        span#total-stock-value
+      li
+        | Low Stock Items: 
+        span#low-stock-items
+      li
+        | Low Stock Alerts: 
+        span#low-stock
+  //  Table Section 
+  section.table-section
+    h2 Stock Data
+    table
+      thead
+        tr
+          th Product Name
+          th Quantity
+          th Supplier
+      tbody
+        //  rows added with pug 
+  //  Print Button 
+  .report-actions
+    button.btn-print(onclick="window.print()")
+      i.fa-solid.fa-print
+      |  Print Report

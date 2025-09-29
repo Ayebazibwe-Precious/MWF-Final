@@ -33,15 +33,57 @@ router.post("/signup", async (req, res) => {
 router.get("/login", (req, res) => {
   res.render("login");
 });
-router.post("/login",passport.authenticate("local", {failureRedirect:'/login'}), (req, res) => {
-  console.log("Login called")
-    req.session.user = req.user;
-    if (req.user.role === "Manager") {
-      res.redirect("/managerDashboard");
-    } else if (req.user.role === "Attendant") {
-      res.redirect("/attendantDashboard");
-    } else (res.render("noneuser"));
-  });
+// router.post("/login",passport.authenticate("local", {failureRedirect:'/login'}), (req, res) => {
+//   console.log("Login called")
+//     req.session.user = req.user;
+//     if (req.user.role === "Manager") {
+//       res.redirect("/managerDashboard");
+//     } else if (req.user.role === "Attendant") {
+//       res.redirect("/attendantDashboard");
+//     } else (res.render("noneuser"));
+//   });
+
+// router.post(
+//   "/login",
+//   passport.authenticate("local", {
+//     failureRedirect: "/login",
+//     failureFlash: true, // enable error messages
+//   }),
+//   (req, res) => {
+//     console.log("Login called");
+//     req.session.user = req.user;
+
+//     if (req.user.role === "Manager") {
+//       res.redirect("/managerDashboard");
+//     } else if (req.user.role === "Attendant") {
+//       res.redirect("/attendantDashboard");
+//     } else {
+//       res.render("noneuser");
+//     }
+//   }
+// );
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) return next(err);
+    if (!user) {
+      // info will contain { message, field }
+      return res.render("login", {
+        errors: { [info.field]: info.message },
+      });
+    }
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+      if (user.role === "Manager") return res.redirect("/managerDashboard");
+      if (user.role === "Attendant") return res.redirect("/attendantDashboard");
+      return res.render("noneuser");
+    });
+  })(req, res, next);
+});
+
+
+
+
+
 
 //Logging Out
   router.get("/logout", (req, res) => {

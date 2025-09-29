@@ -1,0 +1,66 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title User Information Table
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
+link(rel="stylesheet", href="css/supplierlist.css")
+//  Sidebar 
+aside.sidebar
+  .sidebar-header
+    h2 MWF System
+  nav.sidebar-nav
+    ul
+      li
+        a.active(href="/supplierlist")
+          i.fa-solid.fa-table-list
+          |  Supplier List 
+      li
+        a(href="/managerDashboard")
+          i.fa-solid.fa-clipboard
+          |  Dashboard
+      li
+        a(href="/supplier")
+          i.fa-solid.fa-user
+          | Register Supplier
+.container
+  h1 Supplier Management
+  //  Search Bar 
+  .search-box
+    input#searchInput(type="text", placeholder="Search by name, email or role...")
+  //  Supplier Table 
+  .table-wrapper
+    table#supplierTable
+      thead
+        tr
+          th Supplier Name
+          th Company Name
+          th Email Address
+          th Phone Number
+          th Address
+          th Bank Details
+          th Product Name
+          th Product Type
+          th Actions
+      tbody
+      if suppliers.length 
+        each supplier in suppliers 
+          tr 
+            td #{supplier.name}
+            td #{supplier.company}
+            td #{supplier.email}
+            td #{supplier.phone}
+            td #{supplier.address}
+            td #{supplier.bank}
+            td #{supplier.productName}
+            td #{supplier.productType}
+            td.action-buttons
+                  a.action-btn.edit(href=`/editsupplier/${supplier._id}`)
+                    i.fa-solid.fa-pen-to-square 
+                    | Edit
+                  form(method='POST', action='/deletesupplier', onsubmit="return confirm('Are you sure you want to delete this supplier?');") 
+                    input(type='hidden', name='id' value=supplier._id)
+                    button.action-btn.delete(type='submit')
+                      i.fa-solid.fa-trash
+                      | Delete
+    .link
+      a.btn-add(href="/supplier")   Add Supplier               
+script(src="js/supplierlist.js")

@@ -2,7 +2,7 @@ meta(charset="UTF-8")
 meta(name="viewport", content="width=device-width,initial-scale=1")
 title Stock List
 link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
-link(rel="stylesheet", href="css/stocklist.css")
+link(rel="stylesheet", href="css/attendantStocklist.css")
 //  Sidebar 
 aside.sidebar
   .sidebar-header
@@ -10,21 +10,17 @@ aside.sidebar
   nav.sidebar-nav
     ul
       li
-        a.active(href="/stocklist")
+        a.active(href="stocklist.html")
           i.fa-solid.fa-table
           |  Stock List
       li
-        a(href="/managerDashboard")
+        a(href="../Attendant.html")
           i.fa-solid.fa-clipboard
           |  Dashboard
       li
-        a(href="/stockManager")
+        a(href="stock.html")
           i.fa-solid.fa-rectangle-list
           |  Stock Entry
-      li
-        a(href="/stockreport")
-          i.fa-brands.fa-microsoft
-          | Stock Report
 .main
   .container
     section.table-section
@@ -34,45 +30,40 @@ aside.sidebar
           tr
             th Product Name
             th Product Type
-            th Status
-            th Quantity Available
             th Cost Price
-            th Selling Price
-            th Supplier Name
+            th Quantity
             th Date Received
             th Quality
             th Color
             th Measurements
-            th Alerts
+            th Supplier Name
+            th Recieved by
             th Actions
         tbody
         if items.length
           each item in items
             tr 
-              td #{item.name}
-              td #{item.type}
-              td #{item.status}
-              td #{item.qty}
-              td #{item.cost}
-              td #{item.price}
-              td #{item.supplier}
+              td #{item.productName}
+              td #{item.productType}
+              td #{item.costPrice}
+              td #{item.quantity}
               td #{moment(item.dateReceived).format("DD-MM-YYYY")}
               td #{item.quality}
               td #{item.color}
               td #{item.measurements}
+              td #{item.supplierName}
               td
               if item.qty <= 2
                 span.btn.btn-warning Low Stock     
               td.action-buttons
-                a.action-btn.edit(href=`/editstock/${item._id}`) 
+                a.action-btn.edit(href=`/attendantEditstock/${item._id}`) 
                   i.fa-solid.fa-pen-to-square
                   | Edit
-                form(method='POST', action='/deletestock') 
+                form(method='POST', action='/deleteAttendantstock') 
                   input(type='hidden', name='id' value=item._id)
                   button.action-btn.delete(type='submit') 
                     i.fa-solid.fa-trash
                     | Delete
     .link
-      a.btn-add(href="/stockManager") Add Stock
-script(src="js/stocktable.js")
-
+      a.btn-add(href="/stockAttendant") Add Stock
+script(src="/js/stocktable.js")

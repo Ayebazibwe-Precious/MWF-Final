@@ -8,9 +8,17 @@ html
   body
     .login-box
       h2 LOGIN
+
       form(action='/login' method='post' autocomplete='off')
+        // Email field
         input#email(type='text' name='email' placeholder='Enter email' required='' autocomplete='off')
+        if errors && errors.email
+          small.error-message #{errors.email}
+
+        // Password field
         input#password(type='password' name='password' placeholder='Enter password' required='' autocomplete='off')
+        if errors && errors.password
+          small.error-message #{errors.password}
 
         .show-password
           input#showPassword(type='checkbox')

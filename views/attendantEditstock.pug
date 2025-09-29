@@ -2,7 +2,7 @@ meta(charset="UTF-8")
 meta(name="viewport", content="width=device-width,initial-scale=1")
 title Stock Management
 link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
-link(rel="stylesheet", href="css/stockAttendant.css")
+link(rel="stylesheet", href="/css/stockAttendant.css")
 //  Sidebar 
 aside.sidebar
   .sidebar-header
@@ -31,15 +31,15 @@ aside.sidebar
     
     Fill in the details below to record new stock.
     
-  form#stockForm(action="/stockAttendant"  method="POST")
+  form#stockForm(action=`/attendantEditstock/${item._id}?_method=PUT`  method="POST")
     //  Product Name and Type 
     .form-row
       .form-group
         label(for="productName") Product Name
-        input#productName(type="text", name="productName", placeholder="Enter product name", required)
+        input#productName(type="text", name="productName", placeholder="Enter product name",value=item.productName, required)
       .form-group
         label(for="productType") Product Type
-        select#productType(name="productType", required)
+        select#productType(name="productType",value=item.productType, required)
           option(value) -- Select --
           option(value="Timber") Timber
           option(value="Poles") Poles
@@ -49,18 +49,18 @@ aside.sidebar
     .form-row
       .form-group
         label(for="costPrice") Cost Price
-        input#costPrice(type="number", name="costPrice", placeholder="Enter cost price", min="0", required)
+        input#costPrice(type="number", name="costPrice", placeholder="Enter cost price", min="0",value=item.costPrice, required)
       .form-group
         label(for="quantity") Quantity
-        input#quantity(type="number", name="quantity", placeholder="Enter quantity", min="1", required)
+        input#quantity(type="number", name="quantity", placeholder="Enter quantity", min="1",value=item.quantity, required)
     //  Date and Quality 
     .form-row
       .form-group
         label(for="dateReceived") Date Received
-        input#dateReceived(type="date", name="dateReceived", required)
+        input#dateReceived(type="date", name="dateReceived",value=item.dateReceived, required)
       .form-group
         label(for="quality") Quality
-        select#quality(name="quality", required)
+        select#quality(name="quality",value=item.quality, required)
           option(value) -- Select Quality --
           option(value="High") High
           option(value="Medium") Medium
@@ -68,23 +68,23 @@ aside.sidebar
     //  Optional Fields 
     .form-row
       .form-group
-        label(for="color") Color
-        input#color(type="text", name="color", placeholder="Enter color")
+        label(for="color") Color (Optional)
+        input#color(type="text", name="color", placeholder="Enter color", value=item.color)
       .form-group
-        label(for="measurements") Measurements
-        input#measurements(type="text", name="measurements", placeholder="e.g., 2m x 4m x 5cm")
+        label(for="measurements") Measurements (Optional)
+        input#measurements(type="text", name="measurements",value=item.measurements, placeholder="e.g., 2m x 4m x 5cm")
     //  Supplier and Attendant
     .form-row
       .form-group
         label(for="supplierName") Supplier Name
-        input#supplierName(type="text", name="supplierName", placeholder="Enter supplier name", required)
+        input#supplierName(type="text", name="supplierName",value=item.supplierName, placeholder="Enter supplier name", required)
       .form-group
         label(for="reciever") Recieved by:
-        select#reciever(name="reciever", required)
+        select#reciever(name="reciever",value=item.reciever, required)
           option(value) -- Select Reciever --
           option(value="Attendant") Attendant
           option(value="Manager") Manager
     //  Submit and Reset 
     .form-actions
-      button.btn-submit(type="submit") Save
-      button.btn-reset(type="reset") Clear
+      button.btn-submit(type="submit") Update
+      button.btn-reseta(type="reset") Cancel

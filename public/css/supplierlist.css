@@ -1,0 +1,331 @@
+/* General Styling */
+html,
+body {
+    height: 100%;
+    overflow-y: auto;
+    /* Enables vertical scrolling */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #F5F5DC;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    margin-left: 270px;
+    margin-right: 30px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+    text-align: center;
+    color: #27ae60;
+    margin-bottom: 20px;
+}
+
+/* Search Box */
+.search-box {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.search-box input {
+    padding: 10px 15px;
+    width: 250px;
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: #3498db;
+}
+
+/* Table Wrapper */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    /* Outer border for the table */
+}
+
+thead {
+    background: #3498db;
+    color: #fff;
+}
+
+thead th {
+    text-align: left;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    /* Border around header cells */
+}
+
+tbody tr {
+    border-bottom: 1px solid #eaeaea;
+    transition: background 0.3s ease;
+}
+
+tbody tr:hover {
+    background: #f9f9f9;
+}
+
+tbody td {
+    padding: 12px 15px;
+    color: #555;
+    border: 1px solid #ccc;
+    /* Border around data cells */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+        width: 100%;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    tbody tr {
+        margin-bottom: 15px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        text-align: right;
+        font-size: 14px;
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #333;
+    }
+}
+
+/* Sidebar container */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    /* full height */
+    background: #2c3e50;
+    /* dark blue-grey */
+    color: #ecf0f1;
+    /* light text */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Sidebar header */
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Navigation list */
+.sidebar-nav {
+    flex-grow: 1;
+    padding: 20px 0;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 10px;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #ecf0f1;
+    border-radius: 8px;
+    transition: background 0.3s, padding-left 0.3s;
+}
+
+/* Hover and active states */
+.sidebar-nav a:hover {
+    background: #34495e;
+    padding-left: 25px;
+}
+
+.sidebar-nav a.active {
+    background: #27ae60;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* New */
+/* Table wrapper */
+.table-wrapper {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+/* Table styling */
+#userTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#userTable th,
+#userTable td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#userTable th {
+    background: #3498db;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Alternate row shading */
+#userTable tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* Hover effect */
+#userTable tr:hover {
+    background: #f1f1f1;
+}
+
+/* Action buttons wrapper */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* Shared styles */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+/* Edit button */
+.action-btn.edit {
+    background: #3498db;
+    color: #fff;
+}
+
+.action-btn.edit:hover {
+    background: #2980b9;
+}
+
+/* Delete button */
+.action-btn.delete {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.action-btn.delete:hover {
+    background: #c0392b;
+}
+
+/* Add User button */
+.btn-add {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 16px;
+    background: #27ae60;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.btn-add:hover {
+    background: #1e8449;
+}
+
+/* Add user */
+/* Add User button */
+.link {
+    margin-top: 20px;
+    text-align: left;
+    /* or center if you want */
+}
+
+.link .btn-add {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #27ae60;
+    /* green */
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.link .btn-add:hover {
+    background: #1e8449;
+    /* darker green */
+    transform: translateY(-2px);
+}
+
+.link .btn-add:active {
+    background: #145a32;
+    transform: translateY(0);
+}

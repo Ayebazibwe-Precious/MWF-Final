@@ -13,29 +13,29 @@ aside.sidebar
           i.fa-solid.fa-clipboard
           |  Dashboard
       li
-        a(href="../Stock management/stockManager.html")
+        a(href="/supplier")
           i.fa-solid.fa-rectangle-list
-          |  Stock Entry
+          |  Register Supplier
       li
-        a(href="../Stock management/stocklist.html")
+        a(href="/supplierlist")
           i.fa-solid.fa-table
-          |  Stocklist
-      li
-        a(href="../Stock management/stockreport.html")
-          i.fa-brands.fa-microsoft
-          |  Stock Report
-      li
-        a(href="../sales/salestable.html")
-          i.fa-solid.fa-table-list
-          |  Sales Table
-      li
-        a(href="../User Management/signUp.html")
-          i.fa-solid.fa-user
-          |  User Management
-      li
-        a(href="../Receipt/SalesReceipt.html")
-          i.fa-solid.fa-receipt
-          | Sales Reciept
+          |  Supplier List
+      //- li
+      //-   a(href="../Stock management/stockreport.html")
+      //-     i.fa-brands.fa-microsoft
+      //-     |  Stock Report
+      //- li
+      //-   a(href="../sales/salestable.html")
+      //-     i.fa-solid.fa-table-list
+      //-     |  Sales Table
+      //- li
+      //-   a(href="../User Management/signUp.html")
+      //-     i.fa-solid.fa-user
+      //-     |  User Management
+      //- li
+      //-   a(href="../Receipt/SalesReceipt.html")
+      //-     i.fa-solid.fa-receipt
+      //-     | Sales Reciept
 .form-container
   h2 Supplier Registration
   form(action="/supplier", method="POST")
@@ -49,7 +49,7 @@ aside.sidebar
         input#company(type="text", name="company", required)
     .form-row
       .form-group
-        label(for="email") Email
+        label(for="email") Email Address
         input#email(type="email", name="email", required)
       .form-group
         label(for="phone") Phone Number

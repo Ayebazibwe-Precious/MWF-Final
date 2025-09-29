@@ -4,7 +4,8 @@ title Dashboard Overview
 link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
 link(rel="stylesheet", href="css/managerDashboard.css")
 script(src="https://cdn.jsdelivr.net/npm/chart.js")
-//  Sidebar 
+
+// Sidebar
 aside.sidebar
   .sidebar-header
     h2 MWF System
@@ -17,44 +18,62 @@ aside.sidebar
       li
         a(href="/stockManager")
           i.fa-solid.fa-rectangle-list
-          |  Stock Entry
-      li
-        a(href="/stocklist")
-          i.fa-solid.fa-table
-          |  Stocklist
-      li
-        a(href="/stockreport")
-          i.fa-brands.fa-microsoft
-          |  Stock Report
+          |  Stock Management
       li
         a(href="/saleslist")
           i.fa-solid.fa-table-list
-          |  Sales Table
+          |  Sales Management
       li
         a(href="/signUp")
           i.fa-solid.fa-user
           |  User Management
       li
-        a(href="/stockreport")
+        a(href="/supplier")
           i.fa-solid.fa-receipt
-          | Sales Reciept
+          | Supplier Management
+
+// Main content
 .main
   .dashboard-container
     header
       h1 Business Dashboard
+
+    // Top stat cards
     section.grid.stats
-      .card
-        h3 Total Stock
-        p 12,500 units
-      .card
-        h3 Monthly Sales
-        p Shs85,000
-      .card
+      .stat-card
+        h3 Sales
+        p.small-text UGX #{totalSales}
+      .stat-card
+        h3 In Stock
+        p.small-text Total Quantity: #{totalQuantity} 
+        p.small-text Total Stock Value: UGX #{totalStockValue}
+      .stat-card
+        h3 Out Of Stock
+        p.small-text 1,245
+      .stat-card
         h3 Orders
-        p 1,245
-      .card
-        h3 Returns
-        p 120
+        p.small-text 120
+
+    // Quick Action Cards - right below stats
+    section.quick-actions
+      .quick-action-card
+        a(href="/addSale")
+          i.fa-solid.fa-cart-plus.fa-2x
+          p Add Sale
+      .quick-action-card
+        a(href="/addStock")
+          i.fa-solid.fa-boxes-stacked.fa-2x
+          p Add Stock
+      .quick-action-card
+        a(href="/stockReport")
+          i.fa-solid.fa-file-invoice.fa-2x
+          p Generate Stock Report
+      .quick-action-card
+        a(href="/salesReport")
+          i.fa-solid.fa-chart-line.fa-2x
+          p Generate Sales Report
+
+    // Charts section
     section.charts
       .chart-card
         h3 Sales vs Stock
@@ -62,23 +81,19 @@ aside.sidebar
       .chart-card
         h3 Most Sold Products
         canvas#topProductsChart
-    //  start 
-    //
-       <section class="reports">
-        <section class="report-section"> 
+
+    // Report Cards section
     section.grid.reports
-      .card
-        h2 Stock Reports
+      .report-card
+        h2 Stock Overview
         .inner-card
           h3 Current Available Stock
           ul#stock-list
         .inner-card.alert
           h3 Low Stock Alerts
           ul#low-stock-list
-      //  </section> 
-      //  <section class="report-section"> 
-      .card
-        h2 Sales Reports
+      .report-card
+        h2 Sales Overview
         .inner-card
           h3 Total Sales
           p#total-sales Shs0
@@ -88,22 +103,5 @@ aside.sidebar
         .inner-card
           h3 Payment Methods
           ul#payment-methods
-    //  end 
-    section.grid.reports
-      .card
-        h3 Recent Activities
-        ul
-          li Order 1024 placed
-          li Stock updated for tables
-          li New customer registered
-          li Refund issued for Order 1008
-      .card
-        h3 Quick Reports
-        ul
-          li
-            a(href="#") Download Sales Report
-          li
-            a(href="#") Export Inventory Data
-          li
-            a(href="#") Generate Invoice Summary
+
 script(src="js/managerDashboard.js")

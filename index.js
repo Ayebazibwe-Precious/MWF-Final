@@ -4,6 +4,8 @@ const path = require("path");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const expressSession = require("express-session");
+//flash
+const flash = require("connect-flash");
 const MongoStore = require("connect-mongo");
 const moment = require("moment");
 const methodOverride = require("method-override");
@@ -14,7 +16,7 @@ const UserModel = require("./models/userModel");
 const authRoutes = require("./routes/authRoutes");
 const stockRoutes = require("./routes/stockRoutes");
 const salesRoutes = require("./routes/salesRoutes");
-
+const attendantRoutes = require("./routes/attendantRoutes");
 
 //Instantiations
 const app = express();
@@ -57,20 +59,38 @@ app.use(
     cookie: { maxAge: 24 * 60 * 60 * 1000 }, //one day(time it takes to expire)
   })
 );
+
+
+//Connect-flash configs
+app.use(flash());
+// Make flash messages available to all views
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+});
+
+
+
+
+
 //Passport configs
 app.use(passport.initialize());
 app.use(passport.session());
 
 //authenticate with passport local strategy
-passport.use(UserModel.createStrategy());
-passport.serializeUser(UserModel.serializeUser());
-passport.deserializeUser(UserModel.deserializeUser());
+// passport.use(UserModel.createStrategy());
+// passport.serializeUser(UserModel.serializeUser());
+// passport.deserializeUser(UserModel.deserializeUser());
+require("./config/passport")(passport);
+
+
 
 //routes
 app.use("/", authRoutes);
 app.use("/", stockRoutes);
 app.use("/", salesRoutes);
-
+app.use("/", attendantRoutes);
 
 
 

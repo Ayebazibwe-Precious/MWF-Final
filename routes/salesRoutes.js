@@ -6,6 +6,7 @@ const { ensureauthenticated, ensureAgent } = require("../middleware/auth");
 const salesModel = require("../models/salesModel");
 const StockModel = require("../models/stockModel");
 
+
 router.get("/salesEntry", async (req, res) => {
   try {
     const stocks = await StockModel.find();
@@ -190,6 +191,8 @@ router.get("/salesreport", async (req, res) => {
     res.status(400).send("Unable to get data from the database!");
   }
 });
+
+
 
 
 module.exports = router;

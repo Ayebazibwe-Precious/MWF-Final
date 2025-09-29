@@ -12,7 +12,7 @@ const { now } = require("mongoose");
 
 //Getting manager stock and dashboard
 //ensureauthenticated, ensureManager
-router.get("/stockManager", (req, res) => {
+router.get("/stockManager", ensureauthenticated, ensureManager, (req, res) => {
   res.render("stockManager");
 });
 
@@ -30,9 +30,55 @@ router.post("/stockManager", async (req, res) => {
 });
 
 //getting the Manager's dashboard
-router.get("/managerDashboard", async (req, res) => {
-  res.render("managerDashboard");
-});
+// router.get("/managerDashboard",ensureauthenticated, ensureManager, async (req, res) => {
+//   res.render("managerDashboard");
+// });
+router.get(
+  "/managerDashboard", async (req, res) => {
+    try {
+      // Total Stock Value calculation
+      const result = await StockModel.aggregate([
+        {
+          $group: {
+            _id: null,
+            totalValue: { $sum: { $multiply: ["$qty", "$price"] } },
+            totalQuantity: { $sum: "$qty" },
+          },
+        },
+      ]);
+      const totalStockValue = result.length > 0 ? result[0].totalValue : 0;
+      const totalQuantity = result.length > 0 ? result[0].totalQuantity : 0;
+      // Format the total stock value for readability
+      const formattedStockValue = totalStockValue.toLocaleString();
+
+      // Total Sales calculation
+      const salesResult = await salesModel.aggregate([
+        {
+          $group: {
+            _id: null,
+            totalSales: { $sum: "$total" }, // sum the total field from each sale
+          },
+        },
+      ]);
+
+      const totalSales = salesResult.length > 0 ? salesResult[0].totalSales : 0;
+      const formattedTotalSales = totalSales.toLocaleString();
+
+      // Render dashboard
+      res.render("managerDashboard", {
+        totalStockValue: formattedStockValue,
+        totalQuantity,
+        totalSales: formattedTotalSales,   //passing totasales to the pug template
+      });
+    } catch (error) {
+      console.error("Error calculating total stock value:", error.message);
+      res.status(500).send("Server Error while calculating total stock value");
+    }
+  }
+);
+
+
+
 
 //getting the Attendant's  dashboard
 router.get("/attendantDashboard", async (req, res) => {
@@ -40,7 +86,7 @@ router.get("/attendantDashboard", async (req, res) => {
 });
 
 //Getting stock from the DB.
-router.get("/stocklist", async (req, res) => {
+router.get("/stocklist",ensureauthenticated, ensureManager, async (req, res) => {
   try {
     let items = await StockModel.find().sort({ $natural: -1 });
     console.log(items);
@@ -137,11 +183,62 @@ router.get("/stockreport", async (req, res) => {
        const supplier = new SupplierModel(req.body);
        console.log(req.body);
        await supplier.save();
-       res.redirect("/suppliertable");
+       res.redirect("/supplierlist");
      } catch (error) {
        console.error(error);
        res.redirect("/managerDashboard");
      }
    });
+
+   //getting Suppliers from the db
+     router.get("/supplierlist", async (req, res) => {
+       try {
+         let suppliers = await SupplierModel.find().sort({ $natural: -1 });
+         console.log(suppliers);
+         res.render("supplierlist", { suppliers });
+       } catch (error) {
+         res.status(400).send("Supplier not found!");
+       }
+     });
+   
+//Supplierlist Actions
+//UPDATING SUPPLIERS
+//Edit
+router.get("/editsupplier/:id", async (req, res) => {
+  let supplier = await SupplierModel.findById(req.params.id);
+  // console.log(item)
+  res.render("supplieredit", { supplier });
+});
+router.put("/editsupplier/:id", async (req, res) => {
+  try {
+    console.log("Updating Supplier", req.params.id);
+    const supplier = await SupplierModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    console.log(supplier);
+    if (!supplier) {
+      return res.status(404).send("Supplier not found!");
+    }
+    res.redirect("/supplierlist");
+  } catch (error) {}
+});
+
+//deleting
+router.post("/editsupplier", async (req, res) => {
+  try {
+    await SupplierModel.deleteOne({ _id: req.body.id });
+    res.redirect("/supplierlist");
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).send("Unable to delete supplier form the DB!");
+  }
+});
+
+
+
 
 module.exports = router;
