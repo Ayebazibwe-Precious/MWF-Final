@@ -12,7 +12,7 @@ const { now } = require("mongoose");
 
 //Getting manager stock and dashboard
 //ensureauthenticated, ensureManager
-router.get("/stockManager", ensureauthenticated, ensureManager, (req, res) => {
+router.get("/stockManager",  (req, res) => {
   res.render("stockManager");
 });
 
@@ -33,52 +33,81 @@ router.post("/stockManager", async (req, res) => {
 // router.get("/managerDashboard",ensureauthenticated, ensureManager, async (req, res) => {
 //   res.render("managerDashboard");
 // });
-router.get(
-  "/managerDashboard", async (req, res) => {
-    try {
-      // Total Stock Value calculation
-      const result = await StockModel.aggregate([
-        {
-          $group: {
-            _id: null,
-            totalValue: { $sum: { $multiply: ["$qty", "$price"] } },
-            totalQuantity: { $sum: "$qty" },
-          },
+router.get("/managerDashboard", async (req, res) => {
+  try {
+    // 1 Total Stock Value & Quantity
+    const stockResult = await StockModel.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalValue: { $sum: { $multiply: ["$qty", "$price"] } },
+          totalQuantity: { $sum: "$qty" },
         },
-      ]);
-      const totalStockValue = result.length > 0 ? result[0].totalValue : 0;
-      const totalQuantity = result.length > 0 ? result[0].totalQuantity : 0;
-      // Format the total stock value for readability
-      const formattedStockValue = totalStockValue.toLocaleString();
+      },
+    ]);
+    const totalStockValue =
+      stockResult.length > 0 ? stockResult[0].totalValue : 0;
+    const totalQuantity =
+      stockResult.length > 0 ? stockResult[0].totalQuantity : 0;
+    const formattedStockValue = totalStockValue.toLocaleString();
 
-      // Total Sales calculation
-      const salesResult = await salesModel.aggregate([
-        {
-          $group: {
-            _id: null,
-            totalSales: { $sum: "$total" }, // sum the total field from each sale
-          },
+    // 2 Total Sales
+    const salesResult = await salesModel.aggregate([
+      { $group: { _id: null, totalSales: { $sum: "$total" } } },
+    ]);
+    const totalSales = salesResult.length > 0 ? salesResult[0].totalSales : 0;
+    const formattedTotalSales = totalSales.toLocaleString();
+
+    // 3 Aggregate Stock by Product Name
+    const aggregatedStock = await StockModel.aggregate([
+      {
+        $group: {
+          _id: "$name", // group by product name
+          totalQty: { $sum: "$qty" },
+          totalValue: { $sum: { $multiply: ["$qty", "$price"] } },
         },
-      ]);
+      },
+      { $sort: { _id: 1 } },
+    ]);
+    const lowStockItems = aggregatedStock.filter((item) => item.totalQty < 5);
 
-      const totalSales = salesResult.length > 0 ? salesResult[0].totalSales : 0;
-      const formattedTotalSales = totalSales.toLocaleString();
+    // 4 Top 3 customers by number of sales (or you could sum totals if you prefer)
+    const topCustomersAgg = await salesModel.aggregate([
+      { $group: { _id: "$customerName", count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+      { $limit: 3 },
+    ]);
+    const topCustomers = topCustomersAgg.map((c) => c._id);
+    //5 Top payment methods
+    const paymentMethodsAgg = await salesModel.aggregate([
+      { $group: { _id: "$paymentType", count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+      { $limit: 3 },
+    ]);
+    const paymentMethods = paymentMethodsAgg.map((p) => p._id);
+    //6 out of stock Count products
+    const outOfStockCount = await StockModel.countDocuments({ qty: 0 });
 
-      // Render dashboard
-      res.render("managerDashboard", {
-        totalStockValue: formattedStockValue,
-        totalQuantity,
-        totalSales: formattedTotalSales,   //passing totasales to the pug template
-      });
-    } catch (error) {
-      console.error("Error calculating total stock value:", error.message);
-      res.status(500).send("Server Error while calculating total stock value");
-    }
+    // 7. Total number of users
+    const totalUsers = await UserModel.countDocuments({});
+
+    // Render the dashboard
+    res.render("managerDashboard", {
+      totalStockValue: formattedStockValue,
+      totalQuantity,
+      totalSales: formattedTotalSales,
+      stockItems: aggregatedStock,
+      lowStockItems,
+      topCustomers,
+      paymentMethods,
+      outOfStockCount,
+      totalUsers,
+    });
+  } catch (error) {
+    console.error("Error calculating dashboard data:", error.message);
+    res.status(500).send("Server Error while calculating dashboard data");
   }
-);
-
-
-
+});
 
 //getting the Attendant's  dashboard
 router.get("/attendantDashboard", async (req, res) => {
@@ -86,7 +115,7 @@ router.get("/attendantDashboard", async (req, res) => {
 });
 
 //Getting stock from the DB.
-router.get("/stocklist",ensureauthenticated, ensureManager, async (req, res) => {
+router.get("/stocklist", async (req, res) => {
   try {
     let items = await StockModel.find().sort({ $natural: -1 });
     console.log(items);

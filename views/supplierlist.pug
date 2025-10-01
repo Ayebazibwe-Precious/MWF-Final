@@ -1,9 +1,10 @@
 meta(charset="UTF-8")
 meta(name="viewport", content="width=device-width,initial-scale=1")
-title User Information Table
+title Supplier Management
 link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
 link(rel="stylesheet", href="css/supplierlist.css")
-//  Sidebar 
+
+// Sidebar
 aside.sidebar
   .sidebar-header
     h2 MWF System
@@ -21,12 +22,20 @@ aside.sidebar
         a(href="/supplier")
           i.fa-solid.fa-user
           | Register Supplier
+
+// Main Container
 .container
   h1 Supplier Management
-  //  Search Bar 
-  .search-box
-    input#searchInput(type="text", placeholder="Search by name, email or role...")
-  //  Supplier Table 
+
+  // 🔎 Top bar (Search + Add Supplier button)
+  .top-bar
+    .search-box
+      input#searchInput(type="text", placeholder="Search by name, company, or product...")
+    a.btn-add(href="/supplier")
+      i.fa-solid.fa-plus
+      |  Add Supplier
+
+  // Supplier Table
   .table-wrapper
     table#supplierTable
       thead
@@ -41,26 +50,36 @@ aside.sidebar
           th Product Type
           th Actions
       tbody
-      if suppliers.length 
-        each supplier in suppliers 
-          tr 
-            td #{supplier.name}
-            td #{supplier.company}
-            td #{supplier.email}
-            td #{supplier.phone}
-            td #{supplier.address}
-            td #{supplier.bank}
-            td #{supplier.productName}
-            td #{supplier.productType}
-            td.action-buttons
-                  a.action-btn.edit(href=`/editsupplier/${supplier._id}`)
-                    i.fa-solid.fa-pen-to-square 
-                    | Edit
-                  form(method='POST', action='/deletesupplier', onsubmit="return confirm('Are you sure you want to delete this supplier?');") 
-                    input(type='hidden', name='id' value=supplier._id)
-                    button.action-btn.delete(type='submit')
-                      i.fa-solid.fa-trash
-                      | Delete
-    .link
-      a.btn-add(href="/supplier")   Add Supplier               
+        if suppliers.length 
+          each supplier in suppliers 
+            tr 
+              td #{supplier.name}
+              td #{supplier.company}
+              td #{supplier.email}
+              td #{supplier.phone}
+              td #{supplier.address}
+              td #{supplier.bank}
+              td #{supplier.productName}
+              td #{supplier.productType}
+              td.action-buttons
+                a.action-btn.edit(href=`/editsupplier/${supplier._id}`)
+                  i.fa-solid.fa-pen-to-square 
+                  | Edit
+                form.delete-form(method='POST', action='/deletesupplier')
+                  input(type='hidden', name='id', value=supplier._id)
+                  input(type='hidden', name='supplierName', value=supplier.name)
+                  button.action-btn.delete(type='submit')
+                    i.fa-solid.fa-trash
+                    | Delete
+        tr#noResults(style="display: none;")
+          td(colspan="9") Supplier not found.
+
+  // Confirmation Modal
+  #confirmModal.modal
+    .modal-content
+      p#confirmMessage Are you sure you want to delete this supplier?
+      .modal-actions
+        button#confirmYes Yes, Delete
+        button#confirmNo Cancel
+
 script(src="js/supplierlist.js")

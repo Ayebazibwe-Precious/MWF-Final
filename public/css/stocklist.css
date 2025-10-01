@@ -3,7 +3,8 @@ body {
     background: #f4f6f8;
     margin: 0;
     padding: 20px;
-    overflow-y: auto;/* Enables vertical scrolling */
+    overflow-y: auto;
+    /* Enables vertical scrolling */
 }
 
 .main {
@@ -26,19 +27,27 @@ body {
 h1,
 h2 {
     color: #27ae60;
-    text-align: center;
-    margin-bottom: 20px;
+    margin: 0;
+}
+
+/* Header row with Add button */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .table-section {
     width: 100%;
     overflow-x: auto;
 }
+
 .table-section table {
     width: 100%;
     min-width: 1200px;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .table-section th,
@@ -46,7 +55,8 @@ h2 {
     padding: 12px;
     border: 1px solid #ddd;
     text-align: center;
-    white-space: nowrap;/* prevents text from wrapping awkwardly */
+    white-space: nowrap;
+    /* prevents text from wrapping awkwardly */
 }
 
 .table-section th {
@@ -95,10 +105,11 @@ h2 {
     background: #c0392b;
 }
 
-/* Add User button */
+/* Add Stock button */
 .btn-add {
-    display: inline-block;
-    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 8px 16px;
     background: #27ae60;
     color: #fff;
@@ -111,6 +122,7 @@ h2 {
 .btn-add:hover {
     background: #1e8449;
 }
+
 /* Sidebar container */
 .sidebar {
     position: fixed;
@@ -174,4 +186,87 @@ h2 {
     color: #fff;
     font-weight: bold;
 }
+.filter-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 15px;
+    justify-content: flex-start;
+}
 
+.filter-bar input,
+.filter-bar select {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+/* Modal background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal box */
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 15% auto;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal text */
+#confirmMessage {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#confirmYes {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#confirmYes:hover {
+    background: #c0392b;
+}
+
+#confirmNo {
+    background: #7f8c8d;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#confirmNo:hover {
+    background: #636e72;
+}
+
+#noResults td {
+    text-align: center;
+    font-style: italic;
+    color: #f30606;
+    padding: 10px;
+}

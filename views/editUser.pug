@@ -50,6 +50,7 @@ aside.sidebar
     .form-group.full
       label(for="confirm_password") Confirm Password
       input#confirm_password(type="password", name="confirm_password", required, minlength="6")
-    button.btn(type="submit") Save Changes
-    a.btn(href="/usersTable") Cancel
+    .form-actions
+      button.btn.btn-save(type="submit") Save Changes
+      a.btn.btn-cancel(href="/usersTable") Cancel
 script(src="js/signUp.js")

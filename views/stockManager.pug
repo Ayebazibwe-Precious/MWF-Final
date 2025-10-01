@@ -41,18 +41,18 @@ aside.sidebar
             option(value) Select Type
             option(value="Wood") Wood
             option(value="Furniture") Furniture
-        div
-          label Status
-          select(name="status", required)
-            option(value="Pending") Pending
-            option(value="Active") Active
-            option(value="Archived") Archived
+        //- div
+        //-   label Status
+        //-   select(name="status", required)
+        //-     option(value="Pending") Pending
+        //-     option(value="Active") Active
+        //-     option(value="Archived") Archived
     //  Section: Stock & Pricing 
     fieldset
       legend Stock & Pricing
       .form-grid
         div
-          label Quantity Available
+          label Quantity 
           input(type="number", name="qty", min="0", required)
         div
           label Cost Price

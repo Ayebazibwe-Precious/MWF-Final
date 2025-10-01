@@ -1,25 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.getElementById("searchInput");
-  const table = document.getElementById("supplierTable");
+  const filterName = document.getElementById("filterName");
+  const filterType = document.getElementById("filterType");
+  const table = document.getElementById("stockTable");
   const rows = table.getElementsByTagName("tr");
   const noResults = document.getElementById("noResults");
 
-  // 🔎 Filter suppliers
+  // 🔎 Filter functionality
   function filterTable() {
-    const query = searchInput.value.toLowerCase();
+    const nameValue = filterName.value.toLowerCase();
+    const typeValue = filterType.value.toLowerCase();
     let visibleCount = 0;
 
     for (let i = 1; i < rows.length; i++) {
       const row = rows[i];
-      if (row.id === "noResults") continue;
+      if (row.id === "noResults") continue; // skip "no results" row
 
       const cells = row.getElementsByTagName("td");
       if (!cells.length) continue;
 
-      const rowText = Array.from(cells)
-        .map((td) => td.textContent.toLowerCase())
-        .join(" ");
-      if (rowText.includes(query)) {
+      const productName = cells[0].textContent.toLowerCase();
+      const productType = cells[1].textContent.toLowerCase();
+
+      const matchesName = productName.includes(nameValue);
+      const matchesType = !typeValue || productType === typeValue;
+
+      if (matchesName && matchesType) {
         row.style.display = "";
         visibleCount++;
       } else {
@@ -27,12 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    // Toggle "No results" row
     noResults.style.display = visibleCount === 0 ? "" : "none";
   }
 
-  if (searchInput) searchInput.addEventListener("input", filterTable);
+  if (filterName) filterName.addEventListener("input", filterTable);
+  if (filterType) filterType.addEventListener("change", filterTable);
 
-  // 🗑 Delete confirmation modal
+  // 🗑 Delete confirmation (same as before)
   const modal = document.getElementById("confirmModal");
   const confirmMessage = document.getElementById("confirmMessage");
   const confirmYes = document.getElementById("confirmYes");
@@ -43,13 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const supplierName = form.querySelector(
-        "input[name='supplierName']"
-      ).value;
-      confirmMessage.textContent = `Are you sure you want to delete "${supplierName}"?`;
+      const productName = form.querySelector("input[name='productName']").value;
+      confirmMessage.textContent = `Are you sure you want to delete "${productName}"?`;
 
       formToSubmit = form;
-      modal.style.display = "flex";
+      modal.style.display = "block";
     });
   });
 

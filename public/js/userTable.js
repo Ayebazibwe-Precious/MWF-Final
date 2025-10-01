@@ -1,30 +1,65 @@
-//table search
 document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.getElementById("searchInput");
+  const searchUser = document.getElementById("searchUser");
   const table = document.getElementById("userTable");
   const rows = table.getElementsByTagName("tr");
+  const noResults = document.getElementById("noResults");
 
-  searchInput.addEventListener("keyup", function () {
-    const filter = searchInput.value.toLowerCase();
+  // 🔎 Search functionality
+  function filterUsers() {
+    const searchValue = searchUser.value.toLowerCase();
+    let visibleCount = 0;
 
-    // loop through all table rows except header
     for (let i = 1; i < rows.length; i++) {
-      const cells = rows[i].getElementsByTagName("td");
-      let match = false;
+      const row = rows[i];
+      if (row.id === "noResults") continue;
 
-      // check each cell in the row
-      for (let j = 0; j < cells.length -1; j++) {
-        if (cells[j]) {
-          const textValue = cells[j].textContent || cells[j].innerText;
-          if (textValue.toLowerCase().includes(filter)) {
-            match = true;
-            break;
-          }
-        }
-      }
+      const cells = row.getElementsByTagName("td");
+      if (!cells.length) continue;
 
-      rows[i].style.display = match ? "" : "none";
+      const userName = cells[0].textContent.toLowerCase();
+      const matches = userName.includes(searchValue);
+
+      row.style.display = matches ? "" : "none";
+      if (matches) visibleCount++;
+    }
+
+    noResults.style.display = visibleCount === 0 ? "" : "none";
+  }
+
+  if (searchUser) searchUser.addEventListener("input", filterUsers);
+
+  // 🗑 Delete confirmation modal
+  const modal = document.getElementById("confirmModal");
+  const confirmMessage = document.getElementById("confirmMessage");
+  const confirmYes = document.getElementById("confirmYes");
+  const confirmNo = document.getElementById("confirmNo");
+  let formToSubmit = null;
+
+  document.querySelectorAll(".delete-form").forEach((form) => {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const userName = form.querySelector("input[name='userName']").value;
+      confirmMessage.textContent = `Are you sure you want to delete "${userName}"?`;
+
+      formToSubmit = form;
+      modal.style.display = "flex";
+    });
+  });
+
+  confirmYes.addEventListener("click", () => {
+    if (formToSubmit) formToSubmit.submit();
+    modal.style.display = "none";
+  });
+
+  confirmNo.addEventListener("click", () => {
+    modal.style.display = "none";
+    formToSubmit = null;
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+      formToSubmit = null;
     }
   });
 });
-

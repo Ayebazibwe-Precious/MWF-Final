@@ -1,58 +1,78 @@
 meta(charset="UTF-8")
 meta(name="viewport", content="width=device-width,initial-scale=1")
-title User Information Table
-link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
+title User List
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css")
 link(rel="stylesheet", href="css/userTable.css")
-//  Sidebar 
+
+// Sidebar
 aside.sidebar
   .sidebar-header
     h2 MWF System
   nav.sidebar-nav
     ul
       li
-        a.active(href="/usersTable")
-          i.fa-solid.fa-table-list
-          |  Users Table
+        a.active(href="/users")
+          i.fa-solid.fa-users
+          |  Users
       li
         a(href="/managerDashboard")
           i.fa-solid.fa-clipboard
           |  Dashboard
       li
-        a(href="/signup")
-          i.fa-solid.fa-user
-          | Register User
-.container
-  h1 User Management
-  //  Search Bar 
-  .search-box
-    input#searchInput(type="text", placeholder="Search by name, email or role...")
-  //  User Table 
-  .table-wrapper
-    table#userTable
-      thead
-        tr
-          th Full Name
-          th Email Address
-          th Phone Number
-          th Role
-          th Actions
-      tbody
-      if users.length 
-        each user in users 
-          tr 
-            td #{user.name}
-            td #{user.email}
-            td #{user.phone}
-            td #{user.role}
-            td.action-buttons
+        a(href="/stocklist")
+          i.fa-solid.fa-table
+          |  Stock List
+      li
+        a(href="/stockManager")
+          i.fa-solid.fa-rectangle-list
+          |  Stock Entry
+
+.main
+  .container
+    // 🔝 Top Bar
+    .top-bar
+      .search-box
+        input#searchUser(type="text", placeholder="Search by user name")
+      a.btn-add(href="/addUser")
+        i.fa-solid.fa-plus
+        |  Add User
+
+    // User Table
+    .table-wrapper
+      table#userTable
+        thead
+          tr
+            th User Name
+            th Email
+            th Role
+            th Actions
+        tbody
+          if users.length
+            each user in users
+              tr
+                td #{user.name}
+                td #{user.email}
+                td #{user.role}
+                td.action-buttons
                   a.action-btn.edit(href=`/editUser/${user._id}`)
-                    i.fa-solid.fa-pen-to-square 
+                    i.fa-solid.fa-pen-to-square
                     | Edit
-                  form(method='POST', action='/deleteuser', onsubmit="return confirm('Are you sure you want to delete this user?');") 
-                    input(type='hidden', name='id' value=user._id)
+                  form.delete-form(method='POST', action='/deleteUser')
+                    input(type='hidden', name='id', value=user._id)
+                    input(type='hidden', name='userName', value=user.name)
                     button.action-btn.delete(type='submit')
                       i.fa-solid.fa-trash
                       | Delete
-    .link
-      a.btn-add(href="/signup")   Add User                
+          // 🔎 No results row (hidden by default)
+          tr#noResults(style="display:none;")
+            td(colspan="4") User not found
+
+// Confirmation Modal
+#confirmModal.modal
+  .modal-content
+    p#confirmMessage Are you sure you want to delete this user?
+    .modal-actions
+      button#confirmYes Yes, Delete
+      button#confirmNo Cancel
+
 script(src="js/userTable.js")

@@ -18,15 +18,15 @@ aside.sidebar
       li
         a(href="/stockManager")
           i.fa-solid.fa-rectangle-list
-          |  Stock Management
+          | Stock Management
       li
         a(href="/saleslist")
           i.fa-solid.fa-table-list
-          |  Sales Management
+          | Sales Management
       li
         a(href="/signUp")
           i.fa-solid.fa-user
-          |  User Management
+          | User Management
       li
         a(href="/supplier")
           i.fa-solid.fa-receipt
@@ -49,10 +49,10 @@ aside.sidebar
         p.small-text Total Stock Value: UGX #{totalStockValue}
       .stat-card
         h3 Out Of Stock
-        p.small-text 1,245
+        p.small-text.text-red #{outOfStockCount.toLocaleString()}
       .stat-card
-        h3 Orders
-        p.small-text 120
+        h3 Users
+        p.small-text #{totalUsers.toLocaleString()}
 
     // Quick Action Cards - right below stats
     section.quick-actions
@@ -86,22 +86,42 @@ aside.sidebar
     section.grid.reports
       .report-card
         h2 Stock Overview
+
+        // Current Available Stock
         .inner-card
           h3 Current Available Stock
-          ul#stock-list
+          if stockItems.length
+            ul#stock-list
+              each item in stockItems
+                li #{item._id} - #{item.totalQty} units
+          else
+            p No stock available
+
+        // Low Stock Alerts
         .inner-card.alert
           h3 Low Stock Alerts
-          ul#low-stock-list
+          if lowStockItems.length
+            ul#low-stock-list
+              each item in lowStockItems
+                li #{item._id} - only #{item.totalQty} left!
+          else
+            p No low stock alerts
+
       .report-card
         h2 Sales Overview
         .inner-card
           h3 Total Sales
-          p#total-sales Shs0
+          p#total-sales UGX #{totalSales}
         .inner-card
           h3 Top Customers
           ul#top-customers
+            each customer in topCustomers
+              li= customer
+
         .inner-card
           h3 Payment Methods
           ul#payment-methods
+            each method in paymentMethods
+              li= method
 
 script(src="js/managerDashboard.js")

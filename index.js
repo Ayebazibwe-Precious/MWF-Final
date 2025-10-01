@@ -70,6 +70,8 @@ app.use((req, res, next) => {
   next();
 });
 
+//setting up chartroutes
+app.use("/", require("./routes/chartRoutes"));
 
 
 
