@@ -115,15 +115,48 @@ router.get("/attendantDashboard", async (req, res) => {
 });
 
 //Getting stock from the DB.
+// router.get("/stocklist", async (req, res) => {
+//   try {
+//     let items = await StockModel.find().sort({ $natural: -1 });
+//     console.log(items);
+//     res.render("stocklist", { items });
+//   } catch (error) {
+//     res.status(400).send("Unable to get data from the database!");
+//   }
+// });
+
 router.get("/stocklist", async (req, res) => {
   try {
+    // All individual entries
     let items = await StockModel.find().sort({ $natural: -1 });
-    console.log(items);
-    res.render("stocklist", { items });
+
+    // Aggregated summary
+    let summary = await StockModel.aggregate([
+      {
+        $group: {
+          _id: { name: "$name", type: "$type" },
+          totalQty: { $sum: "$qty" },
+          avgCost: { $avg: "$cost" },
+          avgPrice: { $avg: "$price" },
+          lastSupplier: { $last: "$supplier" },
+          lastDate: { $last: "$dateReceived" },
+          lastQuality: { $last: "$quality" },
+          lastColor: { $last: "$color" },
+          lastMeasurements: { $last: "$measurements" }
+        }
+      },
+      { $sort: { "_id.name": 1 } }
+    ]);
+
+    res.render("stocklist", { items, summary });
   } catch (error) {
+    console.error(error);
     res.status(400).send("Unable to get data from the database!");
   }
 });
+
+
+
 
 //UPDATING STOCK
 router.get("/editstock/:id", async (req, res) => {
@@ -164,6 +197,7 @@ router.post("/deletestock", async (req, res) => {
     res.status(400).send("Unable to delete item from the DB!");
   }
 });
+
 
 
 // GET: Stock report data

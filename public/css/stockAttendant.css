@@ -10,7 +10,8 @@ body {
 .form-container {
     margin-left: 320px;
     max-width: 700px;
-    /* margin: 0 auto; */
+    width: 100%;/* ensures it shrinks */
+    box-sizing: border-box;/* padding doesn’t cause overflow */
     background: #fff;
     padding: 25px;
     border-radius: 10px;
@@ -76,17 +77,19 @@ textarea:focus {
 /* Buttons */
 .form-actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 10px;
     margin-top: 20px;
+    align-items: center;
 }
 
 .btn-submit {
     background: #3498db;
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 30px;
     border: none;
     border-radius: 6px;
+    font-size: 16px;
     cursor: pointer;
     transition: background 0.3s ease;
 }
@@ -107,6 +110,28 @@ textarea:focus {
 .btn-reset:hover {
     background: #bdc3c7;
 }
+.btn-submit,
+.btn-reset ,
+.btn-cancel{
+    width: 45%;
+    text-align: center;
+}
+.btn-cancel {
+    background: #e74c3c;
+    color: #fff;
+    padding: 12px 30px;
+    /* make it longer */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background: #c0392b;
+}
 
 /* Mobile Friendly */
 @media (max-width: 600px) {
@@ -119,7 +144,8 @@ textarea:focus {
     }
 
     .btn-submit,
-    .btn-reset {
+    .btn-reset ,
+    .btn-cancel{
         width: 100%;
     }
 }

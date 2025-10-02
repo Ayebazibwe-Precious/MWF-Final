@@ -27,15 +27,11 @@ aside.sidebar
       li
         a(href="/salesreport")
           i.fa-solid.fa-table-list
-          | Sales Table
+          | Sales Report
       li
         a(href="/attendantDashboard")
           i.fa-solid.fa-clipboard
           | Dashboard
-      li
-        a(href="../Reciepts/receipt.html")
-          i.fa-solid.fa-receipt
-          | Sales Reciept
 
 .container
   h1 Sales List
@@ -53,7 +49,7 @@ aside.sidebar
           th Sales Agent
           th Transport
           th Total Price
-          if currentUser.role === "Manager"
+          if currentUser && currentUser.role === "Manager"
             th Update
             th Delete
           else
@@ -72,7 +68,7 @@ aside.sidebar
               td #{sale.salesAgent.email}
               td #{sale.transportRequired}
               td #{sale.total}
-              if currentUser.role === "Manager"
+              if currentUser && currentUser.role === "Manager"
                 td
                   a.action-btn.edit(href=`/editsale/${sale._id}`)
                     i.fa-solid.fa-pen-to-square

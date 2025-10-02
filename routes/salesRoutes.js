@@ -90,15 +90,18 @@ router.get("/saleslist", async (req, res) => {
     //sales agent only sees their sales
     const sales = await salesModel.find().populate("salesAgent", "email");
     // req.session.user = currentUser
-    const currentUser = req.session.user;
+    // const currentUser = req.session.user;
     // console.log(currentUser);
-    res.render("saleslist", { sales, currentUser });
+    //res.render("saleslist", { sales, currentUser });
+
+    res.render("saleslist", { sales, currentUser: req.session.user });
+
   } catch (error) {
     console.log(error.message);
     res.redirect("/");
   }
 });
-
+ 
 //Generating reciepts
 
 router.get("/receipt/:id", async (req, res) => {

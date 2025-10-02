@@ -4,6 +4,57 @@ const router = express.Router();
 const { ensureauthenticated, ensureAgent } = require("../middleware/auth");
 //importing Models
 const attendantStockModel = require("../models/attendantStockModel");
+const StockModel = require("../models/stockModel");
+const salesModel = require("../models/salesModel");
+
+
+
+//getting the Attendant's  dashboard
+// Attendant Dashboard
+router.get("/attendantDashboard", async (req, res) => {
+  try {
+    // 1. Total Sales
+    const totalSalesResult = await SalesModel.aggregate([
+      { $group: { _id: null, total: { $sum: "$totalPrice" } } },
+    ]);
+    const totalSales = totalSalesResult.length ? totalSalesResult[0].total : 0;
+
+    // 2. Products Available (count of unique products in manager stock)
+    const productsAvailable = await StockModel.countDocuments();
+
+    // 3. Low Stock Count (items where qty < threshold, e.g., 10)
+    const lowStockCount = await StockModel.countDocuments({
+      quantity: { $lt: 10 },
+    });
+
+    // 4. Stock Summary (aggregated from manager stock)
+    const stockSummary = await StockModel.aggregate([
+      {
+        $group: {
+          _id: { name: "$name", type: "$type" },
+          totalQty: { $sum: "$quantity" },
+          avgCost: { $avg: "$costPrice" },
+          avgPrice: { $avg: "$sellingPrice" },
+        },
+      },
+    ]);
+
+    res.render("attendantDashboard", {
+      totalSales,
+      productsAvailable,
+      lowStockCount,
+      stockSummary,
+    });
+  } catch (error) {
+    console.error("Error loading attendant dashboard:", error);
+    res.status(500).send("Server error");
+  }
+});
+
+
+
+
+
 //Getting manager stock and dashboard
 //ensureauthenticated, ensureManager
 router.get("/stockAttendant", (req, res) => {
@@ -22,10 +73,7 @@ router.post("/stockAttendant", async (req, res) => {
     res.redirect("/stockAttendant");
   }
 });
-//getting the Attendant's  dashboard
-router.get("/attendantDashboard", async (req, res) => {
-  res.render("attendantDashboard");
-});
+
 
 
 //Getting stock from the DB.
@@ -48,7 +96,7 @@ router.get("/attendantEditstock/:id", async (req, res) => {
     }
     res.render("attendantEditstock", { item }); //send to pug
   } catch (error) {
-   console.log(error.message);q
+   console.log(error.message);
    res.status(500).send("Server Error"); 
   }
  });
@@ -122,3 +170,8 @@ router.get("/attendantStockreport", async (req, res) => {
 
 
 module.exports = router;
+
+//getting the Attendant's  dashboard
+// router.get("/attendantDashboard", async (req, res) => {
+//   res.render("attendantDashboard");
+// });

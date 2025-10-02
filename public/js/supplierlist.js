@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const rows = table.getElementsByTagName("tr");
   const noResults = document.getElementById("noResults");
 
-  // 🔎 Filter suppliers
+  //  Filter suppliers
   function filterTable() {
     const query = searchInput.value.toLowerCase();
     let visibleCount = 0;

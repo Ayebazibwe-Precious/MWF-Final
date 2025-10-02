@@ -122,6 +122,36 @@ h2 {
 .btn-add:hover {
     background: #1e8449;
 }
+.table-section .container {
+    margin-bottom: 40px;/* space between tables */
+    max-width: 1000px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+}
+
+#stockSummary {
+    min-width: 800px;
+    /* smaller than full stock list */
+}
+
+#stockSummary th,
+#stockSummary td {
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+#stockSummary th {
+    background-color: #007bff;
+    color: white;
+}
+
+
+
+
 
 /* Sidebar container */
 .sidebar {

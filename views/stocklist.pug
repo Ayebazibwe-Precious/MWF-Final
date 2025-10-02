@@ -29,67 +29,96 @@ aside.sidebar
 
 .main
   .container
+
+    // --- STOCK LIST (ALL ENTRIES) ---
     section.table-section
-      .header-row
-        h2 Stock List
-        a.btn-add(href="/stockManager")
-          i.fa-solid.fa-plus
-          |  Add Stock
+      .container
+        .header-row
+          h2 Stock List
+          a.btn-add(href="/stockManager")
+            i.fa-solid.fa-plus
+            |  Add Stock
 
-      // Filter Bar
-      .filter-bar
-        input#filterName(type="text", placeholder="Filter by Product Name")
-        select#filterType
-          option(value="") All Types
-          option(value="Electronics") Electronics
-          option(value="Clothing") Clothing
-          option(value="Furniture") Furniture
+        // Filter Bar
+        .filter-bar
+          input#filterName(type="text", placeholder="Filter by Product Name")
+          select#filterType
+            option(value="") All Types
+            option(value="Electronics") Electronics
+            option(value="Clothing") Clothing
+            option(value="Furniture") Furniture
 
-      table#stockTable
-        thead
-          tr
-            th Product Name
-            th Product Type
-            th Quantity Available
-            th Cost Price
-            th Selling Price
-            th Supplier Name
-            th Date Received
-            th Quality
-            th Color
-            th Measurements
-            th Alerts
-            th Actions
-        tbody
-        if items.length
-          each item in items
-            tr 
-              td #{item.name}
-              td #{item.type}
-              td #{item.qty}
-              td #{item.cost}
-              td #{item.price}
-              td #{item.supplier}
-              td #{moment(item.dateReceived).format("DD-MM-YYYY")}
-              td #{item.quality}
-              td #{item.color}
-              td #{item.measurements}
-              td
-                if item.qty <= 2
-                  span.btn.btn-warning Low Stock     
-              td.action-buttons
-                a.action-btn.edit(href=`/editstock/${item._id}`) 
-                  i.fa-solid.fa-pen-to-square
-                  | Edit
-                form.delete-form(method='POST', action='/deletestock') 
-                  input(type='hidden', name='id' value=item._id)
-                  input(type='hidden', name='productName' value=item.name)
-                  button.action-btn.delete(type='submit') 
-                    i.fa-solid.fa-trash
-                    | Delete
-        // "No results" row (hidden by default)
-        tr#noResults(style="display:none;")
-          td(colspan="12") Product not found
+        table#stockTable
+          thead
+            tr
+              th Product Name
+              th Product Type
+              th Quantity Available
+              th Cost Price
+              th Selling Price
+              th Supplier Name
+              th Date Received
+              th Quality
+              th Color
+              th Alerts
+              th Actions
+          tbody
+            if items.length
+              each item in items
+                tr 
+                  td #{item.name}
+                  td #{item.type}
+                  td #{item.qty}
+                  td #{item.cost}
+                  td #{item.price}
+                  td #{item.supplier}
+                  td #{moment(item.dateReceived).format("DD-MM-YYYY")}
+                  td #{item.quality}
+                  td #{item.color}
+                  td
+                    if item.qty <= 2
+                      span.btn.btn-warning Low Stock     
+                  td.action-buttons
+                    a.action-btn.edit(href=`/editstock/${item._id}`) 
+                      i.fa-solid.fa-pen-to-square
+                      | Edit
+                    form.delete-form(method='POST', action='/deletestock') 
+                      input(type='hidden', name='id' value=item._id)
+                      input(type='hidden', name='productName' value=item.name)
+                      button.action-btn.delete(type='submit') 
+                        i.fa-solid.fa-trash
+                        | Delete
+            else
+              tr
+                td(colspan="12") No products in stock
+
+    // --- STOCK SUMMARY (AGGREGATED) ---
+    section.table-section
+      .container
+        .header-row
+          h2 Stock Summary (Aggregated)
+
+        table#stockSummary
+          thead
+            tr
+              th Product Name
+              th Product Type
+              th Total Quantity
+              th Avg Cost Price
+              th Avg Selling Price
+          tbody
+            if summary && summary.length
+              each item in summary
+                tr
+                  td #{item._id.name}
+                  td #{item._id.type}
+                  td #{item.totalQty}
+                  td #{item.avgCost.toFixed(2)}
+                  td #{item.avgPrice.toFixed(2)}
+            else
+              tr
+                td(colspan="6") No products in stock
+
 // Confirmation Modal
 #confirmModal.modal
   .modal-content
