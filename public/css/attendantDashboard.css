@@ -18,7 +18,10 @@ body {
     background: var(--bg);
     color: #111;
 }
-
+h2{
+    text-align: center;
+    color: #27ae60;
+}
 /* Sidebar */
 .sidebar {
     position: fixed;
@@ -136,6 +139,10 @@ body {
     border-left: 6px solid var(--danger);
     color: var(--danger);
 }
+.card.sales-count {
+    border-left: 6px solid var(--warning);
+    color: var(--warning);
+}
 
 /* Hover effect */
 .card:hover {
@@ -158,6 +165,7 @@ body {
 
 table {
     width: 100%;
+    border: #0b0b0b;
     border-collapse: collapse;
 }
 

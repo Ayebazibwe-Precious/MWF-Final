@@ -1,102 +1,191 @@
-/* ===== General Page Styling ===== */
+/* ===== Base Styles ===== */
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: #f8f9fa;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
     margin: 0;
     padding: 0;
-    color: #333;
+    color: #2c3e50;
 }
 
 .main {
-    margin-left: 250px;
-    /* leave space for sidebar */
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
 }
 
-.table-container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 30px;
+/* ===== Receipt Container ===== */
+.receipt-container {
+    width: 100%;
+    max-width: 850px;
+    background: #ffffff;
+    padding: 40px 50px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: none;/* clean look */
+    
 }
 
-/* ===== Header ===== */
-.table-container h2 {
+.receipt-header {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.receipt-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 5px;
+    color: #4a90e2;
 }
 
-.table-container p {
-    margin: 4px 0;
+.receipt-header p {
+    margin: 5px 0 0 0;
     font-size: 0.95rem;
     color: #555;
 }
 
-.table-container h3 {
-    margin: 20px 0;
-    color: #27ae60;
-    font-weight: bold;
+/* ===== Info Section ===== */
+.receipt-info h3 {
+    margin: 20px 0 10px 0;
+    color: #4a90e2;
+    font-weight: 700;
     letter-spacing: 1px;
 }
 
-/* ===== Receipt Table ===== */
+.info-grid {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.info-grid p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+}
+
+/* ===== Table ===== */
 .table {
-    margin-top: 20px;
-    border-radius: 8px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border-radius: 10px;
     overflow: hidden;
+    border: 1px solid #e0e0e0;
 }
 
 .table thead {
-    background: #007bff;
+    background: #4a90e2;
     color: #fff;
-}
-
-.table th {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-}
-
-.table td {
-    vertical-align: middle;
     font-size: 0.9rem;
+    text-transform: uppercase;
 }
 
-/* Zebra rows */
+.table th,
+.table td {
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    text-align: left;
+}
+
 .table tbody tr:nth-child(even) {
-    background: #f8f9fc;
+    background: #f7f9fc;
 }
 
-/* ===== Footer & Thanks ===== */
-.table-container h4 {
-    margin-top: 20px;
+/* ===== Summary Section ===== */
+.receipt-summary {
+    margin-top: 25px;
+    text-align: right;
+}
+
+.receipt-summary p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+.balance-due {
+    background: #4a90e2;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 6px;
+    display: inline-block;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.receipt-summary h4 {
+    margin-top: 25px;
+    text-align: center;
     font-weight: 600;
     color: #2c3e50;
-    border-top: 1px dashed #bbb;
-    padding-top: 10px;
+    border-top: 1px dashed #ccc;
+    padding-top: 12px;
 }
 
-/* ===== Print Button ===== */
-.btn-primary {
-    background: #27ae60;
-    border: none;
-    margin-top: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px 25px;
-    font-size: 1rem;
+/* ===== Buttons ===== */
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 20px;
+    /* space between buttons */
+}
+
+.btn-print,
+.btn-close,
+.btn-close-danger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    /* space between icon and text */
     font-weight: 600;
-    border-radius: 6px;
-    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 12px 28px;
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
 
-.btn-primary:hover {
-    background: #1e8449;
+/* Print button */
+.btn-print {
+    background: #4a90e2;
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.25);
+}
+
+.btn-print:hover {
+    background: #357ABD;
     transform: translateY(-2px);
+}
+
+/* Blue Close button */
+.btn-close {
+    background: #fff;
+    color: #4a90e2;
+    border: 2px solid #4a90e2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.btn-close:hover {
+    background: #4a90e2;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+/* Red "danger" Close button */
+.btn-close-danger {
+    background: #fff;
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.btn-close-danger:hover {
+    background: #e74c3c;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
 }
 
 /* ===== Print Styles ===== */
@@ -105,83 +194,14 @@ body {
         background: #fff;
     }
 
-    .sidebar,
-    .btn-primary {
-        display: none;
-        /* Hide sidebar and print button */
+    .buttons,
+    .btn-close,
+    .btn-close-danger {
+        display: none !important;
     }
 
-    .main {
-        margin: 0;
-        padding: 0;
-    }
-
-    .table-container {
-        box-shadow: none;
+    .receipt-container {
         border: none;
         padding: 10px;
     }
-}
-/* Sidebar container */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100vh;
-    /* full height */
-    background: #2c3e50;
-    /* dark blue-grey */
-    color: #ecf0f1;
-    /* light text */
-    display: flex;
-    flex-direction: column;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-/* Sidebar header */
-.sidebar-header {
-    padding: 20px;
-    text-align: center;
-    font-size: 1.3rem;
-    font-weight: bold;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Navigation list */
-.sidebar-nav {
-    flex-grow: 1;
-    padding: 20px 0;
-}
-
-.sidebar-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar-nav li {
-    margin-bottom: 10px;
-}
-
-.sidebar-nav a {
-    display: block;
-    padding: 12px 20px;
-    text-decoration: none;
-    color: #ecf0f1;
-    border-radius: 8px;
-    transition: background 0.3s, padding-left 0.3s;
-}
-
-/* Hover and active states */
-.sidebar-nav a:hover {
-    background: #34495e;
-    padding-left: 25px;
-}
-
-.sidebar-nav a.active {
-    background: #27ae60;
-    color: #fff;
-    font-weight: bold;
 }

@@ -2,12 +2,12 @@
 document.getElementById("reportDate").textContent =
   new Date().toLocaleDateString("en-GB");
 
-// Stock data injected from backend
-let stockData = window.stockFromDB || [];
+// Sales data injected from backend
+let salesData = window.salesFromDB || [];
 
-// Render stock table
+// Render sales data table
 function renderTable(data) {
-  const tbody = document.getElementById("stock-table-body");
+  const tbody = document.querySelector("tbody");
   tbody.innerHTML = "";
 
   if (!data || data.length === 0) {
@@ -15,19 +15,19 @@ function renderTable(data) {
     return;
   }
 
-  data.forEach((item) => {
+  data.forEach((sale) => {
     const row = `
-      <tr class="${item.qty < 10 ? "low-stock" : ""}">
-        <td>${item.name}</td>
-        <td>${item.type}</td>
-        <td>${item.qty}</td>
-        <td>${item.cost}</td>
-        <td>${item.price}</td>
-        <td>${item.supplier}</td>
-        <td>${new Date(item.date).toLocaleDateString("en-GB")}</td>
-        <td>${item.quality}</td>
-        <td>${item.color}</td>
-        <td>${item.measurements}</td>
+      <tr>
+        <td>${sale.customerName}</td>
+        <td>${sale.productName}</td>
+        <td>${sale.productType}</td>
+        <td>${sale.quantity}</td>
+        <td>${sale.unitPrice}</td>
+        <td>${new Date(sale.saleDate).toLocaleDateString("en-GB")}</td>
+        <td>${sale.paymentType}</td>
+        <td>${sale.salesAgent?.email || "N/A"}</td>
+        <td>${sale.transportfee ? "Yes" : "No"}</td>
+        <td>${sale.total}</td>
       </tr>`;
     tbody.innerHTML += row;
   });
@@ -38,23 +38,23 @@ function filterData(type, date) {
   if (!type || !date) return [];
   const selectedDate = new Date(date);
 
-  return stockData.filter((s) => {
-    const stockDate = new Date(s.date);
+  return salesData.filter((s) => {
+    const saleDate = new Date(s.saleDate);
 
     if (type === "day") {
-      return stockDate.toDateString() === selectedDate.toDateString();
+      return saleDate.toDateString() === selectedDate.toDateString();
     }
     if (type === "week") {
       const startOfWeek = new Date(selectedDate);
       startOfWeek.setDate(selectedDate.getDate() - selectedDate.getDay());
       const endOfWeek = new Date(startOfWeek);
       endOfWeek.setDate(startOfWeek.getDate() + 6);
-      return stockDate >= startOfWeek && stockDate <= endOfWeek;
+      return saleDate >= startOfWeek && saleDate <= endOfWeek;
     }
     if (type === "month") {
       return (
-        stockDate.getMonth() === selectedDate.getMonth() &&
-        stockDate.getFullYear() === selectedDate.getFullYear()
+        saleDate.getMonth() === selectedDate.getMonth() &&
+        saleDate.getFullYear() === selectedDate.getFullYear()
       );
     }
     return false;
@@ -75,3 +75,5 @@ document.getElementById("btnRefresh").addEventListener("click", () => {
   window.location.reload();
 });
 
+// ❌ Do NOT auto render table on load
+// renderTable(salesData);   <-- Removed

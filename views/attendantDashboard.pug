@@ -39,8 +39,13 @@ html
       .cards
         .card.total-sales
           i.fa-solid.fa-sack-dollar
-          h3 Total Sales
-          p UGX #{totalSales || 0}
+          h3 Total Sales (Today)
+          p UGX #{totalSales.toLocaleString()}
+
+        .card.sales-count
+          i.fa-solid.fa-receipt
+          h3 Transactions Today
+          p #{totalSalesCount}
 
         .card.products
           i.fa-solid.fa-boxes-stacked
@@ -55,7 +60,7 @@ html
       // Stock Summary (Aggregated)
       section.panel
         .header-row
-          h2 Stock Summary (Aggregated)
+          h2 STOCK SUMMARY
 
         .table-container
           table#stockSummary
@@ -73,11 +78,8 @@ html
                     td #{item._id.name}
                     td #{item._id.type}
                     td #{item.totalQty}
-                    td UGX #{item.avgCost.toFixed(2)}
-                    td UGX #{item.avgPrice.toFixed(2)}
+                    td UGX #{item.avgCost != null ? item.avgCost.toLocaleString() : '0'}
+                    td UGX #{item.avgPrice != null ? item.avgPrice.toLocaleString() : '0'}
               else
                 tr
                   td(colspan="5") No products in stock
-
-    // Scripts
-    script(src="/js/at.js")

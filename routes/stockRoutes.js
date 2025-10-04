@@ -110,9 +110,9 @@ router.get("/managerDashboard", async (req, res) => {
 });
 
 //getting the Attendant's  dashboard
-router.get("/attendantDashboard", async (req, res) => {
-  res.render("attendantDashboard");
-});
+// router.get("/attendantDashboard", async (req, res) => {
+//   res.render("attendantDashboard");
+// });
 
 //Getting stock from the DB.
 // router.get("/stocklist", async (req, res) => {

@@ -13,8 +13,6 @@ body {
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    overflow-x: auto;
-    /* Table scrolls if too wide */
 }
 
 h1,
@@ -31,22 +29,22 @@ h2 {
 /* Table */
 .table-wrapper {
     width: 100%;
-    overflow-x: auto;
+    
 }
 
 .table-section table {
     width: 100%;
-    min-width: 900px;
+    min-width: 0;
     border-collapse: collapse;
+    table-layout: auto; /* allow columns to auto-adjust width */
     margin-top: 10px;
 }
 
 .table-section th,
 .table-section td {
-    padding: 12px;
+    padding: 8px;
     border: 1px solid #ddd;
     text-align: center;
-    white-space: nowrap;
 }
 
 .table-section th {

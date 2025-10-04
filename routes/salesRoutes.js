@@ -159,34 +159,21 @@ router.post("/deletesale", async (req, res) => {
   }
 });
 
-// GET: Stock report data
-// GET: Sales report data
+
+// GET: Sales report
 router.get("/salesreport", async (req, res) => {
   try {
-    // Fetch all sales
-    let sales = await salesModel.find().sort({ $natural: -1 });
+    let sales = await salesModel
+      .find()
+      .populate("salesAgent", "email")
+      .sort({ $natural: -1 });
 
-    // Total number of sales records
-    let totalSales = sales.length;
-
-    // Total transactions (sum of quantity * unitPrice)
-    let totalTransactions = sales.reduce((sum, item) => {
-      return sum + (item.quantity * item.unitPrice);
-    }, 0);
-
-    // Format with commas for display
-    let formattedTransactions = totalTransactions.toLocaleString();
-
-    // Add current date
-    let reportDate = new Date().toLocaleDateString("en-GB"); 
-    // → 24/09/2025
-    //For low stock Alerts
-  //  let lowStock = await StockModel.find({ qty: { $lt: 5 } }).countDocuments();
+    let reportDate = new Date().toLocaleDateString("en-GB");
 
     res.render("salesreport", {
       sales,
-      totalSales,
-      totalTransactions: formattedTransactions,
+      totalSales: 0,
+      totalTransactions: "0",
       reportDate,
     });
   } catch (error) {
@@ -194,6 +181,11 @@ router.get("/salesreport", async (req, res) => {
     res.status(400).send("Unable to get data from the database!");
   }
 });
+
+
+
+
+
 
 
 

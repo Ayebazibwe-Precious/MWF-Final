@@ -10,21 +10,34 @@ const salesModel = require("../models/salesModel");
 
 
 //getting the Attendant's  dashboard
-// Attendant Dashboard
 router.get("/attendantDashboard", async (req, res) => {
+  console.log("attendantDashboard called");
   try {
-    // 1. Total Sales
-    const totalSalesResult = await SalesModel.aggregate([
-      { $group: { _id: null, total: { $sum: "$totalPrice" } } },
+    // --- Build today's date in MM/DD/YYYY format ---
+    const now = new Date();
+    const month = (now.getMonth() + 1).toString().padStart(2, "0"); // months are 0-indexed
+    const day = now.getDate().toString().padStart(2, "0");
+    const year = now.getFullYear();
+    const todayStr = `${month}/${day}/${year}`; // e.g., "10/02/2025"
+
+    // 1. Total Sales for Today
+    const totalSalesResult = await salesModel.aggregate([
+      { $match: { saleDate: todayStr } }, // filter by today's date
+      { $group: { _id: null, total: { $sum: "$total" } } },
     ]);
     const totalSales = totalSalesResult.length ? totalSalesResult[0].total : 0;
+
+    // 1b. Total number of transactions today
+    const totalSalesCount = await salesModel.countDocuments({
+      saleDate: todayStr,
+    });
 
     // 2. Products Available (count of unique products in manager stock)
     const productsAvailable = await StockModel.countDocuments();
 
-    // 3. Low Stock Count (items where qty < threshold, e.g., 10)
+    // 3. Low Stock Count (items where qty < 10)
     const lowStockCount = await StockModel.countDocuments({
-      quantity: { $lt: 10 },
+      qty: { $lt: 10 },
     });
 
     // 4. Stock Summary (aggregated from manager stock)
@@ -32,15 +45,17 @@ router.get("/attendantDashboard", async (req, res) => {
       {
         $group: {
           _id: { name: "$name", type: "$type" },
-          totalQty: { $sum: "$quantity" },
-          avgCost: { $avg: "$costPrice" },
-          avgPrice: { $avg: "$sellingPrice" },
+          totalQty: { $sum: "$qty" },
+          avgCost: { $avg: "$cost" },
+          avgPrice: { $avg: "$price" },
         },
       },
     ]);
 
+    // Render to Pug
     res.render("attendantDashboard", {
       totalSales,
+      totalSalesCount,
       productsAvailable,
       lowStockCount,
       stockSummary,
@@ -50,6 +65,8 @@ router.get("/attendantDashboard", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+
 
 
 

@@ -33,61 +33,69 @@ aside.sidebar
           i.fa-solid.fa-clipboard
           | Dashboard
 
-.container
-  h1 Sales List
-  .table-section
-    table
-      thead
-        tr
-          th Customer Name
-          th Product Name
-          th Product Type
-          th Quantity
-          th Unit Price
-          th Date
-          th Payment Type
-          th Sales Agent
-          th Transport
-          th Total Price
-          if currentUser && currentUser.role === "Manager"
-            th Update
-            th Delete
-          else
-            th Reciept
-      tbody
-        if sales.length
-          each sale in sales
+.main
+  .container
+    h1 Sales List
+
+    // Controls: Search left, Add button right
+    .table-controls
+      .search-box
+        i.fa-solid.fa-magnifying-glass
+        input#searchInput(type="text" placeholder="Search sales...")
+      a.action-btn.add(href="/stockManager")
+        i.fa-solid.fa-plus
+        | Add Sales
+
+    .table-section
+      .table-wrapper
+        table
+          thead
             tr
-              td #{sale.customerName}
-              td #{sale.productName}
-              td #{sale.productType}
-              td #{sale.quantity}
-              td #{sale.unitPrice}
-              td #{new Date(sale.saleDate).toLocaleDateString()}
-              td #{sale.paymentType}
-              td #{sale.salesAgent.email}
-              td #{sale.transportRequired}
-              td #{sale.total}
+              th Customer Name
+              th Product Name
+              th Product Type
+              th Quantity
+              th Unit Price
+              th Date
+              th Payment Type
+              th Sales Agent
+              th Transport
+              th Total Price
               if currentUser && currentUser.role === "Manager"
-                td
-                  a.action-btn.edit(href=`/editsale/${sale._id}`)
-                    i.fa-solid.fa-pen-to-square
-                    | Edit
-                td    
-                  form(method="POST", action="/deletesale")
-                    input(type="hidden", name="id", value=sale._id)
-                    button.action-btn.delete(type="submit")
-                      i.fa-solid.fa-trash
-                      | Delete
+                th Update
+                th Delete
               else
-                td
-                  a.action-btn.receipt(href=`/receipt/${sale._id}`)
-                    i.fa-solid.fa-receipt
-                    | Generate Reciept
-        else
-          tr
-            td(colspan="12") No sales found
-  .link
-    a.action-btn.add(href="/stockManager") 
-      i.fa-solid.fa-plus
-      | Add Sales
+                th Reciept
+          tbody
+            if sales.length
+              each sale in sales
+                tr
+                  td #{sale.customerName}
+                  td #{sale.productName}
+                  td #{sale.productType}
+                  td #{sale.quantity}
+                  td #{sale.unitPrice}
+                  td #{new Date(sale.saleDate).toLocaleDateString()}
+                  td #{sale.paymentType}
+                  td #{sale.salesAgent.email}
+                  td #{sale.transportRequired}
+                  td #{sale.total}
+                  if currentUser && currentUser.role === "Manager"
+                    td
+                      a.action-btn.edit(href=`/editsale/${sale._id}`)
+                        i.fa-solid.fa-pen-to-square
+                        | Edit
+                    td
+                      form(method="POST", action="/deletesale")
+                        input(type="hidden", name="id", value=sale._id)
+                        button.action-btn.delete(type="submit")
+                          i.fa-solid.fa-trash
+                          | Delete
+                  else
+                    td
+                      a.action-btn.receipt(href=`/receipt/${sale._id}`)
+                        i.fa-solid.fa-receipt
+                        | Generate Reciept
+            else
+              tr
+                td(colspan="12") No sales found

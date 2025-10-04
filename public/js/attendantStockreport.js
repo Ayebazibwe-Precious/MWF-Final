@@ -7,30 +7,43 @@ let stockData = window.stockFromDB || [];
 
 // Render stock table
 function renderTable(data) {
-  const tbody = document.getElementById("stock-table-body");
+  const tbody = document.querySelector("tbody");
   tbody.innerHTML = "";
 
   if (!data || data.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; color:#888;">No records available</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; color:#888;">No stock records available</td></tr>`;
     return;
   }
 
   data.forEach((item) => {
     const row = `
-      <tr class="${item.qty < 10 ? "low-stock" : ""}">
-        <td>${item.name}</td>
-        <td>${item.type}</td>
-        <td>${item.qty}</td>
-        <td>${item.cost}</td>
-        <td>${item.price}</td>
-        <td>${item.supplier}</td>
-        <td>${new Date(item.date).toLocaleDateString("en-GB")}</td>
-        <td>${item.quality}</td>
-        <td>${item.color}</td>
-        <td>${item.measurements}</td>
+      <tr>
+        <td>${item.productName}</td>
+        <td>${item.quantity}</td>
+        <td>${item.supplierName || "N/A"}</td>
       </tr>`;
     tbody.innerHTML += row;
   });
+
+  // update summary
+  updateSummary(data);
+}
+
+// Summary values
+function updateSummary(data) {
+  let totalValue = 0;
+  let lowStockItems = 0;
+
+  data.forEach((item) => {
+    totalValue += item.quantity * (item.unitPrice || 0);
+    if (item.quantity < 10) lowStockItems++;
+  });
+
+  document.getElementById("total-stock-value").textContent =
+    totalValue.toFixed(2);
+  document.getElementById("low-stock-items").textContent = lowStockItems;
+  document.getElementById("low-stock-alerts").textContent =
+    lowStockItems > 0 ? "Yes" : "No";
 }
 
 // Filter logic
@@ -39,7 +52,7 @@ function filterData(type, date) {
   const selectedDate = new Date(date);
 
   return stockData.filter((s) => {
-    const stockDate = new Date(s.date);
+    const stockDate = new Date(s.entryDate);
 
     if (type === "day") {
       return stockDate.toDateString() === selectedDate.toDateString();
@@ -74,4 +87,5 @@ document.getElementById("filterForm").addEventListener("submit", (e) => {
 document.getElementById("btnRefresh").addEventListener("click", () => {
   window.location.reload();
 });
+
 
