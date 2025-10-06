@@ -1,78 +1,66 @@
-meta(charset="UTF-8")
-meta(name="viewport", content="width=device-width,initial-scale=1")
-title User List
-link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css")
-link(rel="stylesheet", href="css/userTable.css")
+extends layout
 
-// Sidebar
-aside.sidebar
-  .sidebar-header
-    h2 MWF System
-  nav.sidebar-nav
-    ul
-      li
-        a.active(href="/users")
-          i.fa-solid.fa-users
-          |  Users
-      li
-        a(href="/managerDashboard")
-          i.fa-solid.fa-clipboard
-          |  Dashboard
-      li
-        a(href="/stocklist")
-          i.fa-solid.fa-table
-          |  Stock List
-      li
-        a(href="/stockManager")
-          i.fa-solid.fa-rectangle-list
-          |  Stock Entry
+block css 
+  link(rel="stylesheet", href="css/userTable.css")
 
-.main
-  .container
-    // 🔝 Top Bar
-    .top-bar
-      .search-box
-        input#searchUser(type="text", placeholder="Search by user name")
-      a.btn-add(href="/addUser")
-        i.fa-solid.fa-plus
-        |  Add User
+block content
+  include includes/sidebar.pug
 
-    // User Table
-    .table-wrapper
-      table#userTable
-        thead
-          tr
-            th User Name
-            th Email
-            th Role
-            th Actions
-        tbody
-          if users.length
-            each user in users
-              tr
-                td #{user.name}
-                td #{user.email}
-                td #{user.role}
-                td.action-buttons
-                  a.action-btn.edit(href=`/editUser/${user._id}`)
-                    i.fa-solid.fa-pen-to-square
-                    | Edit
-                  form.delete-form(method='POST', action='/deleteUser')
-                    input(type='hidden', name='id', value=user._id)
-                    input(type='hidden', name='userName', value=user.name)
-                    button.action-btn.delete(type='submit')
-                      i.fa-solid.fa-trash
-                      | Delete
-          // 🔎 No results row (hidden by default)
-          tr#noResults(style="display:none;")
-            td(colspan="4") User not found
+  .main
+    .container
+      // 🔝 Top Bar
+      .top-bar
+        .search-box
+          input#searchUser(type="text", placeholder="Search by user name")
+        a.btn-add(href="/addUser")
+          i.fa-solid.fa-plus
+          |  Add User
 
-// Confirmation Modal
-#confirmModal.modal
-  .modal-content
-    p#confirmMessage Are you sure you want to delete this user?
-    .modal-actions
-      button#confirmYes Yes, Delete
-      button#confirmNo Cancel
+      // User Table
+      .table-wrapper
+        table#userTable
+          thead
+            tr
+              th User Name
+              th Email
+              th Role
+              th Actions
+          tbody
+            if users.length
+              each user in users
+                tr
+                  td #{user.name}
+                  td #{user.email}
+                  td #{user.role}
+                  td.action-buttons
+                    a.action-btn.edit(href=`/editUser/${user._id}`)
+                      i.fa-solid.fa-pen-to-square
+                      |  Edit
+                    form.delete-form(method='POST', action='/deleteUser')
+                      input(type='hidden', name='id', value=user._id)
+                      input(type='hidden', name='userName', value=user.name)
+                      button.action-btn.delete(type='submit')
+                        i.fa-solid.fa-trash
+                        |  Delete
+            // 🔎 No results row (hidden by default)
+            tr#noResults(style="display:none;")
+              td(colspan="4") User not found
 
-script(src="js/userTable.js")
+  // Confirmation Modal
+  #confirmModal.modal
+    .modal-content
+      p#confirmMessage Are you sure you want to delete this user?
+      .modal-actions
+        button#confirmYes Yes, Delete
+        button#confirmNo Cancel
+
+  // Footer
+  footer.footer
+    p © 2025 MWF. All rights reserved.
+    p
+      | Developed by 
+      span.dev-name Mary Precious Ayebazibwe
+      |  at 
+      span.company-name Mayondo Wood & Furniture Ltd.
+
+  script(src="js/userTable.js")

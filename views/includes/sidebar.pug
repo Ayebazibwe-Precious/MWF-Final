@@ -1,0 +1,51 @@
+div.layout  
+  aside.sidebar
+    .sidebar-header
+      h2 MWF System
+      button#toggle-btn
+        i.fa-solid.fa-bars
+
+    nav.sidebar-nav
+      ul
+        li
+          a.active(href="/managerDashboard" data-title="Dashboard")
+            i.fa-solid.fa-gauge
+            span Dashboard
+        li
+          a(href="/stockManager" data-title="Stock Entry")
+            i.fa-solid.fa-boxes-stacked
+            span Stock Entry
+        li
+          a(href="/stocklist" data-title="Stock List")
+            i.fa-solid.fa-warehouse
+            span Stock List
+        li
+          a(href="/stockreport" data-title="Stock Report")
+            i.fa-solid.fa-chart-column
+            span Stock Report
+        li
+          a(href="/saleslist" data-title="Sales List")
+            i.fa-solid.fa-cart-shopping
+            span Sales List
+        li
+          a(href="/salesreport" data-title="Sales Report")
+            i.fa-solid.fa-file-invoice-dollar
+            span Sales Report
+        li
+          a(href="/supplier" data-title="Suppliers")
+            i.fa-solid.fa-truck-field
+            span Suppliers
+        li
+          a(href="/supplierlist" data-title="Supplier List")
+            i.fa-solid.fa-address-book
+            span Supplier List
+        li
+          a(href="/signup" data-title="Register User")
+            i.fa-solid.fa-user-plus
+            span Register User
+        li
+          a(href="/userTable" data-title="User Table")
+            i.fa-solid.fa-users-gear
+            span User Table
+  main.main-content
+          

@@ -1,34 +1,34 @@
-doctype html
-html
-  head
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title Login Page
-    link(rel='stylesheet' href='/css/login.css')
-  body
-    .login-box
-      h2 LOGIN
+extends layout 
+block css 
+  link(rel='stylesheet' href='/css/login.css')
 
-      form(action='/login' method='post' autocomplete='off')
-        // Email field
-        input#email(type='text' name='email' placeholder='Enter email' required='' autocomplete='off')
-        if errors && errors.email
-          small.error-message #{errors.email}
+block content
+  .login-box
+    h2 LOGIN
 
-        // Password field
-        input#password(type='password' name='password' placeholder='Enter password' required='' autocomplete='off')
-        if errors && errors.password
-          small.error-message #{errors.password}
+    form(action='/login', method='post', autocomplete='off')
+      // Email field
+      input#email(type='text', name='email', placeholder='Enter email',  autocomplete='off')
+      if errors && errors.email
+        small.error-message #{errors.email}
 
-        .show-password
-          input#showPassword(type='checkbox')
-          label(for='showPassword') Show Password
+      // Password field
+      input#password(type='password', name='password', placeholder='Enter password',  autocomplete='off')
+      if errors && errors.password
+        small.error-message #{errors.password}
 
-        button(type='submit') Login
+      // Show Password toggle
+      .show-password
+        input#showPassword(type='checkbox')
+        label(for='showPassword') Show Password
 
-      // Sign-up section stays inside .login-box
-      p.signup-text
-        | Don't have an account? 
-        a(href='/signup') Sign Up
+      // Submit button
+      button(type='submit') Login
 
-    script(src='/js/login.js')
+    // Sign-up section
+    p.signup-text
+      | Don't have an account? 
+      a(href='/signup') Sign Up
+
+  // External JS
+  script(src='/js/login.js')

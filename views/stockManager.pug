@@ -1,88 +1,91 @@
-meta(charset="UTF-8")
-meta(name="viewport", content="width=device-width,initial-scale=1")
-title Product Entry Form
-link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
-link(rel="stylesheet", href="css/stockManager.css")
-//  Sidebar 
-aside.sidebar
-  .sidebar-header
-    h2 MWF System
-  nav.sidebar-nav
-    ul
-      li
-        a.active(href="/stockManager")
-          i.fa-solid.fa-rectangle-list
-          |  Stock Entry
-      li
-        a(href="/managerDashboard")
-          i.fa-solid.fa-clipboard
-          |  Dashboard
-      li
-        a(href="/stocklist")
-          i.fa-solid.fa-table
-          |  Stock List
-      li
-        a(href="/stockreport")
-          i.fa-brands.fa-microsoft
-          | Stock Report
-.form-wrapper
-  form#productForm(action="/stockManager", method="post")
-    h2 Record New Product
-    //  Section: Basic Info 
-    fieldset
-      legend Basic Information
-      .form-grid
-        div
-          label Product Name
-          input(type="text", name="name", required)
-        div
-          label Product Type
-          select(name="type", required)
-            option(value) Select Type
-            option(value="Wood") Wood
-            option(value="Furniture") Furniture
-        //- div
-        //-   label Status
-        //-   select(name="status", required)
-        //-     option(value="Pending") Pending
-        //-     option(value="Active") Active
-        //-     option(value="Archived") Archived
-    //  Section: Stock & Pricing 
-    fieldset
-      legend Stock & Pricing
-      .form-grid
-        div
-          label Quantity 
-          input(type="number", name="qty", min="0", required)
-        div
-          label Cost Price
-          input(type="number", name="cost", min="0", required)
-        div
-          label Selling Price
-          input(type="number", name="price", min="0", required)
-    //  Section: Supplier 
-    fieldset
-      legend Supplier
-      .form-grid
-        div
-          label Supplier Name
-          input(type="text", name="supplier", required)
-        div
-          label Date Received
-          input(type="date", name="dateReceived", required)
-    //  Section: Product Attributes 
-    fieldset
-      legend Product Attributes
-      .form-grid
-        div
-          label Quality
-          select(name="quality", required)
-            option(value="High") High
-            option(value="Medium") Medium
-            option(value="Low") Low
-        div
-          label Color
-          input(type="text", name="color")
-    //  Submit 
-    button(type="submit") Save Product
-script(src="s.js")
+extends layout
+block css
+  link(rel="stylesheet", href="css/stockManager.css") 
+
+block content
+  include includes/sidebar.pug
+
+  // Product Form
+  .form-wrapper
+    form#productForm(action="/stockManager", method="post" novalidate)
+      h2 RECORD NEW PRODUCT
+
+      // --- Basic Information ---
+      fieldset
+        legend Basic Information
+        .form-grid
+          div
+            label Product Name
+            select(name="name",required='' )
+              option(value) --Select Name--
+              option(value="Bed") Bed
+              option(value="Sofa") Sofa
+              option(value="Dining Table") Dining Table
+              option(value="Cupboard") Cupboard
+              option(value="Drawer") Drawer
+              option(value="Bookshelf") Bookshelf
+              option(value="Office Desk") Office Desk
+              option(value="Timber") Timber
+              option(value="Poles") Poles
+              option(value="Hard Wood") Hard Wood
+              option(value="Soft Wood") Soft Wood
+
+          div
+            label Product Type
+            select(name="type",required='' )
+              option(value) --Select Type--
+              option(value="Furniture") Furniture
+              option(value="Raw Materials") Raw Materials
+
+      // --- Stock & Pricing ---
+      fieldset
+        legend Stock & Pricing
+        .form-grid
+          div
+            label Quantity
+            input(type="number", name="qty", min="0",required='' )
+          div
+            label Cost Price
+            input(type="number", name="cost", min="0",required='' )
+          div
+            label Selling Price
+            input(type="number", name="price", min="0",required='' )
+
+      // --- Supplier ---
+      fieldset
+        legend Supplier
+        .form-grid
+          div
+            label Supplier Name
+            input(type="text", name="supplier",required='' )
+          div
+            label Date Received
+            input(type="date", name="dateReceived",required='')
+
+      // --- Product Attributes ---
+      fieldset
+        legend Product Attributes
+        .form-grid
+          div
+            label Quality
+            select(name="quality", required='' )
+              option(value) --Select Quality--
+              option(value="High") High
+              option(value="Medium") Medium
+              option(value="Low") Low
+          div
+            label Color
+            input(type="text", name="color" required='')
+
+      // --- Form Actions ---
+      .form-actions
+        button(type="submit") Save Product
+        button(type="reset" class="btn-clear") Clear Form
+
+  // === Footer Section ===
+  footer.footer
+    .footer-content
+      p © #{new Date().getFullYear()} MWF System. All rights reserved.
+      p Designed & Maintained by MWF Inventory Team.
+
+  script(src="/js/stockManager.js")

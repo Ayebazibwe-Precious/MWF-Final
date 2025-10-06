@@ -1,66 +1,67 @@
-meta(charset="UTF-8")
-title Sales Receipt
-// Font Awesome for icons
-link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
-link(rel="stylesheet", href="/css/receipt.css")
+extends layout 
+block css 
+  link(rel="stylesheet", href="/css/receipt.css")
 
-.main
-  .receipt-container
-    header.receipt-header
-      h2 MWF-LTD
-      p MWF is a B2B wood and furniture company
+block content
+  .main
+    .receipt-container
+      // Header
+      header.receipt-header
+        h2 MWF-LTD
+        p MWF is a B2B wood and furniture company
 
-    hr
+      hr
 
-    section.receipt-info
-      h3 RECEIPT
-      .info-grid
-        p 
-          strong Date: 
-          | #{new Date(sale.saleDate).toLocaleDateString()}
-        p 
-          strong Customer: 
-          | #{sale.customerName}
-        p 
-          strong Sales Agent: 
-          | #{sale.salesAgent.email}
+      // Receipt Information
+      section.receipt-info
+        h3 RECEIPT
+        .info-grid
+          p
+            strong Date: 
+            | #{new Date(sale.saleDate).toLocaleDateString()}
+          p
+            strong Customer: 
+            | #{sale.customerName}
+          p
+            strong Sales Agent: 
+            | #{sale.salesAgent.email}
 
-    table.table
-      thead
-        tr
-          th Product Name
-          th Product Type
-          th Quantity
-          th Unit Price
-          th Payment Type
-          th Transport
-          th Total Price
-      tbody
-        if sales && sales.length 
-          each sale in sales 
-            tr  
-              td #{sale.productName}
-              td #{sale.productType}
-              td #{sale.quantity}
-              td $#{sale.unitPrice} 
-              td #{sale.paymentType}
-              td $#{sale.transportfee}
-              td $#{sale.totalPrice}
+      // Table of Sales Items
+      table.table
+        thead
+          tr
+            th Product Name
+            th Product Type
+            th Quantity
+            th Unit Price
+            th Payment Type
+            th Transport
+            th Total Price
+        tbody
+          if sales && sales.length
+            each sale in sales
+              tr
+                td #{sale.productName}
+                td #{sale.productType}
+                td #{sale.quantity}
+                td $#{sale.unitPrice}
+                td #{sale.paymentType}
+                td $#{sale.transportfee}
+                td $#{sale.totalPrice}
 
-    section.receipt-summary
-      p
-        strong Payment Type: 
-        | #{sale.paymentType}
-      p.balance-due Balance Due: $#{sale.totalPrice}
-      h4 Thank you for your support!
+      // Receipt Summary
+      section.receipt-summary
+        p
+          strong Payment Type: 
+          | #{sale.paymentType}
+        p.balance-due Balance Due: $#{sale.totalPrice}
+        h4 Thank you for your support!
 
-    .buttons
-      button.btn-print(onclick="window.print()") 
-        i.fa-solid.fa-print
-        |  Print Receipt  
-
-      // 👉 Option 1: Blue professional outlined close
-      a.btn-close(href="/sales")
-        i.fa-solid.fa-xmark
-        |  Close  
-
+      // Action Buttons
+      .buttons
+        button.btn-print(onclick="window.print()")
+          i.fa-solid.fa-print
+          |  Print Receipt
+        a.btn-close(href="/sales")
+          i.fa-solid.fa-xmark
+          |  Close

@@ -1,101 +1,88 @@
-meta(charset="UTF-8")
-meta(name="viewport", content="width=device-width,initial-scale=1")
-title Sales List
-link(
-  rel="stylesheet",
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css",
-  integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==",
-  crossorigin="anonymous",
-  referrerpolicy="no-referrer"
-)
-link(rel="stylesheet", href="css/saleslist.css")
+extends layout 
 
-// Sidebar
-aside.sidebar
-  .sidebar-header
-    h2 MWF System
-  nav.sidebar-nav
-    ul
-      li
-        a.active(href="/saleslist")
-          i.fa-solid.fa-table
-          | Sales List
-      li
-        a(href="/salesEntry")
-          i.fa-solid.fa-rectangle-list
-          | Sales Entry
-      li
-        a(href="/salesreport")
-          i.fa-solid.fa-table-list
-          | Sales Report
-      li
-        a(href="/attendantDashboard")
-          i.fa-solid.fa-clipboard
-          | Dashboard
+block css 
+  link(rel="stylesheet", href="/css/saleslist.css")
 
-.main
-  .container
-    h1 Sales List
+block content
+  include includes/sidebar1.pug
 
-    // Controls: Search left, Add button right
-    .table-controls
-      .search-box
-        i.fa-solid.fa-magnifying-glass
-        input#searchInput(type="text" placeholder="Search sales...")
-      a.action-btn.add(href="/stockManager")
-        i.fa-solid.fa-plus
-        | Add Sales
+  // --- Main Content ---
+  .main
+    .container
+      h1 Sales List
 
-    .table-section
-      .table-wrapper
-        table
-          thead
-            tr
-              th Customer Name
-              th Product Name
-              th Product Type
-              th Quantity
-              th Unit Price
-              th Date
-              th Payment Type
-              th Sales Agent
-              th Transport
-              th Total Price
-              if currentUser && currentUser.role === "Manager"
-                th Update
-                th Delete
-              else
-                th Reciept
-          tbody
-            if sales.length
-              each sale in sales
-                tr
-                  td #{sale.customerName}
-                  td #{sale.productName}
-                  td #{sale.productType}
-                  td #{sale.quantity}
-                  td #{sale.unitPrice}
-                  td #{new Date(sale.saleDate).toLocaleDateString()}
-                  td #{sale.paymentType}
-                  td #{sale.salesAgent.email}
-                  td #{sale.transportRequired}
-                  td #{sale.total}
-                  if currentUser && currentUser.role === "Manager"
-                    td
-                      a.action-btn.edit(href=`/editsale/${sale._id}`)
-                        i.fa-solid.fa-pen-to-square
-                        | Edit
-                    td
-                      form(method="POST", action="/deletesale")
-                        input(type="hidden", name="id", value=sale._id)
-                        button.action-btn.delete(type="submit")
-                          i.fa-solid.fa-trash
-                          | Delete
-                  else
-                    td
-                      a.action-btn.receipt(href=`/receipt/${sale._id}`)
-                        i.fa-solid.fa-receipt
-                        | Generate Reciept
-            else
+      // --- Controls: Search and Add Button ---
+      .table-controls
+        .search-box
+          i.fa-solid.fa-magnifying-glass
+          input#searchInput(type="text", placeholder="Search sales...")
+        a.action-btn.add(href="/stockManager")
+          i.fa-solid.fa-plus
+          | Add Sales
+
+      // --- Table Section ---
+      .table-section
+        .table-wrapper
+          table#salesTable
+            thead
               tr
-                td(colspan="12") No sales found
+                th Customer Name
+                th Product Name
+                th Product Type
+                th Quantity
+                th Unit Price
+                th Date
+                th Payment Type
+                th Sales Agent
+                th Transport
+                th Total Price
+                if currentUser && currentUser.role === "Manager"
+                  th Update
+                  th Delete
+                else
+                  th Receipt
+            tbody
+              if sales.length
+                each sale in sales
+                  tr
+                    td #{sale.customerName}
+                    td #{sale.productName}
+                    td #{sale.productType}
+                    td #{sale.quantity}
+                    td #{sale.unitPrice}
+                    td #{new Date(sale.saleDate).toLocaleDateString()}
+                    td #{sale.paymentType}
+                    td #{sale.salesAgent.email}
+                    td #{sale.transportRequired}
+                    td #{sale.total}
+                    if currentUser && currentUser.role === "Manager"
+                      td
+                        a.action-btn.edit(href=`/editsale/${sale._id}`)
+                          i.fa-solid.fa-pen-to-square
+                          | Edit
+                      td
+                        form(method="POST", action="/deletesale")
+                          input(type="hidden", name="id", value=sale._id)
+                          button.action-btn.delete(type="submit")
+                            i.fa-solid.fa-trash
+                            | Delete
+                    else
+                      td
+                        a.action-btn.receipt(href=`/receipt/${sale._id}`)
+                          i.fa-solid.fa-receipt
+                          | Generate Receipt
+              else
+                tr
+                  td(colspan="12") No sales found
+
+  // --- Footer ---
+  footer.footer
+    p © 2025 MWF. All rights reserved.
+    p
+      | Developed by 
+      span.dev-name Mary Precious Ayebazibwe
+      |  at 
+      span.company-name Mayondo Wood & Furniture Ltd.
+
+  // --- External JS ---
+  script(src="/js/saleslist.js")

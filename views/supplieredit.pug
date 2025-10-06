@@ -1,58 +1,67 @@
-meta(charset="UTF-8")
-meta(name="viewport", content="width=device-width,initial-scale=1")
-title Supplier Registration
-link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
-link(rel="stylesheet", href="/css/supplier.css")
-//  Sidebar 
-aside.sidebar
-  .sidebar-header
-    h2 MWF System
-  nav.sidebar-nav
-    ul
-      li
-        a.active(href="dashboard.html")
-          i.fa-solid.fa-clipboard
-          |  Dashboard
-      li
-        a(href="/supplier")
-          i.fa-solid.fa-rectangle-list
-          |  Register Supplier
-      li
-        a(href="/supplierlist")
-          i.fa-solid.fa-table
-          |  Supplier List
-.form-container
-  h2 Supplier Registration
-  form(action=`/editsupplier/${supplier._id}?_method=PUT`, method="POST")
-    //  Two inputs side by side 
-    .form-row
+extends layout
+
+block css 
+  link(rel="stylesheet", href="/css/supplier.css")
+
+block content
+  include includes/sidebar.pug
+
+  // --- Edit Supplier Form ---
+  .form-container
+    h2 Edit Supplier
+    form(action=`/editsupplier/${supplier._id}?_method=PUT`, method="POST")
+      
+      // --- Row 1: Supplier & Company ---
+      .form-row
+        .form-group
+          label(for="name") Supplier Name
+          input#name(type="text", name="name", required, value=supplier.name)
+        .form-group
+          label(for="company") Company Name
+          input#company(type="text", name="company", required, value=supplier.company)
+      
+      // --- Row 2: Email & Phone ---
+      .form-row
+        .form-group
+          label(for="email") Email
+          input#email(type="email", name="email", required, value=supplier.email)
+        .form-group
+          label(for="phone") Phone Number
+          input#phone(
+            type="tel",
+            name="phone",
+            required,
+            pattern="[0-9]{10,15}",
+            placeholder="e.g. 0701234567",
+            value=supplier.phone
+          )
+      
+      // --- Row 3: Address & Bank ---
+      .form-row
+        .form-group
+          label(for="address") Address
+          input#address(type="text", name="address", value=supplier.address)
+        .form-group
+          label(for="bank") Bank Details
+          input#bank(type="text", name="bank", value=supplier.bank)
+      
+      // --- Row 4: Product Details ---
+      .form-row
+        .form-group
+          label(for="productName") Product Name
+          input#productName(type="text", name="productName", value=supplier.productName)
+        .form-group
+          label(for="productType") Product Type
+          input#productType(type="text", name="productType", required, value=supplier.productType)
+      
+      // --- Submit Button ---
       .form-group
-        label(for="name") Supplier Name
-        input#name(type="text", name="name", required='' value=supplier.name)
-      .form-group
-        label(for="company") Company Name
-        input#company(type="text", name="company", required='' value=supplier.company)
-    .form-row
-      .form-group
-        label(for="email") Email
-        input#email(type="email", name="email", required='' value=supplier.email)
-      .form-group
-        label(for="phone") Phone Number
-        input#phone(type="tel", name="phone", required, pattern="[0-9]{10,15}", placeholder="e.g. 0701234567" value=supplier.phone) 
-    .form-row
-      .form-group
-        label(for="address") Address
-        input#address(type="text", name="address" value=supplier.address)
-      .form-group
-        label(for="bank") Bank Details
-        input#bank(type="text", name="bank" value=supplier.bank)
-    .form-row
-      .form-group
-        label(for="productName") Product Name
-        input#productName(type="text", name="productName" value=supplier.productName)
-      .form-group
-        label(for="productType") Product Type
-        input#productType(type="text", name="productType", required='' value=supplier.productType)
-    //  Submit 
-    .form-group
-      button(type="submit") Update Supplier
+        button(type="submit") Update Supplier
+
+  // === Footer Section ===
+  footer.footer
+    .footer-content
+      p © #{new Date().getFullYear()} MWF System. All rights reserved.
+      p Designed & Maintained by MWF Inventory Team.
+
+  script(src="/js/supplier.js")

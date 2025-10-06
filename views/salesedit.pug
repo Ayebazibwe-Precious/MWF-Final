@@ -1,66 +1,70 @@
-meta(charset="UTF-8")
-title New Sale Entry
-link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
-link(rel="stylesheet", href="/css/salesEntry.css")
-//  Sidebar 
-aside.sidebar
-  .sidebar-header
-    h2 MWF System
-  nav.sidebar-nav
-    ul
-      li
-        a.active(href="/saleslist")
-          i.fa-solid.fa-rectangle-list
-          |  Sales List
-      li
-        a(href="/salesreport")
-          i.fa-solid.fa-table-list
-          |  Sales Report
+extends layout 
 
-      li
-        a(href="/managerDashboard")
-          i.fa-solid.fa-clipboard
-          |  Dashboard
-      
-.main
-  .form-container
-    h2 Update Sale
-    form#salesForm(action=`/editsale/${sale._id}?_method=PUT`, method="POST")
-      label
-        | Customer Name:
-        input#customerName(type="text",name="customerName" required='' value=sale.customerName)
-      label
-        | Product Name:
-        select#productName(name="productName" required='' value=sale.productName)
-          if stocks && stocks.length 
-            each stock in stocks 
-              option(value = stock.name)= stock.name
-      label
-        | Product Type:
-        select#productType(type="text",name="productType" required='' value=sale.productType)
-          if stocks && stocks.length
-            each stock in stocks
-              option(value=stock.type)= stock.type
-      label
-        | Quantity:
-        input#quantity(type="number", name="quantity" required='', min="1" value=sale.quantity)
-      label
-        | Unit Price:
-        input#unitPrice(type="number",name="unitPrice" required='', min="0" value=sale.unitPrice)
-      label
-        | Date of Sale:
-        input#saleDate(type="date",name="saleDate" required='' value=sale.saleDate)
-      label
-        | Type of Payment:
-        select#paymentType(name="paymentType", required='', value=sale.paymentType)
-          option(value='' selected) -- Select --
-          option(value="Cash") Cash
-          option(value="Cheque") Cheque
-          option(value="Bank Overdraft") Bank Overdraft
-      label.checkbox-label(for transportfee)
-        input#transportfee(type="checkbox" name="transportfee" value=sale.transportfee)
-        | Transport Required (+5%)
-      label
+block css 
+  link(rel="stylesheet", href="css/salesEntry.css")
+
+block content
+  include includes/sidebar1.pug
+
+  // Main Content
+  .main
+    .form-container
+      h2 Update Sale
+      form#salesForm(action=`/editsale/${sale._id}?_method=PUT`, method="POST")
+        label
+          | Customer Name:
+          input#customerName(type="text", name="customerName", required, value=sale.customerName)
+
+        label
+          | Product Name:
+          select#productName(name="productName", required)
+            if stocks && stocks.length
+              each stock in stocks
+                option(value=stock.name selected=(stock.name === sale.productName))= stock.name
+
+        label
+          | Product Type:
+          select#productType(name="productType", required)
+            if stocks && stocks.length
+              each stock in stocks
+                option(value=stock.type selected=(stock.type === sale.productType))= stock.type
+
+        label
+          | Quantity:
+          input#quantity(type="number", name="quantity", required, min="1", value=sale.quantity)
+
+        label
+          | Unit Price:
+          input#unitPrice(type="number", name="unitPrice", required, min="0", value=sale.unitPrice)
+
+        label
+          | Date of Sale:
+          input#saleDate(type="date", name="saleDate", required, value=sale.saleDate)
+
+        label
+          | Type of Payment:
+          select#paymentType(name="paymentType", required)
+            option(value='' selected=sale.paymentType === '') -- Select --
+            option(value="Cash" selected=sale.paymentType === 'Cash') Cash
+            option(value="Cheque" selected=sale.paymentType === 'Cheque') Cheque
+            option(value="Bank Overdraft" selected=sale.paymentType === 'Bank Overdraft') Bank Overdraft
+
+        label.checkbox-label(for="transportfee")
+          input#transportfee(type="checkbox", name="transportfee", checked=sale.transportfee)
+          | Transport Required (+5%)
+
+        label
           | Total Cost:
-          input#total(type='number' name="total" readonly value=sale.total)
-      button(type="submit") Update Sale
+          input#total(type='number', name="total", readonly, value=sale.total)
+
+        button(type="submit") Update Sale
+
+  // --- Footer ---
+  footer.footer
+    p © 2025 MWF. All rights reserved.
+    p
+      | Developed by 
+      span.dev-name Mary Precious Ayebazibwe
+      |  at 
+      span.company-name Mayondo Wood & Furniture Ltd.
+      | .

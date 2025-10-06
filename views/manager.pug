@@ -1,43 +1,44 @@
-meta(charset="UTF-8")
-meta(name="viewport", content="width=device-width,initial-scale=1")
-title Stock List
-link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
-link(rel="stylesheet", href="stocklist.css")
-//  Sidebar 
-aside.sidebar
-  .sidebar-header
-    h2 MWF System
-  nav.sidebar-nav
-    ul
-      li
-        a.active(href="stocklist.html")
-          i.fa-solid.fa-table
-          |  Stock List
-      li
-        a(href="../Dashboard/dashboard.html")
-          i.fa-solid.fa-clipboard
-          |  Dashboard
-      li
-        a(href="stockManager.html")
-          i.fa-solid.fa-rectangle-list
-          |  Stock Entry
-      li
-        a(href="stockreport.html")
-          i.fa-brands.fa-microsoft
-          | Stock Report
-.main
-  .container
-    section.table-section
-      h2 Stock List
-      table#stockTable
-        thead
-          tr
-            th Product Name
-            th Product Type
-            th Quantity
-            th Product Price
-            th Supplier Name
-            th Date
-            th Actions
-        tbody
-          //  Rows go here 
+extends layout 
+block css 
+
+block content
+  // Sidebar 
+  aside.sidebar
+    .sidebar-header
+      h2 MWF System
+    nav.sidebar-nav
+      ul
+        li
+          a.active(href="stocklist.html")
+            i.fa-solid.fa-table
+            |  Stock List
+        li
+          a(href="../Dashboard/dashboard.html")
+            i.fa-solid.fa-clipboard
+            |  Dashboard
+        li
+          a(href="stockManager.html")
+            i.fa-solid.fa-rectangle-list
+            |  Stock Entry
+        li
+          a(href="stockreport.html")
+            i.fa-brands.fa-microsoft
+            | Stock Report
+
+  // Main Content
+  .main
+    .container
+      section.table-section
+        h2 Stock List
+        table#stockTable
+          thead
+            tr
+              th Product Name
+              th Product Type
+              th Quantity
+              th Product Price
+              th Supplier Name
+              th Date
+              th Actions
+          tbody
+            // Rows go here

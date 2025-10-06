@@ -1,0 +1,69 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+     color: #ffffff;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+ }
+
+ .container {
+     text-align: center;
+     padding: 2rem;
+     max-width: 600px;
+ }
+
+ .logo {
+     font-size: 3rem;
+     font-weight: 700;
+     color: #d4a574;
+     margin-bottom: 0.5rem;
+ }
+
+ .company-name {
+     font-size: 1.2rem;
+     color: #b8b8b8;
+     margin-bottom: 3rem;
+ }
+
+ .tagline {
+     font-size: 1.5rem;
+     margin-bottom: 1rem;
+     color: #ffffff;
+ }
+
+ .description {
+     font-size: 1rem;
+     color: #b8b8b8;
+     margin-bottom: 3rem;
+     line-height: 1.6;
+ }
+
+ .btn {
+     display: inline-block;
+     padding: 1rem 2.5rem;
+     font-size: 1.1rem;
+     font-weight: 600;
+     color: #1a1a1a;
+     background: #d4a574;
+     border: none;
+     border-radius: 8px;
+     cursor: pointer;
+     text-decoration: none;
+     transition: all 0.3s ease;
+ }
+
+ .btn:hover {
+     background: #f4d4a4;
+     transform: translateY(-2px);
+     box-shadow: 0 5px 15px rgba(212, 165, 116, 0.4);
+ }
+
+ 

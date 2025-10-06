@@ -1,29 +1,20 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   const passwordField = document.getElementById("password");
-//   const showPasswordCheckbox = document.getElementById("showPassword");
-
-//   // Clear password field on page load
-//   passwordField.value = "";
-
-//   showPasswordCheckbox.addEventListener("change", () => {
-//     passwordField.type = showPasswordCheckbox.checked ? "text" : "password";
-//   });
-// });
-
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
   const emailField = document.getElementById("email");
   const passwordField = document.getElementById("password");
   const showPasswordCheckbox = document.getElementById("showPassword");
 
-  // Create error elements dynamically
-  const emailError = document.createElement("div");
-  emailError.classList.add("error-message");
-  emailField.insertAdjacentElement("afterend", emailError);
+  // Create reusable helper for error message
+  function createErrorElement(input) {
+    const error = document.createElement("div");
+    error.classList.add("error-message");
+    input.insertAdjacentElement("afterend", error);
+    return error;
+  }
 
-  const passwordError = document.createElement("div");
-  passwordError.classList.add("error-message");
-  passwordField.insertAdjacentElement("afterend", passwordError);
+  // Attach error elements
+  const emailError = createErrorElement(emailField);
+  const passwordError = createErrorElement(passwordField);
 
   // Regex for basic email validation
   const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/;
@@ -36,47 +27,52 @@ document.addEventListener("DOMContentLoaded", () => {
     passwordField.type = showPasswordCheckbox.checked ? "text" : "password";
   });
 
-  // Real-time email validation
-  emailField.addEventListener("input", () => {
-    if (!emailField.value.match(emailPattern)) {
+  // Validation logic
+  function validateEmail() {
+    const value = emailField.value.trim();
+    if (!value) {
+      emailError.textContent = "Email is required";
+      emailField.classList.add("invalid");
+      return false;
+    } else if (!emailPattern.test(value)) {
       emailError.textContent = "Please enter a valid email address";
       emailField.classList.add("invalid");
+      return false;
     } else {
       emailError.textContent = "";
       emailField.classList.remove("invalid");
+      return true;
     }
-  });
+  }
 
-  // Real-time password validation
-  passwordField.addEventListener("input", () => {
-    if (passwordField.value.length < 6) {
+  function validatePassword() {
+    const value = passwordField.value.trim();
+    if (!value) {
+      passwordError.textContent = "Password is required";
+      passwordField.classList.add("invalid");
+      return false;
+    } else if (value.length < 6) {
       passwordError.textContent = "Password must be at least 6 characters";
       passwordField.classList.add("invalid");
+      return false;
     } else {
       passwordError.textContent = "";
       passwordField.classList.remove("invalid");
+      return true;
     }
-  });
+  }
 
-  // Prevent form submission if invalid
+  // Real-time validation
+  emailField.addEventListener("input", validateEmail);
+  passwordField.addEventListener("input", validatePassword);
+
+  // On submit validation
   form.addEventListener("submit", (e) => {
-    let valid = true;
+    const emailValid = validateEmail();
+    const passwordValid = validatePassword();
 
-    if (!emailField.value.match(emailPattern)) {
-      emailError.textContent = "Please enter a valid email address";
-      valid = false;
-    }
-
-    if (passwordField.value.length < 6) {
-      passwordError.textContent = "Password must be at least 6 characters";
-      valid = false;
-    }
-
-    if (!valid) {
-      e.preventDefault(); // Stop form submission
+    if (!emailValid || !passwordValid) {
+      e.preventDefault(); // Prevent submission if invalid
     }
   });
 });
-
-
-

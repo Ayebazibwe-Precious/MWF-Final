@@ -33,35 +33,6 @@ router.post("/signup", async (req, res) => {
 router.get("/login", (req, res) => {
   res.render("login");
 });
-// router.post("/login",passport.authenticate("local", {failureRedirect:'/login'}), (req, res) => {
-//   console.log("Login called")
-//     req.session.user = req.user;
-//     if (req.user.role === "Manager") {
-//       res.redirect("/managerDashboard");
-//     } else if (req.user.role === "Attendant") {
-//       res.redirect("/attendantDashboard");
-//     } else (res.render("noneuser"));
-//   });
-
-// router.post(
-//   "/login",
-//   passport.authenticate("local", {
-//     failureRedirect: "/login",
-//     failureFlash: true, // enable error messages
-//   }),
-//   (req, res) => {
-//     console.log("Login called");
-//     req.session.user = req.user;
-
-//     if (req.user.role === "Manager") {
-//       res.redirect("/managerDashboard");
-//     } else if (req.user.role === "Attendant") {
-//       res.redirect("/attendantDashboard");
-//     } else {
-//       res.render("noneuser");
-//     }
-//   }
-// );
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) return next(err);
@@ -80,7 +51,9 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-
+router.get("/", (req, res) => {
+  res.render("index");
+});
 
 
 

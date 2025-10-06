@@ -1,4 +1,4 @@
-/* General Styling */
+/* ===== General Styling ===== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f9;
@@ -7,11 +7,12 @@ body {
     color: #333;
 }
 
+/* ===== Form Container ===== */
 .form-container {
     margin-left: 320px;
     max-width: 700px;
-    width: 100%;/* ensures it shrinks */
-    box-sizing: border-box;/* padding doesn’t cause overflow */
+    width: 100%;
+    box-sizing: border-box;
     background: #fff;
     padding: 25px;
     border-radius: 10px;
@@ -31,7 +32,7 @@ h1 {
     font-size: 14px;
 }
 
-/* Form Layout */
+/* ===== Form Layout ===== */
 .form-row {
     display: flex;
     justify-content: space-between;
@@ -50,11 +51,7 @@ h1 {
     font-weight: 500;
 }
 
-.required {
-    color: #e74c3c;
-}
-
-/* Inputs, selects, textarea */
+/* ===== Inputs, Selects ===== */
 input[type="text"],
 input[type="number"],
 input[type="date"],
@@ -74,7 +71,7 @@ textarea:focus {
     outline: none;
 }
 
-/* Buttons */
+/* ===== Buttons ===== */
 .form-actions {
     display: flex;
     justify-content: space-between;
@@ -98,42 +95,66 @@ textarea:focus {
     background: #2980b9;
 }
 
-.btn-reset {
-    background: #27ae60;
-    color: #faf6f6;
-    padding: 10px 20px;
+/* Clear button */
+#clearButton {
+    background-color: #eb3939;
+    color: #f7f6f6;
     border: none;
     border-radius: 6px;
+    font-size: 16px;
     cursor: pointer;
-}
-
-.btn-reset:hover {
-    background: #bdc3c7;
-}
-.btn-submit,
-.btn-reset ,
-.btn-cancel{
-    width: 45%;
-    text-align: center;
-}
-.btn-cancel {
-    background: #e74c3c;
-    color: #fff;
     padding: 12px 30px;
-    /* make it longer */
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
     transition: background 0.3s ease;
 }
 
-.btn-cancel:hover {
-    background: #c0392b;
+#clearButton:hover {
+    background: #f20707;
 }
 
-/* Mobile Friendly */
+/* ===== Footer Styling ===== */
+footer.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2c3e50;
+    color: #f1f1f1;
+    margin-top: 50px;
+    border-top: 4px solid #27ae60;
+    position: relative;
+}
+
+footer.footer p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+footer .dev-name {
+    font-weight: bold;
+    color: #27ae60;
+}
+
+footer .company-name {
+    font-style: italic;
+    color: #ecf0f1;
+}
+
+/* ===== Error Styles ===== */
+.error-msg {
+    display: block;
+    margin-top: 4px;
+    padding: 4px 8px;
+    background-color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #cc0000;
+}
+
+input.error-input,
+select.error-input {
+    border-color: #ff4d4d !important;
+    background-color: white;
+}
+
+/* ===== Mobile Friendly ===== */
 @media (max-width: 600px) {
     .form-row {
         flex-direction: column;
@@ -144,72 +165,12 @@ textarea:focus {
     }
 
     .btn-submit,
-    .btn-reset ,
-    .btn-cancel{
+    #clearButton {
         width: 100%;
     }
-}
 
-/* Sidebar container */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100vh;
-    /* full height */
-    background: #2c3e50;
-    /* dark blue-grey */
-    color: #ecf0f1;
-    /* light text */
-    display: flex;
-    flex-direction: column;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-/* Sidebar header */
-.sidebar-header {
-    padding: 20px;
-    text-align: center;
-    font-size: 1.3rem;
-    font-weight: bold;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Navigation list */
-.sidebar-nav {
-    flex-grow: 1;
-    padding: 20px 0;
-}
-
-.sidebar-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar-nav li {
-    margin-bottom: 10px;
-}
-
-.sidebar-nav a {
-    display: block;
-    padding: 12px 20px;
-    text-decoration: none;
-    color: #ecf0f1;
-    border-radius: 8px;
-    transition: background 0.3s, padding-left 0.3s;
-}
-
-/* Hover and active states */
-.sidebar-nav a:hover {
-    background: #34495e;
-    padding-left: 25px;
-}
-
-.sidebar-nav a.active {
-    background: #27ae60;
-    color: #fff;
-    font-weight: bold;
+    footer.footer {
+        font-size: 13px;
+        padding: 15px;
+    }
 }

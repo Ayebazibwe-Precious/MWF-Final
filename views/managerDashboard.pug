@@ -1,127 +1,117 @@
-meta(charset="UTF-8")
-meta(name="viewport", content="width=device-width,initial-scale=1")
-title Dashboard Overview
-link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
-link(rel="stylesheet", href="css/managerDashboard.css")
-script(src="https://cdn.jsdelivr.net/npm/chart.js")
+extends layout 
 
-// Sidebar
-aside.sidebar
-  .sidebar-header
-    h2 MWF System
-  nav.sidebar-nav
-    ul
-      li
-        a.active(href="/managerDashboard")
-          i.fa-solid.fa-clipboard
-          |     Dashboard
-      li
-        a(href="/stockManager")
-          i.fa-solid.fa-rectangle-list
-          |   Stock Management
-      li
-        a(href="/saleslist")
-          i.fa-solid.fa-table-list
-          | Sales Management
-      li
-        a(href="/signUp")
-          i.fa-solid.fa-user
-          | User Management
-      li
-        a(href="/supplier")
-          i.fa-solid.fa-receipt
-          | Supplier Management
+block css 
+  link(rel="stylesheet", href="/css/managerDashboard.css") 
 
-// Main content
-.main
-  .dashboard-container
-    header
-      h1 Business Dashboard
+block content
+  include includes/sidebar.pug
 
-    // Top stat cards
-    section.grid.stats
-      .stat-card
-        h3 Sales
-        p.small-text UGX #{totalSales}
-      .stat-card
-        h3 In Stock
-        p.small-text Total Quantity: #{totalQuantity} 
-        p.small-text Total Stock Value: UGX #{totalStockValue}
-      .stat-card
-        h3 Out Of Stock
-        p.small-text.text-red #{outOfStockCount.toLocaleString()}
-      .stat-card
-        h3 Users
-        p.small-text #{totalUsers.toLocaleString()}
+  // === Page Wrapper ===
+  .page-wrapper
+    .page-content
+      // === Main Content ===
+      .main
+        .dashboard-container
+          header
+            h1 Business Dashboard
 
-    // Quick Action Cards - right below stats
-    section.quick-actions
-      .quick-action-card
-        a(href="/addSale")
-          i.fa-solid.fa-cart-plus.fa-2x
-          p Add Sale
-      .quick-action-card
-        a(href="/addStock")
-          i.fa-solid.fa-boxes-stacked.fa-2x
-          p Add Stock
-      .quick-action-card
-        a(href="/stockReport")
-          i.fa-solid.fa-file-invoice.fa-2x
-          p Generate Stock Report
-      .quick-action-card
-        a(href="/salesReport")
-          i.fa-solid.fa-chart-line.fa-2x
-          p Generate Sales Report
+          // === Top Stat Cards ===
+          section.grid.stats
+            .stat-card.total-sales
+              i.fa-solid.fa-sack-dollar
+              h3 Sales
+              p.small-text UGX #{totalSales}
+            .stat-card.products
+              i.fa-solid.fa-boxes-stacked
+              h3 In Stock
+              p.small-text UGX #{totalStockValue}
+            .stat-card.low-stock
+              i.fa-solid.fa-triangle-exclamation
+              h3 Out Of Stock
+              p.small-text.text-red #{outOfStockCount.toLocaleString()}
+            .stat-card.users
+              i.fa-solid.fa-users
+              h3 Users
+              p.small-text #{totalUsers.toLocaleString()}
 
-    // Charts section
-    section.charts
-      .chart-card
-        h3 Sales vs Stock
-        canvas#salesStockChart
-      .chart-card
-        h3 Most Sold Products
-        canvas#topProductsChart
+          // === Quick Action Cards ===
+          section.quick-actions
+            .quick-action-card
+              a(href="/addSale")
+                i.fa-solid.fa-cart-plus.fa-2x
+                p Add Sale
+            .quick-action-card
+              a(href="/addStock")
+                i.fa-solid.fa-boxes-stacked.fa-2x
+                p Add Stock
+            .quick-action-card
+              a(href="/stockReport")
+                i.fa-solid.fa-file-invoice.fa-2x
+                p Generate Stock Report
+            .quick-action-card
+              a(href="/salesReport")
+                i.fa-solid.fa-chart-line.fa-2x
+                p Generate Sales Report
 
-    // Report Cards section
-    section.grid.reports
-      .report-card
-        h2 Stock Overview
+          // === Charts Section ===
+          section.charts
+            .chart-card
+              h3 Sales vs Stock
+              canvas#salesStockChart
+            .chart-card
+              h3 Most Sold Products
+              canvas#topProductsChart
 
-        // Current Available Stock
-        .inner-card
-          h3 Current Available Stock
-          if stockItems.length
-            ul#stock-list
-              each item in stockItems
-                li #{item._id} - #{item.totalQty} units
-          else
-            p No stock available
+          // === Report Cards Section ===
+          section.grid.reports
+            .report-card
+              h2 Stock Overview
 
-        // Low Stock Alerts
-        .inner-card.alert
-          h3 Low Stock Alerts
-          if lowStockItems.length
-            ul#low-stock-list
-              each item in lowStockItems
-                li #{item._id} - only #{item.totalQty} left!
-          else
-            p No low stock alerts
+              // Current Available Stock
+              .inner-card
+                h3 Current Available Stock
+                if stockItems.length
+                  ul#stock-list
+                    each item in stockItems
+                      li #{item._id} - #{item.totalQty} units
+                else
+                  p No stock available
 
-      .report-card
-        h2 Sales Overview
-        .inner-card
-          h3 Total Sales
-          p#total-sales UGX #{totalSales}
-        .inner-card
-          h3 Top Customers
-          ul#top-customers
-            each customer in topCustomers
-              li= customer
+              // Low Stock Alerts
+              .inner-card.alert
+                h3 Low Stock Alerts
+                if lowStockItems.length
+                  ul#low-stock-list
+                    each item in lowStockItems
+                      li #{item._id} - only #{item.totalQty} left!
+                else
+                  p No low stock alerts
 
-        .inner-card
-          h3 Payment Methods
-          ul#payment-methods
-            each method in paymentMethods
-              li= method
+            .report-card
+              h2 Sales Overview
+              .inner-card
+                h3 Total Sales
+                p#total-sales UGX #{totalSales}
+              .inner-card
+                h3 Top Customers
+                ul#top-customers
+                  each customer in topCustomers
+                    li= customer
+              .inner-card
+                h3 Payment Methods
+                ul#payment-methods
+                  each method in paymentMethods
+                    li= method
 
-script(src="js/managerDashboard.js")
+    // === Footer ===
+    footer.footer
+      p © 2025 MWF. All rights reserved.
+      p
+        | Developed by 
+        span.dev-name Mary Precious Ayebazibwe
+        |  at 
+        span.company-name Mayondo Wood & Furniture Ltd.
+        | .
+
+  // === External JS ===
+  script(src="js/managerDashboard.js")

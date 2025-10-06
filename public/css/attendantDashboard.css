@@ -8,6 +8,7 @@
     --danger: #e74c3c;
 }
 
+/* === Global Reset === */
 * {
     margin: 0;
     box-sizing: border-box;
@@ -17,78 +18,32 @@
 body {
     background: var(--bg);
     color: #111;
-}
-h2{
-    text-align: center;
-    color: #27ae60;
-}
-/* Sidebar */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 240px;
-    height: 100vh;
-    background: #2c3e50;
-    color: #ecf0f1;
+    margin-left: 250px;
+    /* to account for sidebar */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
 }
 
-.sidebar-header {
-    padding: 20px;
-    text-align: center;
-    font-size: 1.3rem;
-    font-weight: bold;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* === Page Layout === */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.sidebar-nav {
-    flex-grow: 1;
-    padding: 20px 0;
+.page-content {
+    flex: 1;
 }
 
-.sidebar-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar-nav li {
-    margin-bottom: 10px;
-}
-
-.sidebar-nav a {
-    display: block;
-    padding: 12px 20px;
-    text-decoration: none;
-    color: #ecf0f1;
-    border-radius: 8px;
-    transition: background 0.3s, padding-left 0.3s;
-}
-
-.sidebar-nav a:hover {
-    background: #34495e;
-    padding-left: 25px;
-}
-
-.sidebar-nav a.active {
-    background: #27ae60;
-    color: #fff;
-    font-weight: bold;
-}
-
-/* Container */
+/* === Container === */
 .container {
     padding: 20px;
     max-width: 1200px;
     margin: 20px auto;
-    margin-left: 260px;
 }
 
-/* Cards */
+/* === Cards === */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -124,7 +79,7 @@ h2{
     font-weight: 700;
 }
 
-/* Specific card colors */
+/* === Specific Card Colors === */
 .card.total-sales {
     border-left: 6px solid var(--success);
     color: var(--success);
@@ -139,18 +94,19 @@ h2{
     border-left: 6px solid var(--danger);
     color: var(--danger);
 }
+
 .card.sales-count {
     border-left: 6px solid var(--warning);
     color: var(--warning);
 }
 
-/* Hover effect */
+/* === Hover Effect === */
 .card:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
 }
 
-/* Panel */
+/* === Panel === */
 .panel {
     background: var(--card);
     padding: 18px;
@@ -165,7 +121,6 @@ h2{
 
 table {
     width: 100%;
-    border: #0b0b0b;
     border-collapse: collapse;
 }
 
@@ -187,8 +142,34 @@ table tr:hover {
     background: #f9f9f9;
 }
 
+/* === Responsive === */
 @media (max-width: 900px) {
     .cards {
         grid-template-columns: 1fr;
     }
+}
+
+/* === Footer === */
+.footer {
+    width: 100%;
+    background-color: #1f2937;
+    color: #fff;
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    box-sizing: border-box;
+    margin-top: auto;
+    /* ensures footer stays at bottom */
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.footer .dev-name,
+.footer .company-name {
+    font-weight: 600;
+    color: #facc15;
+    /* gold accent */
 }

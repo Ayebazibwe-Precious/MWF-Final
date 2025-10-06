@@ -1,57 +1,60 @@
-meta(charset="UTF-8")
-meta(name="viewport", content="width=device-width,initial-scale=1")
-title signup page
-link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==", crossorigin="anonymous", referrerpolicy="no-referrer")
-link(rel="stylesheet", href="css/signup.css")
-//  Sidebar 
-aside.sidebar
-  .sidebar-header
-    h2 MWF System
-  nav.sidebar-nav
-    ul
-      li
-        a.active(href="/signup")
-          i.fa-solid.fa-user
-          |  Register User
-      li
-        a(href="/managerDashboard")
-          i.fa-solid.fa-clipboard
-          |  Dashboard
-      li
-        a(href="/usersTable")
-          i.fa-solid.fa-table-list
-          |  Users Table
-.signup-container
-  //  Logo & Title 
-  .header
-    h2 Register User
-    p Join our company portal
-  //  Signup Form 
-  form#signupForm(action="/signup", method="POST")
-    .form-group
-      label(for="name") Full Name
-      input#name(type="text", name="name", required)
-    .form-group
-      label(for="email") Email Address
-      input#email(type="email", name="email", required)
-    .form-group
-      label(for="phone") Phone Number
-      input#phone(type="tel", name="phone", required)
-    .form-group
-      label(for="role") Role
-      select#role(name="role", required)
-        option(value="") Select your role
-        option(value="Manager") Manager
-        option(value="Attendant") Attendant
-    //  Password fields span the full row 
-    .form-group.full
-      label(for="password") Password
-      input#password(type="password", name="password", required, minlength="6")
-    .form-group.full
-      label(for="confirm_password") Confirm Password
-      input#confirm_password(type="password", name="confirm_password", required, minlength="6")
-      small#error-msg(style="color:red; display:none;") Passwords do not match
-    .form-actions
-      button.btn.btn-register(type="submit") Register
-      button.btn.btn-clear(type="button", id="clearBtn") Clear
-script(src="js/signUp.js")
+extends layout 
+
+block css
+  link(rel="stylesheet", href="css/signup.css") 
+
+block content
+  include includes/sidebar.pug
+
+  // --- Signup Container ---
+  .signup-container
+    // --- Header ---
+    .header
+      h2 Register User
+      p Join our company portal
+
+    // --- Signup Form ---
+    form#signupForm(action="/signup", method="POST" novalidate)
+      .form-group
+        label(for="name") Full Name
+        input#name(type="text", name="name", required)
+
+      .form-group
+        label(for="email") Email Address
+        input#email(type="email", name="email", required)
+
+      .form-group
+        label(for="phone") Phone Number
+        input#phone(type="tel", name="phone", required)
+
+      .form-group
+        label(for="role") Role
+        select#role(name="role", required)
+          option(value="") Select your role
+          option(value="Manager") Manager
+          option(value="Attendant") Attendant
+
+      .form-group.full
+        label(for="password") Password
+        input#password(type="password", name="password", required, minlength="6")
+
+      .form-group.full
+        label(for="confirm_password") Confirm Password
+        input#confirm_password(type="password", name="confirm_password", required, minlength="6")
+        small#error-msg(style="color:red; display:none;") Passwords do not match
+
+      .form-actions
+        button.btn.btn-register(type="submit") Register
+        button.btn.btn-clear(type="button", id="clearBtn") Clear
+
+  // --- Footer ---
+  footer.footer
+    p © 2025 MWF. All rights reserved.
+    p
+      | Developed by 
+      span.dev-name Mary Precious Ayebazibwe
+      |  at 
+      span.company-name Mayondo Wood & Furniture Ltd.
+
+  // --- External JS ---
+  script(src="js/signUp.js")

@@ -50,7 +50,7 @@ async function loadTopProductsChart() {
         datasets: [
           {
             data: data.values, // e.g. [120, 90, 50]
-            backgroundColor: ["#ff6384", "#36a2eb", "#ffce56", "#27ae60"],
+            backgroundColor: ["#52c582ff", "#36a2eb", "#ffce56", "#e35b4cff"],
           },
         ],
       },

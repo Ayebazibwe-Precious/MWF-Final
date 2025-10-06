@@ -1,85 +1,71 @@
-doctype html
-html
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1")
-    title MWF - Attendant Dashboard
-    link(
-      rel="stylesheet",
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css",
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==",
-      crossorigin="anonymous",
-      referrerpolicy="no-referrer"
-    )
-    link(rel="stylesheet", href="/css/attendantDashboard.css")
+extends layout
 
-  body
-    // Sidebar
-    aside.sidebar
-      .sidebar-header
-        h2 MWF System
-      nav.sidebar-nav
-        ul
-          li
-            a.active(href="/attendantDashboard")
-              i.fa-solid.fa-clipboard
-              |  Dashboard
-          li
-            a(href="/stockAttendant")
-              i.fa-solid.fa-rectangle-list
-              |  Stock 
-          li
-            a(href="/salesEntry")
-              i.fa-solid.fa-cart-plus
-              |  Sales 
+block css
+  link(rel="stylesheet", href="/css/attendantDashboard.css")
 
-    // Main Container
-    .container
-      // Dashboard Cards
-      .cards
-        .card.total-sales
-          i.fa-solid.fa-sack-dollar
-          h3 Total Sales (Today)
-          p UGX #{totalSales.toLocaleString()}
+block content
+  include includes/sidebar1.pug
 
-        .card.sales-count
-          i.fa-solid.fa-receipt
-          h3 Transactions Today
-          p #{totalSalesCount}
+  // === Page Wrapper ===
+  .page-wrapper
+    .page-content
+      // === Main Container ===
+      .container
+        // Dashboard Cards
+        .cards
+          .card.total-sales
+            i.fa-solid.fa-sack-dollar
+            h3 Total Sales (Today)
+            p UGX #{totalSales.toLocaleString()}
 
-        .card.products
-          i.fa-solid.fa-boxes-stacked
-          h3 Products Available
-          p #{productsAvailable || 0}
+          .card.sales-count
+            i.fa-solid.fa-receipt
+            h3 Transactions Today
+            p #{totalSalesCount}
 
-        .card.low-stock
-          i.fa-solid.fa-triangle-exclamation
-          h3 Low Stock Alerts
-          p #{lowStockCount || 0}
+          .card.products
+            i.fa-solid.fa-boxes-stacked
+            h3 Products Available
+            p #{productsAvailable || 0}
 
-      // Stock Summary (Aggregated)
-      section.panel
-        .header-row
-          h2 STOCK SUMMARY
+          .card.low-stock
+            i.fa-solid.fa-triangle-exclamation
+            h3 Low Stock Alerts
+            p #{lowStockCount || 0}
 
-        .table-container
-          table#stockSummary
-            thead
-              tr
-                th Product Name
-                th Product Type
-                th Total Quantity
-                th Avg Cost Price
-                th Avg Selling Price
-            tbody
-              if stockSummary && stockSummary.length
-                each item in stockSummary
-                  tr
-                    td #{item._id.name}
-                    td #{item._id.type}
-                    td #{item.totalQty}
-                    td UGX #{item.avgCost != null ? item.avgCost.toLocaleString() : '0'}
-                    td UGX #{item.avgPrice != null ? item.avgPrice.toLocaleString() : '0'}
-              else
+        // === Stock Summary (Aggregated) ===
+        section.panel
+          .header-row
+            h2 STOCK SUMMARY
+
+          .table-container
+            table#stockSummary
+              thead
                 tr
-                  td(colspan="5") No products in stock
+                  th Product Name
+                  th Product Type
+                  th Total Quantity
+                  th Avg Cost Price
+                  th Avg Selling Price
+              tbody
+                if stockSummary && stockSummary.length
+                  each item in stockSummary
+                    tr
+                      td #{item._id.name}
+                      td #{item._id.type}
+                      td #{item.totalQty}
+                      td UGX #{item.avgCost != null ? item.avgCost.toLocaleString() : '0'}
+                      td UGX #{item.avgPrice != null ? item.avgPrice.toLocaleString() : '0'}
+                else
+                  tr
+                    td(colspan="5") No products in stock
+
+    // === Footer ===
+    footer.footer
+      p © 2025 MWF. All rights reserved.
+      p
+        | Developed by 
+        span.dev-name Mary Precious Ayebazibwe
+        |  at 
+        span.company-name Mayondo Wood & Furniture Ltd.
+        | .
