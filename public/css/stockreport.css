@@ -80,11 +80,11 @@ body {
 
 /* Filter Button */
 .btn-filter {
-    background: #007bff;
+    background: #27ae60;
 }
 
 .btn-filter:hover {
-    background: #0056b3;
+    background: #12a951;
 }
 
 /* Refresh Button */
@@ -103,30 +103,6 @@ body {
 
 .btn-close:hover {
     background: #a71d2a;
-}
-
-/* Summary Section */
-.summary {
-    margin: 20px 0;
-    padding: 15px;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-}
-
-.summary h3 {
-    margin-top: 0;
-    color: #2c3e50;
-}
-
-.summary ul {
-    list-style: none;
-    padding: 0;
-}
-
-.summary li {
-    margin: 5px 0;
-    font-size: 14px;
 }
 
 /* Table Section */
@@ -158,16 +134,16 @@ body {
 }
 
 .table-section th {
-    background: #007bff;
+    background: #27ae60;
     color: white;
     font-weight: 600;
 }
 
-/* Hide scroll on large screens */
-@media (min-width: 992px) {
-    .table-wrapper {
-        overflow-x: hidden;
-    }
+/* Highlight low stock */
+.low-stock td {
+    background: #ffe5e5;
+    color: #b30000;
+    font-weight: bold;
 }
 
 /* Footer */
@@ -226,5 +202,10 @@ body {
     .report-footer {
         justify-content: flex-start;
         gap: 30px;
+    }
+
+    #rangeDisplay {
+        color: black;
+        font-weight: bold;
     }
 }

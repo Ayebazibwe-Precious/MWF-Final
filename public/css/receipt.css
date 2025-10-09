@@ -33,7 +33,7 @@ body {
     margin: 0;
     font-size: 1.8rem;
     font-weight: 700;
-    color: #4a90e2;
+    color: #27ae60;
 }
 
 .receipt-header p {
@@ -45,7 +45,7 @@ body {
 /* ===== Info Section ===== */
 .receipt-info h3 {
     margin: 20px 0 10px 0;
-    color: #4a90e2;
+    color: #27ae60;
     font-weight: 700;
     letter-spacing: 1px;
 }
@@ -73,7 +73,7 @@ body {
 }
 
 .table thead {
-    background: #4a90e2;
+    background: #27ae60;
     color: #fff;
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -102,7 +102,7 @@ body {
 }
 
 .balance-due {
-    background: #4a90e2;
+    background: #27ae60;
     color: #fff;
     padding: 12px 20px;
     border-radius: 6px;
@@ -161,13 +161,13 @@ body {
 /* Blue Close button */
 .btn-close {
     background: #fff;
-    color: #4a90e2;
-    border: 2px solid #4a90e2;
+    color: #dc4038;
+    border: 2px solid #e43c3c;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .btn-close:hover {
-    background: #4a90e2;
+    background: #ea382b;
     color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);

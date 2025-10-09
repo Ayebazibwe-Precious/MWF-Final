@@ -36,7 +36,7 @@ body {
 }
 
 .search-box input:focus {
-    border-color: #3498db;
+    border-color: #27ae60;
 }
 
 .btn-add {
@@ -77,17 +77,17 @@ body {
 }
 
 #userTable th {
-    background: #3498db;
+    background: #27ae60;
     color: #fff;
     padding: 12px 15px;
-    border: 1px solid #2980b9;
+    border: 1px solid #057632;
     text-align: left;
 }
 
 #userTable td {
     font-size: 0.85rem;
     padding: 12px 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #363434;
     color: #555;
 }
 
@@ -130,12 +130,12 @@ body {
 }
 
 .action-btn.edit {
-    background: #3498db;
+    background: rgb(210, 173, 24);
     color: #fff;
 }
 
 .action-btn.edit:hover {
-    background: #2980b9;
+    background: #f79a04;
 }
 
 .action-btn.delete {
@@ -195,14 +195,14 @@ body {
 }
 /* ===== Footer Styling ===== */
 footer.footer {
-    background-color: #007bff;
+    background-color: #1f2937;
     color: #fff;
     text-align: center;
     padding: 15px 20px;
     margin-top: 30px;
-    border-top: 3px solid #0056b3;
     font-size: 0.9rem;
     line-height: 1.5;
+     margin-top: auto; /* keeps it at bottom */
 }
 
 footer.footer p {
@@ -211,11 +211,13 @@ footer.footer p {
 
 footer.footer .dev-name {
     font-weight: bold;
+    color: #facc15;
 }
 
 footer.footer .company-name {
     font-weight: bold;
-    text-decoration: underline;
+    color: #f39c12;
+    text-decoration: none;
 }
 
 /* Sticky footer for short pages */

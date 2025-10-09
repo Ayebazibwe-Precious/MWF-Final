@@ -148,12 +148,14 @@
     opacity: 1;
 }
 
-.main-content {
+ .main-content {
     margin-left: var(--sidebar-width);
     transition: margin-left 0.3s ease;
-}
+} 
 
-.sidebar.collapsed~.main-content {
+ .sidebar.collapsed~.main-content {
     margin-left: var(--sidebar-collapsed);
+} 
+.main-content {
+    transition: margin-left 0.3s ease;
 }
-

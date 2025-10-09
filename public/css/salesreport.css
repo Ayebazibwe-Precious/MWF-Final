@@ -80,11 +80,11 @@ body {
 
 /* Filter Button */
 .btn-filter {
-    background: #007bff;
+    background: #27ae60;
 }
 
 .btn-filter:hover {
-    background: #0056b3;
+    background: #10a950;
 }
 
 /* Refresh Button */
@@ -134,7 +134,7 @@ body {
 }
 
 .table-section th {
-    background: #007bff;
+    background: #27ae60;
     color: white;
     font-weight: 600;
 }

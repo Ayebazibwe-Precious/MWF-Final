@@ -42,7 +42,7 @@ body {
 
 .login-box input[type="text"]:focus,
 .login-box input[type="password"]:focus {
-    border-color: #d4a574;
+    border-color: #27ae60;
 }
 
 /* Show Password Checkbox */
@@ -64,7 +64,7 @@ body {
 .login-box button {
     width: 100%;
     padding: 12px;
-    background-color: #d4a574;
+    background-color: #27ae60;
     border: none;
     color: #fff;
     font-size: 1rem;
@@ -75,7 +75,7 @@ body {
 }
 
 .login-box button:hover {
-    background-color: #9f611f;
+    background-color: #0ca44c;
 }
 
 /* Sign Up Text */

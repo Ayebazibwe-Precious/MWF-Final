@@ -6,54 +6,61 @@ block css
 block content
   include includes/sidebar.pug
 
-  // --- Supplier Registration Form ---
-  .form-container
-    h2 Supplier Registration
-    form(action="/supplier", method="POST" novalidate)
-      // --- Row 1: Supplier & Company ---
-      .form-row
-        .form-group
-          label(for="name") Supplier Name
-          input#name(type="text", name="name", required='', placeholder="Enter supplier name")
-        .form-group
-          label(for="company") Company Name
-          input#company(type="text", name="company", required='', placeholder="Enter company name")
-      
-      // --- Row 2: Email & Phone ---
-      .form-row
-        .form-group
-          label(for="email") Email Address
-          input#email(type="email", name="email", required='', placeholder="Enter email address")
-        .form-group
-          label(for="phone") Phone Number
-          input#phone(type="tel", name="phone", required='', pattern="[0-9]{10,15}", placeholder="e.g. 0701234567")
-      
-      // --- Row 3: Address & Bank ---
-      .form-row
-        .form-group
-          label(for="address") Address
-          input#address(type="text", name="address", required='', placeholder="Enter address")
-        .form-group
-          label(for="bank") Bank Details
-          input#bank(type="text", name="bank", required='', placeholder="Enter bank details")
-      
-      // --- Row 4: Product Details ---
-      .form-row
-        .form-group
-          label(for="productName") Product Name
-          input#productName(type="text", name="productName", placeholder="Enter product name", required='')
-        .form-group
-          label(for="productType") Product Type
-          input#productType(type="text", name="productType", required='', placeholder="Enter product type")
-      
-      // --- Submit Button ---
-      .form-group
-        button(type="submit") Register Supplier
+  // --- Page Wrapper ---
+  .page-wrapper
+    // --- Main Content ---
+    .page-content
+      .form-container
+        h2 Supplier Registration
+        form(action="/supplier", method="POST" novalidate)
+          // --- Row 1: Supplier & Company ---
+          .form-row
+            .form-group
+              label(for="name") Supplier Name
+              input#name(type="text", name="name", required='', placeholder="Enter supplier name")
+            .form-group
+              label(for="company") Company Name
+              input#company(type="text", name="company", required='', placeholder="Enter company name")
 
-  // === Footer Section ===
-  footer.footer
-    .footer-content
-      p © #{new Date().getFullYear()} MWF System. All rights reserved.
-      p Designed & Maintained by MWF Inventory Team.
+          // --- Row 2: Email & Phone ---
+          .form-row
+            .form-group
+              label(for="email") Email Address
+              input#email(type="email", name="email", required='', placeholder="Enter email address")
+            .form-group
+              label(for="phone") Phone Number
+              input#phone(type="tel", name="phone", required='', pattern="[0-9]{10,15}", placeholder="e.g. 0701234567")
+
+          // --- Row 3: Address & Bank ---
+          .form-row
+            .form-group
+              label(for="address") Address
+              input#address(type="text", name="address", required='', placeholder="Enter address")
+            .form-group
+              label(for="bank") Bank Details
+              input#bank(type="text", name="bank", required='', placeholder="Enter bank details")
+
+          // --- Row 4: Product Details ---
+          .form-row
+            .form-group
+              label(for="productName") Product Name
+              input#productName(type="text", name="productName", placeholder="Enter product name", required='')
+            .form-group
+              label(for="productType") Product Type
+              input#productType(type="text", name="productType", required='', placeholder="Enter product type")
+
+          // --- Submit Button ---
+          .form-group
+            button(type="submit") Register Supplier
+
+    // === Footer Section ===
+    footer.footer
+      p © 2025 MWF. All rights reserved.
+      p
+        | Developed by 
+        span.dev-name Mary Precious Ayebazibwe
+        |  at 
+        span.company-name Mayondo Wood & Furniture Ltd.
+        | .
 
   script(src="/js/supplier.js")

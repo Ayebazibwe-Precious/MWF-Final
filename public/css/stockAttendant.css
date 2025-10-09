@@ -1,10 +1,18 @@
 /* ===== General Styling ===== */
-body {
+body, html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f9;
     margin: 0;
     padding: 20px;
     color: #333;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0; /* remove padding here; handle inside container */
+}
+
+.main-content {
+    padding: 20px;
+    margin-left: 320px; /* only push content, not footer */
 }
 
 /* ===== Form Container ===== */
@@ -67,7 +75,7 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: #3498db;
+    border-color: #109246;
     outline: none;
 }
 
@@ -81,7 +89,7 @@ textarea:focus {
 }
 
 .btn-submit {
-    background: #3498db;
+    background: #27ae60;
     color: #fff;
     padding: 12px 30px;
     border: none;
@@ -92,7 +100,7 @@ textarea:focus {
 }
 
 .btn-submit:hover {
-    background: #2980b9;
+    background: #13b958;
 }
 
 /* Clear button */
@@ -113,28 +121,31 @@ textarea:focus {
 
 /* ===== Footer Styling ===== */
 footer.footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #2c3e50;
+    position: relative;     /* normal flow, not fixed */
+    width: 100vw;           /* full viewport width */
+    left: 0;                /* align to left edge */
+    margin: 0;
+    background-color: #1f2937;
     color: #f1f1f1;
-    margin-top: 50px;
-    border-top: 4px solid #27ae60;
-    position: relative;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 14px;
+    box-sizing: border-box;
+    z-index: 1;             /* behind sidebar if sidebar is fixed */
 }
 
 footer.footer p {
     margin: 5px 0;
-    font-size: 14px;
 }
 
 footer .dev-name {
     font-weight: bold;
-    color: #27ae60;
+    color: #facc15;
 }
 
 footer .company-name {
     font-style: italic;
-    color: #ecf0f1;
+    color: #facc15;
 }
 
 /* ===== Error Styles ===== */
@@ -170,6 +181,20 @@ select.error-input {
     }
 
     footer.footer {
+        font-size: 13px;
+        padding: 15px;
+    }
+}
+@media (max-width: 600px) {
+    .main-content {
+        margin-left: 0;
+        /* sidebar collapses or hidden */
+        padding: 15px;
+    }
+
+    footer.footer {
+        width: 100vw;
+        /* still full width */
         font-size: 13px;
         padding: 15px;
     }

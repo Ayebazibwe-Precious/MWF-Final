@@ -55,30 +55,44 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
+//Logout page
+router.get("/logout", (req, res) => {
+  res.render("logout");
+});
 
-
-
-//Logging Out
-  router.get("/logout", (req, res) => {
-    if (req.session) {
-      req.session.destroy((error) => {
-        if (error) {
-          return res.status(500).send("Error loggingOut");
-        }
-        res.redirect("/");
-      });
-    }
-  });
-
-  //alternative
-  router.post("/logout", (req, res) => {
-    req.logout((error) => {
-      if (error) {
-        return res.status(500).send("Error loggingOut");
-      }
+ router.post("/logout", (req, res, next) => {
+  req.logout(function (err){
+    if (err) return next(err);
+    req.session.destroy((error) => {
+      if (err) return res.status(500).send("Error loggingOut");
+        res.clearCookie("connect.sid");
       res.redirect("/");
     });
   });
+   });
+  
+
+//Logging Out
+  // router.get("/logout", (req, res) => {
+  //   if (req.session) {
+  //     req.session.destroy((error) => {
+  //       if (error) {
+  //         return res.status(500).send("Error loggingOut");
+  //       }
+  //       res.redirect("logout");
+  //     });
+  //   }
+  // });
+
+  //alternative
+  // router.post("/logout", (req, res) => {
+  //   req.logout((error) => {
+  //     if (error) {
+  //       return res.status(500).send("Error loggingOut");
+  //     }
+  //     res.redirect("/");
+  //   });
+  // });
 
   //getting user from the db
   router.get("/usersTable", async (req, res) => {
