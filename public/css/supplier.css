@@ -1,27 +1,35 @@
+/*  Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*  Body Styling  */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    height: 100%;
+        display: flex;
+        flex-direction: column;
+margin-left: 0;
+    
+    
+}
+/* When sidebar collapses */
+body.sidebar-collapsed .page-wrapper {
+    margin-left: 80px;
+}
+
 /* ===== Page Layout ===== */
 .page-wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    margin-left: 250px;
+    transition: margin-left 0.3s ease;
 }
 
 .page-content {
     flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 60px 20px;
-    margin-left: 250px;
-    /* Keep space for sidebar */
-    box-sizing: border-box;
-}
-
-/* ===== Body Styling ===== */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f0f2f5;
-    margin: 0;
-    color: #333;
+   
 }
 
 /* ===== Form Styling ===== */
@@ -32,6 +40,8 @@ body {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     width: 600px;
     max-width: 95%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 h2 {
@@ -80,11 +90,62 @@ textarea:focus {
 .form-row .form-group {
     flex: 1;
 }
+/* Action Buttons Container */
+.form-group2 {
+    display: flex;
+    gap: 15px;             /* space between buttons */
+    justify-content: flex-start; /* align buttons to the left, or use center/space-between */
+    margin-top: 20px;
+}
+
+/* Update & Cancel Buttons */
+.form-group2 button[type="submit"],
+.form-group2 a.btn-cancel {
+    flex: 1;                     /* makes both buttons equal width */
+    padding: 12px 25px;          /* padding inside buttons */
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-decoration: none;       /* remove underline for cancel link */
+}
+
+/* Specific Colors */
+.form-group2 button[type="submit"] {
+    background: #27ae60;
+    color: #fff;
+    border: none;
+}
+
+.form-group2 button[type="submit"]:hover {
+    background: #1e8449;
+    transform: translateY(-2px);
+}
+
+.form-group2 a.btn-cancel {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.form-group2 a.btn-cancel:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* Remove global button full-width to avoid conflicts */
+button {
+    width: auto;  /* allow flex container to control width */
+}
 
 button {
     width: 100%;
     padding: 14px;
-    background: #007bff;
+    background: #27ae60;
     border: none;
     border-radius: 8px;
     color: white;
@@ -95,7 +156,7 @@ button {
 }
 
 button:hover {
-    background: #0056b3;
+    background: #27ae60;
 }
 
 /* ===== Footer Styling ===== */
@@ -120,8 +181,7 @@ button:hover {
 .footer .dev-name,
 .footer .company-name {
     font-weight: 600;
-    color: #facc15;
-    /* gold accent */
+    color: #facc15;/* gold accent */
 }
 
 /* ===== Responsive Fixes ===== */

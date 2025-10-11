@@ -1,4 +1,7 @@
 /* General */
+:root {
+    --sidebar-width: 250px;
+}
 html{
     height: auto;
 }
@@ -12,17 +15,34 @@ body {
     min-height: 100vh;   /* allow page to extend beyond viewport */
 }
 
+/* When sidebar collapses */
+body.sidebar-collapsed {
+    --sidebar-width: 80px; /* dynamically reduce sidebar width */
+}
+
+/* === Page Layout === */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-content {
+    flex: 1;
+}
+
 /* Container */
 .container {
     max-width: 1200px;
     margin: 40px auto;
-    margin-left: 270px;
+    margin-left: var(--sidebar-width);
     margin-right: 30px;
     background: #fff;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     overflow: visible; /* ✅ allow buttons to be fully visible */
+    transition: margin-left 0.3s ease; /* smooth animation */
 }
 
 h1 {
@@ -75,58 +95,61 @@ h1 {
 }
 
 /* Table */
-/* Table Wrapper - new */
+/* Table Wrapper */
 .table-wrapper {
-  width: 100%;
-  overflow: visible;         /* don’t clip content */
-  display: block;
+    width: 100%;
+    overflow: hidden;/* prevent horizontal scroll */
+    display: block;
 }
 
+/* Supplier Table */
 #supplierTable {
-    width: 100%;
-    table-layout: auto;
+    width: 100%;/* fill container */
+    table-layout: auto;/* let columns size naturally */
     border-collapse: collapse;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Table Headers and Cells */
 #supplierTable th,
 #supplierTable td {
+    padding: 8px 10px; /* slightly smaller padding to fit */
     word-wrap: break-word;
     white-space: normal;
+    overflow: visible;
 }
 
 #supplierTable th {
     background: #27ae60;
     color: #fff;
-    padding: 12px 15px;
     border: 1px solid #27ae60;
     text-align: left;
     font-size: 0.9rem;
-        white-space: normal;
-        overflow: visible;
 }
 
 #supplierTable td {
-    padding: 12px 15px;
     border: 1px solid #ccc;
     color: #555;
     font-size: 0.85rem;
-        overflow: visible;
-        text-overflow: unset;
 }
 
+/* Last column for actions */
+#supplierTable th:last-child,
+#supplierTable td:last-child {
+    width: auto;/* fixed width for buttons */
+    white-space: nowrap;
+}
+
+/* Alternating row colors */
 #supplierTable tr:nth-child(even) {
     background: #f9f9f9;
 }
 
 #supplierTable tr:hover {
     background: #f1f1f1;
-}
-#supplierTable th:last-child,
-#supplierTable td:last-child {
-    min-width: 160px;
 }
 
 /* Supplier not found row */
@@ -178,6 +201,8 @@ h1 {
     background: #c0392b;
 }
 
+
+
 /* Modal */
 .modal {
     display: none;
@@ -225,12 +250,12 @@ h1 {
 }
 /* ===== Footer Styling ===== */
 footer.footer {
-    background-color: #007bff;
+    background-color: #1f2937;
     color: #fff;
     text-align: center;
     padding: 15px 20px;
     margin-top: 30px;
-    border-top: 3px solid #0056b3;
+    border-top: 3px solid #0d253a;
     font-size: 0.9rem;
     line-height: 1.5;
     flex-shrink: 0;
@@ -240,14 +265,11 @@ footer.footer p {
     margin: 4px 0;
 }
 
-footer.footer .dev-name {
-    font-weight: bold;
-}
+.footer .dev-name,
+.footer .company-name {
+    font-weight: 600;
+    color: #facc15; /* gold accent */}
 
-footer.footer .company-name {
-    font-weight: bold;
-    text-decoration: underline;
-}
 
 /* Make footer responsive */
 @media (max-width: 768px) {

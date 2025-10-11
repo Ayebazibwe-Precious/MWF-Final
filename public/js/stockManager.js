@@ -1,23 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /* ========== SIDEBAR TOGGLE ========== */
-   const sidebar = document.querySelector(".sidebar");
-   const body = document.body;
-   const toggleBtn = document.getElementById("toggle-btn");
-
-   if (toggleBtn && sidebar) {
-     toggleBtn.addEventListener("click", () => {
-       console.log("🟢 Toggle clicked"); // 👈 Add this line for testing
-       sidebar.classList.toggle("collapsed");
-       body.classList.toggle("sidebar-collapsed");
-     });
-   } else {
-     console.warn(
-       "⚠️ Sidebar toggle not initialized — #toggle-btn or .sidebar missing."
-     );
-   }
-
-
-
   /* ========== FORM VALIDATION ========== */
   const form = document.getElementById("productForm");
 

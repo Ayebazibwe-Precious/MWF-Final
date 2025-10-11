@@ -1,15 +1,27 @@
 /* ===== General Layout ===== */
+html,
+body {
+    height: 100%;
+}
 body {
     font-family: Arial, sans-serif;
     background: #f4f6f8;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     overflow-y: auto;
+    margin-left: 250px; /* default when sidebar is visible */
+    transition: margin-left 0.3s ease;
+        display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+}
+/* When sidebar collapses */
+body.sidebar-collapsed {
+    margin-left: 80px; /* shift content left */
 }
 
 /* ===== MAIN ===== */
 .main {
-    margin-left: 250px;
     padding: 10px;
     flex: 1;
 }
@@ -245,12 +257,16 @@ td.action-buttons {
 
 /* ===== FOOTER ===== */
 footer.footer {
-    text-align: center;
-    padding: 20px;
     background-color: #1f2937;
     color: #f1f1f1;
-    margin-top: 40px;
-    position: relative;
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    width: 100%;
+    margin: 0;
+    margin-top: 40px; /* space above footer */
+    transition: all 0.3s ease;
 }
 
 footer.footer p {

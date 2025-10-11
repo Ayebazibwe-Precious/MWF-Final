@@ -18,7 +18,7 @@ body {
 /* When sidebar collapses */
 body.sidebar-collapsed {
     margin-left: 80px; /* shift content left */
-}
+}    
 
 /* === Page Layout === */
 .page-wrapper {
@@ -223,8 +223,20 @@ p.text-red {
     background: white;
     flex: 1 1 48%;
     border-radius: 8px;
-    padding: 20px;
+    padding: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.chart-card canvas {
+  flex: 1; /* make the canvas fill remaining space */
+  margin-left: 5px;
+  width: 90% !important;
+  height: 80% !important;
+  display: block;
+}
+
+.chart-sales{
+    flex: 1 1 100%;
+    height: 400px;
 }
 
 canvas {

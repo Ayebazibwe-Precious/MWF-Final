@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const rows = table.getElementsByTagName("tr");
   const noResults = document.getElementById("noResults");
 
-  // 🔎 Filter functionality
+  //  Filter functionality
   function filterTable() {
     const nameValue = filterName.value.toLowerCase();
     const typeValue = filterType.value.toLowerCase();

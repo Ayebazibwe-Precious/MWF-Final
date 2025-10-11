@@ -1,76 +1,87 @@
 extends layout
+
 block css 
-  link(rel="stylesheet", href="css/stockManager.css") 
+  link(rel="stylesheet", href="/css/stockManager.css") 
 
 block content
-  include includes/sidebar.pug
+  // --- Layout Wrapper ---
+  .layout
+    // Sidebar ---
+    include includes/sidebar.pug
 
-  // === MAIN CONTENT ===
-  .form-wrapper
-    form#productForm(action=`/editstock/${item._id}?_method=PUT`, method="POST")
-      h2 Update Product
+    // === MAIN CONTENT ===
+    main.main-content
+      .page-wrapper
+        .page-content
+          // --- Product Form ---    
+          .form-wrapper
+            form#productForm(action=`/editstock/${item._id}?_method=PUT`, method="POST")
+              h2 Update Product
 
-      // === Basic Info Section ===
-      fieldset
-        legend Basic Information
-        .form-grid
-          div
-            label Product Name
-            input(type="text", name="name", required='', value=item.name)
-          div
-            label Product Type
-            select(name="type", required='', value=item.type)
-              option(value="") Select Type
-              option(value="Wood") Wood
-              option(value="Furniture") Furniture
+              // === Basic Info Section ===
+              fieldset
+                legend Basic Information
+                .form-grid
+                  div
+                    label Product Name
+                    input(type="text", name="name", required='', value=item.name)
+                  div
+                    label Product Type
+                    select(name="type", required='', value=item.type)
+                      option(value="") Select Type
+                      option(value="Wood") Wood
+                      option(value="Furniture") Furniture
 
-      // === Stock & Pricing ===
-      fieldset
-        legend Stock & Pricing
-        .form-grid
-          div
-            label Quantity Available
-            input(type="number", name="qty", min="0", value=item.qty, required='')
-          div
-            label Cost Price
-            input(type="number", name="cost", min="0", value=item.cost, required='')
-          div
-            label Selling Price
-            input(type="number", name="price", min="0", value=item.price, required='')
+              // === Stock & Pricing ===
+              fieldset
+                legend Stock & Pricing
+                .form-grid
+                  div
+                    label Quantity Available
+                    input(type="number", name="qty", min="0", value=item.qty, required='')
+                  div
+                    label Cost Price
+                    input(type="number", name="cost", min="0", value=item.cost, required='')
+                  div
+                    label Selling Price
+                    input(type="number", name="price", min="0", value=item.price, required='')
 
-      // === Supplier Info ===
-      fieldset
-        legend Supplier
-        .form-grid
-          div
-            label Supplier Name
-            input(type="text", name="supplier", required='', value=item.supplier)
-          div
-            label Date Received
-            input(type="date", name="dateReceived", required='', value=item.dateReceived)
+              // === Supplier Info ===
+              fieldset
+                legend Supplier
+                .form-grid
+                  div
+                    label Supplier Name
+                    input(type="text", name="supplier", required='', value=item.supplier)
+                  div
+                    label Date Received
+                    input(type="date", name="dateReceived", required='', value=item.dateReceived)
 
-      // === Product Attributes ===
-      fieldset
-        legend Product Attributes
-        .form-grid
-          div
-            label Quality
-            select(name="quality", required='', value=item.quality)
-              option(value="High") High
-              option(value="Medium") Medium
-              option(value="Low") Low
-          div
-            label Color
-            input(type="text", name="color", value=item.color)
+              // === Product Attributes ===
+              fieldset
+                legend Product Attributes
+                .form-grid
+                  div
+                    label Quality
+                    select(name="quality", required='', value=item.quality)
+                      option(value="High") High
+                      option(value="Medium") Medium
+                      option(value="Low") Low
+                  div
+                    label Color
+                    input(type="text", name="color", value=item.color)
 
-      // === Action Buttons ===
-      .form-actions
-        button(type="submit") Update Product
-        a.btn-cancel(href="/stocklist") Cancel
+              // === Action Buttons ===
+              .form-actions
+                button(type="submit") Update Product
+                a.btn-cancel(href="/stocklist") Cancel
 
   // === FOOTER SECTION ===
   footer.footer
-    .footer-content
-      p © #{new Date().getFullYear()} MWF System. All rights reserved.
-      p Designed & Maintained by MWF Inventory Team.
-
+    p © 2025 MWF System. All rights reserved.
+    p 
+      | Developed by 
+      span.dev-name Mary Precious Ayebazibwe
+      |  at 
+      span.company-name Mayondo Wood & Furniture Ltd.
+      | .

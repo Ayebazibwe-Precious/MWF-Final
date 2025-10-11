@@ -20,12 +20,13 @@ body {
 }
 
 .main {
-    flex: 1;
-    /* pushes footer down */
-    margin-left: 250px;
-    /* sidebar offset */
+    flex: 1; /* pushes footer down */
+    margin-left: 250px; /* sidebar offset */
     padding: 20px;
+    transition: margin-left 0.3s ease; /* smooth slide */
 }
+
+
 
 /* ---------- CONTAINER ---------- */
 .container {

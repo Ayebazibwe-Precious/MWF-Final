@@ -1,4 +1,4 @@
-/* ===== Reset ===== */
+/*  Reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,34 +6,47 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ===== Page Layout ===== */
-.page-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  margin-left: 250px; /* default when sidebar is visible */
+body {
   background: #f8f9fa;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Layout: Sidebar + Main */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  margin-left: 100px;
   transition: margin-left 0.3s ease;
 }
 
-/* When sidebar collapses */
-body.sidebar-collapsed .page-wrapper {
-  margin-left: 80px; /* or 0 if sidebar fully hides */
+body.sidebar-collapsed .main-content {
+  margin-left: 80px;
 }
 
+/* Page Layout  */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
 .page-content {
-  flex: 1;
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2rem;
+  justify-content: center;              
 }
 
 /* ===== Form Styling ===== */
 .form-wrapper {
   width: 100%;
-  max-width: 800px;
+  max-width: 700px;
   background: #fff;
   padding: 2rem;
   border-radius: 12px;
@@ -118,7 +131,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background: #27ae60;
+  background: #1e8449;
 }
 
 .btn-clear {
@@ -137,6 +150,36 @@ button[type="submit"]:hover {
   background: #cb0317;
   color: #fff;
 }
+/* ===== Update Cancel Button to Match Submit Button ===== */
+.form-actions .btn-cancel {
+  flex: 1;                 /* Make it take equal space as submit */
+  padding: 0.8rem;         /* Same padding as submit */
+  font-size: 1rem;         /* Same font size */
+  border-radius: 8px;      /* Match border radius */
+  margin-left: 0;           /* Remove extra margin, handled by gap in flex */
+  text-align: center;      /* Center the text */
+  display: inline-flex;    /* Keep it inline-flex for centering */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  text-decoration: none;
+}
+
+.form-actions .btn-cancel:hover {
+  background-color: #d32f2f;
+  transform: translateY(-1px);
+}
+
+.form-actions .btn-cancel:focus,
+.form-actions .btn-cancel:active {
+  outline: none;
+  background-color: #b71c1c;
+}
+
 
 /* ===== Validation ===== */
 input.invalid,
@@ -160,6 +203,7 @@ small.error-message {
     opacity: 0;
     transform: translateY(-2px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -168,15 +212,18 @@ small.error-message {
 
 /* ===== Footer Styling ===== */
 .footer {
-  width: 100%;
-  background-color: #1f2937; /* dark navy */
+  background-color: #1f2937;
   color: #fff;
   text-align: center;
   padding: 15px 10px;
   font-size: 14px;
   line-height: 1.6;
-  box-sizing: border-box;
-  margin-left: 0; /* make it full-width */
+  margin-left: 250px;
+  transition: margin-left 0.3s ease;
+}
+
+body.sidebar-collapsed .footer {
+  margin-left: 80px;
 }
 
 .footer p {
@@ -186,16 +233,21 @@ small.error-message {
 .footer .dev-name,
 .footer .company-name {
   font-weight: 600;
-  color: #facc15; /* gold accent */
+  color: #facc15;
 }
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .page-wrapper {
-    margin-left: 0; /* remove sidebar offset */
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
   }
 
   .page-content {
+    padding: 1rem 0;
+  }
+
+  .form-wrapper {
     padding: 1.5rem;
   }
 
@@ -205,13 +257,8 @@ small.error-message {
   }
 
   .footer {
+    margin-left: 0;
     font-size: 13px;
     padding: 12px 8px;
   }
 }
-.footer {
-  width: calc(100% + 250px); /* expand beyond sidebar */
-  margin-left: -250px; /* pull it back under the sidebar */
-}
-
-

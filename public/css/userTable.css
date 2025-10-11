@@ -7,17 +7,32 @@ body {
     background-color: #F5F5DC;
     color: #333;
 }
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin-left: 250px; /* full sidebar width */
+    transition: margin-left 0.3s ease; /* smooth transition */
+    
+}
+/* When sidebar collapses */
+body.sidebar-collapsed {
+    margin-left: 80px; /* shift content left */
+}  
+.main{
+padding-left: 20px; /* small space from sidebar */
+}
 
 /* Container */
 .container {
     max-width: 1000px;
-    margin: 40px auto;
-    margin-left: 270px;/* accommodates sidebar */
+    margin: 40px auto 40px auto;
     margin-right: 30px;
     background: #fff;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: margin-left 0.3s ease; /* smooth shift */
 }
 
 /* Top Bar */

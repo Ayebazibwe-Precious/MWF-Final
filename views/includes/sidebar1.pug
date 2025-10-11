@@ -1,33 +1,43 @@
-aside.sidebar
-  .sidebar-header
-    h2 MWF System
-  nav.sidebar-nav
-    ul
-      li
-        a.active(href="/attendantDashboard")
-          i.fa-solid.fa-gauge
-          |  Dashboard
-      li
-        a(href="/stockAttendant")
-          i.fa-solid.fa-boxes-stacked
-          |  Stock Entry
-      li
-        a(href="/attendantStocklist")
-          i.fa-solid.fa-cart-plus
-          |  Stock List
-      li
-        a(href="/attendantStockreport")
-          i.fa-solid.fa-chart-column
-          |  Stock Report
-      li
-        a(href="/salesEntry")
-          i.fa-solid.fa-file-pen
-          |  Sales Entry
-      li
-        a(href="/saleslist")
-          i.fa-solid.fa-cart-shopping
-          |  Sales List
-      li
-        a(href="/salesreport")
-          i.fa-solid.fa-file-invoice-dollar
-          |  Sales Report
+div.layout  
+  aside.sidebar
+    .sidebar-header
+      h2 MWF System
+      button#toggle-btn
+        i.fa-solid.fa-bars
+    nav.sidebar-nav
+      ul
+        li
+          a.active(href="/attendantDashboard")
+            i.fa-solid.fa-gauge
+            span  Dashboard
+        li
+          a(href="/stockAttendant")
+            i.fa-solid.fa-boxes-stacked
+            span  Stock Entry
+        li
+          a(href="/attendantStocklist")
+            i.fa-solid.fa-cart-plus
+            span  Stock List
+        li
+          a(href="/attendantStockreport")
+            i.fa-solid.fa-chart-column
+            span  Stock Report
+        li
+          a(href="/salesEntry")
+            i.fa-solid.fa-file-pen
+            span  Sales Entry
+        li
+          a(href="/saleslist")
+            i.fa-solid.fa-cart-shopping
+            span  Sales List
+        li
+          a(href="/salesreport")
+            i.fa-solid.fa-file-invoice-dollar
+            span  Sales Report
+
+        li
+          a(href="/logout" data-title="Logout")
+            i.fa-solid.fa-right-from-bracket
+            span Logout
+  main.main-content
+              

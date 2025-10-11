@@ -13,6 +13,21 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
+/* When sidebar collapses */
+body.sidebar-collapsed {
+    margin-left: 80px; /* shift content left */
+}
+
+/* === Page Layout === */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-content {
+    flex: 1;
+}
 
 /* === Container === */
 .container {

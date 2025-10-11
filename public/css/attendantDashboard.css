@@ -18,12 +18,16 @@
 body {
     background: var(--bg);
     color: #111;
-    margin-left: 250px;
-    /* to account for sidebar */
+    margin-left: 250px;/* to account for sidebar */
+    transition: margin-left 0.3s ease;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
+    body.sidebar-collapsed {
+    margin-left: 80px; /* or whatever collapsed width you choose */
+}
+
 
 /* === Page Layout === */
 .page-wrapper {
