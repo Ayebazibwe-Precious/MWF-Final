@@ -44,6 +44,7 @@ router.post("/login", (req, res, next) => {
     }
     req.logIn(user, (err) => {
       if (err) return next(err);
+      req.session.user = user;
       if (user.role === "Manager") return res.redirect("/managerDashboard");
       if (user.role === "Attendant") return res.redirect("/attendantDashboard");
       return res.render("noneuser");
@@ -70,29 +71,6 @@ router.get("/logout", (req, res) => {
     });
   });
    });
-  
-
-//Logging Out
-  // router.get("/logout", (req, res) => {
-  //   if (req.session) {
-  //     req.session.destroy((error) => {
-  //       if (error) {
-  //         return res.status(500).send("Error loggingOut");
-  //       }
-  //       res.redirect("logout");
-  //     });
-  //   }
-  // });
-
-  //alternative
-  // router.post("/logout", (req, res) => {
-  //   req.logout((error) => {
-  //     if (error) {
-  //       return res.status(500).send("Error loggingOut");
-  //     }
-  //     res.redirect("/");
-  //   });
-  // });
 
   //getting user from the db
   router.get("/usersTable", async (req, res) => {

@@ -1,7 +1,7 @@
 extends layout 
 
 block css 
-  link(rel="stylesheet", href="css/salesEntry.css")
+  link(rel="stylesheet", href="/css/salesEntry.css")
 
 block content
   include includes/sidebar1.pug
@@ -11,53 +11,57 @@ block content
     .form-container
       h2 Update Sale
       form#salesForm(action=`/editsale/${sale._id}?_method=PUT`, method="POST")
-        label
-          | Customer Name:
-          input#customerName(type="text", name="customerName", required, value=sale.customerName)
-
-        label
-          | Product Name:
-          select#productName(name="productName", required)
-            if stocks && stocks.length
-              each stock in stocks
-                option(value=stock.name selected=(stock.name === sale.productName))= stock.name
-
-        label
-          | Product Type:
-          select#productType(name="productType", required)
-            if stocks && stocks.length
-              each stock in stocks
-                option(value=stock.type selected=(stock.type === sale.productType))= stock.type
-
-        label
-          | Quantity:
-          input#quantity(type="number", name="quantity", required, min="1", value=sale.quantity)
-
-        label
-          | Unit Price:
-          input#unitPrice(type="number", name="unitPrice", required, min="0", value=sale.unitPrice)
-
-        label
-          | Date of Sale:
-          input#saleDate(type="date", name="saleDate", required, value=sale.saleDate)
-
-        label
-          | Type of Payment:
-          select#paymentType(name="paymentType", required)
-            option(value='' selected=sale.paymentType === '') -- Select --
-            option(value="Cash" selected=sale.paymentType === 'Cash') Cash
-            option(value="Cheque" selected=sale.paymentType === 'Cheque') Cheque
-            option(value="Bank Overdraft" selected=sale.paymentType === 'Bank Overdraft') Bank Overdraft
-
-        label.checkbox-label(for="transportfee")
-          input#transportfee(type="checkbox", name="transportfee", checked=sale.transportfee)
-          | Transport Required (+5%)
-
-        label
-          | Total Cost:
-          input#total(type='number', name="total", readonly, value=sale.total)
-
-        button(type="submit") Update Sale
+        .form-row
+          .form-group
+            label(for="customerName") Customer Name:
+            input#customerName(type="text", name="customerName", required, value=sale.customerName)
+          .form-group
+            label(for="productName") Product Name:
+            select#productName(name="productName", required)
+              if stocks && stocks.length
+                each stock in stocks
+                  option(value=stock.name selected=(stock.name === sale.productName))= stock.name
+        
+        .form-row
+          .form-group
+            label(for="productType") Product Type:
+            select#productType(name="productType", required)
+              if stocks && stocks.length
+                each stock in stocks
+                  option(value=stock.type selected=(stock.type === sale.productType))= stock.type
+          .form-group
+            label(for="quantity") Quantity:
+            input#quantity(type="number", name="quantity", required, min="1", value=sale.quantity)
+        
+        .form-row
+          .form-group
+            label(for="unitPrice") Unit Price:
+            input#unitPrice(type="number", name="unitPrice", required, min="0", value=sale.unitPrice)
+          .form-group
+            label(for="saleDate") Date of Sale:
+            input#saleDate(type="date", name="saleDate", required, value=sale.saleDate)
+        
+        .form-row
+          .form-group
+            label(for="paymentType") Type of Payment:
+            select#paymentType(name="paymentType", required)
+              option(value='' selected=sale.paymentType === '') -- Select --
+              option(value="Cash") Cash
+              option(value="Cheque") Cheque
+              option(value="Bank Overdraft") Bank Overdraft
+          .form-group.checkbox-group
+            label.checkbox-label(for="transportfee")
+              input#transportfee(type="checkbox", name="transportfee", checked=sale.transportfee)
+              | Transport Required (+5%)
+        
+        .form-row
+          .form-group
+            label(for="total") Total Cost:
+            input#total(type='number', name="total", readonly, value=sale.total)
+        
+        .button-row
+          button(type="submit") Update Sale
+          a.cancel-btn(href="/saleslist") Cancel
 
   // --- Footer ---
   footer.footer

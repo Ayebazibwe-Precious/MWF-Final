@@ -5,78 +5,78 @@ block css
 
 block content
   include includes/sidebar1.pug
+  .page-wrapper
+    // Main Container
+    .main-content
+      .form-container
+        h1 STOCK ENTRY FORM
+        p.form-description.
+          Fill in the details below to record new stock.
 
-  // Main Container
-  .main-content
-    .form-container
-      h1 STOCK ENTRY FORM
-      p.form-description.
-        Fill in the details below to record new stock.
+        form#stockForm(action="/stockAttendant", method="POST" novalidate)
+          // Product Name and Type
+          .form-row
+            .form-group
+              label(for="productName") Product Name
+              select#productName(name="productName", required)
+                option(value) -- Select Name --
+                option(value="Timber") Timber
+                option(value="Poles") Poles
+                option(value="Soft Wood") Soft Wood
+                option(value="Hard Wood") Hard Wood
+            .form-group
+              label(for="productType") Product Type
+              select#productType(name="productType", required)
+                option(value) -- Select Type --
+                option(value="Raw Materials") Raw Materials
 
-      form#stockForm(action="/stockAttendant", method="POST" novalidate)
-        // Product Name and Type
-        .form-row
-          .form-group
-            label(for="productName") Product Name
-            select#productName(name="productName", required)
-              option(value) -- Select Name --
-              option(value="Timber") Timber
-              option(value="Poles") Poles
-              option(value="Soft Wood") Soft Wood
-              option(value="Hard Wood") Hard Wood
-          .form-group
-            label(for="productType") Product Type
-            select#productType(name="productType", required)
-              option(value) -- Select Type --
-              option(value="Raw Materials") Raw Materials
+          // Cost Price and Quantity
+          .form-row
+            .form-group
+              label(for="costPrice") Cost Price
+              input#costPrice(type="number", name="costPrice", placeholder="Enter cost price", min="0", required)
+            .form-group
+              label(for="quantity") Quantity
+              input#quantity(type="number", name="quantity", placeholder="Enter quantity", min="1", required)
 
-        // Cost Price and Quantity
-        .form-row
-          .form-group
-            label(for="costPrice") Cost Price
-            input#costPrice(type="number", name="costPrice", placeholder="Enter cost price", min="0", required)
-          .form-group
-            label(for="quantity") Quantity
-            input#quantity(type="number", name="quantity", placeholder="Enter quantity", min="1", required)
+          // Date and Quality
+          .form-row
+            .form-group
+              label(for="dateReceived") Date Received
+              input#dateReceived(type="date", name="dateReceived", required)
+            .form-group
+              label(for="quality") Quality
+              select#quality(name="quality", required)
+                option(value) -- Select Quality --
+                option(value="High") High
+                option(value="Medium") Medium
+                option(value="Low") Low
 
-        // Date and Quality
-        .form-row
-          .form-group
-            label(for="dateReceived") Date Received
-            input#dateReceived(type="date", name="dateReceived", required)
-          .form-group
-            label(for="quality") Quality
-            select#quality(name="quality", required)
-              option(value) -- Select Quality --
-              option(value="High") High
-              option(value="Medium") Medium
-              option(value="Low") Low
+          // Optional Fields
+          .form-row
+            .form-group
+              label(for="color") Color
+              input#color(type="text", name="color", placeholder="Enter color", required)
+            .form-group
+              label(for="measurements") Measurements
+              input#measurements(type="text", name="measurements", placeholder="e.g., 2m x 4m x 5cm")
 
-        // Optional Fields
-        .form-row
-          .form-group
-            label(for="color") Color
-            input#color(type="text", name="color", placeholder="Enter color", required)
-          .form-group
-            label(for="measurements") Measurements
-            input#measurements(type="text", name="measurements", placeholder="e.g., 2m x 4m x 5cm")
+          // Supplier and Attendant
+          .form-row
+            .form-group
+              label(for="supplierName") Supplier Name
+              input#supplierName(type="text", name="supplierName", placeholder="Enter supplier name", required)
+            .form-group
+              label(for="reciever") Received by:
+              select#reciever(name="reciever", required)
+                option(value) -- Select Receiver --
+                option(value="Attendant") Attendant
+                option(value="Manager") Manager
 
-        // Supplier and Attendant
-        .form-row
-          .form-group
-            label(for="supplierName") Supplier Name
-            input#supplierName(type="text", name="supplierName", placeholder="Enter supplier name", required)
-          .form-group
-            label(for="reciever") Received by:
-            select#reciever(name="reciever", required)
-              option(value) -- Select Receiver --
-              option(value="Attendant") Attendant
-              option(value="Manager") Manager
-
-        // Submit and Reset
-        .form-actions
-          button.btn-submit(type="submit") Save
-          button#clearButton(type="reset") Clear
+          // Submit and Reset
+          .form-actions
+            button.btn-submit(type="submit") Save
+            button#clearButton(type="reset") Clear
 
   // --- Footer ---
   footer.footer

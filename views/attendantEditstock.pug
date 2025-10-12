@@ -8,73 +8,74 @@ block content
 
   // Main Wrapper
   .page-wrapper
-    // Main Form Container
-    .form-container
-      h1 Stock Entry Form
-      p.form-description Fill in the details below to record new stock.
+    .main-content
+      // Main Form Container
+      .form-container
+        h1 Stock Entry Form
+        p.form-description Fill in the details below to record new stock.
 
-      form#stockForm(action=`/attendantEditstock/${item._id}?_method=PUT`, method="POST")
-        // Product Name and Type 
-        .form-row
-          .form-group
-            label(for="productName") Product Name
-            input#productName(type="text", name="productName", placeholder="Enter product name", value=item.productName, required)
-          .form-group
-            label(for="productType") Product Type
-            select#productType(name="productType", required)
-              option(value) -- Select --
-              option(value="Timber" selected=item.productType==='Timber') Timber
-              option(value="Poles" selected=item.productType==='Poles') Poles
-              option(value="Furniture" selected=item.productType==='Furniture') Furniture
-              option(value="Other" selected=item.productType==='Other') Other
+        form#stockForm(action=`/attendantEditstock/${item._id}?_method=PUT`, method="POST")
+          // Product Name and Type 
+          .form-row
+            .form-group
+              label(for="productName") Product Name
+              input#productName(type="text", name="productName", placeholder="Enter product name", value=item.productName, required)
+            .form-group
+              label(for="productType") Product Type
+              select#productType(name="productType", required)
+                option(value) -- Select --
+                option(value="Timber" selected=item.productType==='Timber') Timber
+                option(value="Poles" selected=item.productType==='Poles') Poles
+                option(value="Furniture" selected=item.productType==='Furniture') Furniture
+                option(value="Other" selected=item.productType==='Other') Other
 
-        // Cost Price and Quantity 
-        .form-row
-          .form-group
-            label(for="costPrice") Cost Price
-            input#costPrice(type="number", name="costPrice", placeholder="Enter cost price", min="0", value=item.costPrice, required)
-          .form-group
-            label(for="quantity") Quantity
-            input#quantity(type="number", name="quantity", placeholder="Enter quantity", min="1", value=item.quantity, required)
+          // Cost Price and Quantity 
+          .form-row
+            .form-group
+              label(for="costPrice") Cost Price
+              input#costPrice(type="number", name="costPrice", placeholder="Enter cost price", min="0", value=item.costPrice, required)
+            .form-group
+              label(for="quantity") Quantity
+              input#quantity(type="number", name="quantity", placeholder="Enter quantity", min="1", value=item.quantity, required)
 
-        // Date and Quality 
-        .form-row
-          .form-group
-            label(for="dateReceived") Date Received
-            input#dateReceived(type="date", name="dateReceived", value=item.dateReceived, required)
-          .form-group
-            label(for="quality") Quality
-            select#quality(name="quality", required)
-              option(value) -- Select Quality --
-              option(value="High" selected=item.quality==='High') High
-              option(value="Medium" selected=item.quality==='Medium') Medium
-              option(value="Low" selected=item.quality==='Low') Low
+          // Date and Quality 
+          .form-row
+            .form-group
+              label(for="dateReceived") Date Received
+              input#dateReceived(type="date", name="dateReceived", value=item.dateReceived, required)
+            .form-group
+              label(for="quality") Quality
+              select#quality(name="quality", required)
+                option(value) -- Select Quality --
+                option(value="High" selected=item.quality==='High') High
+                option(value="Medium" selected=item.quality==='Medium') Medium
+                option(value="Low" selected=item.quality==='Low') Low
 
-        // Optional Fields 
-        .form-row
-          .form-group
-            label(for="color") Color (Optional)
-            input#color(type="text", name="color", placeholder="Enter color", value=item.color)
-          .form-group
-            label(for="measurements") Measurements (Optional)
-            input#measurements(type="text", name="measurements", placeholder="e.g., 2m x 4m x 5cm", value=item.measurements)
+          // Optional Fields 
+          .form-row
+            .form-group
+              label(for="color") Color (Optional)
+              input#color(type="text", name="color", placeholder="Enter color", value=item.color)
+            .form-group
+              label(for="measurements") Measurements (Optional)
+              input#measurements(type="text", name="measurements", placeholder="e.g., 2m x 4m x 5cm", value=item.measurements)
 
-        // Supplier and Attendant
-        .form-row
-          .form-group
-            label(for="supplierName") Supplier Name
-            input#supplierName(type="text", name="supplierName", placeholder="Enter supplier name", value=item.supplierName, required)
-          .form-group
-            label(for="reciever") Received by:
-            select#reciever(name="reciever", required)
-              option(value) -- Select Receiver --
-              option(value="Attendant" selected=item.reciever==='Attendant') Attendant
-              option(value="Manager" selected=item.reciever==='Manager') Manager
+          // Supplier and Attendant
+          .form-row
+            .form-group
+              label(for="supplierName") Supplier Name
+              input#supplierName(type="text", name="supplierName", placeholder="Enter supplier name", value=item.supplierName, required)
+            .form-group
+              label(for="reciever") Received by:
+              select#reciever(name="reciever", required)
+                option(value) -- Select Receiver --
+                option(value="Attendant" selected=item.reciever==='Attendant') Attendant
+                option(value="Manager" selected=item.reciever==='Manager') Manager
 
-        // Submit and Reset 
-        .form-actions
-          button.btn-submit(type="submit") Update
-          a.btn-cancel(href="/attendantStocklist") Cancel
+          // Submit and Reset 
+          .form-actions
+            button.btn-submit(type="submit") Update
+            a.btn-cancel(href="/attendantStocklist") Cancel
 
     // Footer
     footer.footer

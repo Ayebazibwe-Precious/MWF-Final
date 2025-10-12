@@ -25,7 +25,7 @@ body {
 }
 
 .receipt-header {
-    text-align: left;
+    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -160,14 +160,14 @@ body {
 
 /* Blue Close button */
 .btn-close {
-    background: #fff;
-    color: #dc4038;
+    background: #dc4038;
+    color: #fff;
     border: 2px solid #e43c3c;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .btn-close:hover {
-    background: #ea382b;
+    background: #d52c20;
     color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);

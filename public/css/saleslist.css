@@ -10,11 +10,10 @@ body {
     margin-left: 250px; /* pushes only the main content, not the footer */
     min-height: 100vh;  /* ensures page stretches full height */
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: column;/* justify-content: space-between; */
 }
 /* When sidebar collapses */
-body.sidebar-collapsed {
+body.sidebar-collapsed .main {
     margin-left: 80px; /* shift content left */
 }
 
@@ -31,7 +30,8 @@ body.sidebar-collapsed {
 
 /* === Container === */
 .container {
-    width: 90%;
+    width: 95%;
+    max-width: 1200px; /* ✅ ensures layout stays neat */
     margin: 30px auto;
     background: #fff;
     padding: 20px;
@@ -54,8 +54,7 @@ h1 {
 .table-section table {
     width: 100%;
     border-collapse: collapse;
-    margin: 0 auto;
-    min-width: unset;
+    table-layout: fixed; /* ✅ ensures equal cell widths & prevents overflow */
 }
 
 .table-section th,
@@ -70,6 +69,13 @@ h1 {
     background: #27ae60;
     color: #fff;
 }
+/* --- Email Column Wrapping --- */
+.table-section td:nth-child(8) {  /* 8th column = Sales Agent Email */
+    word-wrap: break-word;
+    white-space: normal;    /* allow wrapping */
+    max-width: 160px;       /* limit width to avoid stretching table */
+}
+
 
 /* === Table Controls === */
 .table-controls {
@@ -104,7 +110,7 @@ h1 {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 12px;
+    padding: 4px 8px;
     border-radius: 4px;
     text-decoration: none;
     font-size: 0.9rem;
@@ -120,26 +126,30 @@ h1 {
 
 .action-btn.edit:hover {
     background: #e67e22;
-    transform: translateY(-2px);
+    
 }
 
 .action-btn.delete {
+    padding: 4px 1px;
     background: #e74c3c;
+    border: none;
     color: white;
 }
 
 .action-btn.delete:hover {
     background: #c0392b;
-    transform: translateY(-2px);
 }
 
 .action-btn.receipt {
-    background: #27ae60;
+    background: #d2ab13;
     color: white;
+        padding: 3px 0;       /* smaller padding */
+    font-size: 0.8rem;      /* slightly smaller text */
+    white-space: wrap;    /* keep text in one line */
 }
 
 .action-btn.receipt:hover {
-    background: #1e8449;
+    background: #facc15;
     transform: translateY(-2px);
 }
 
@@ -218,4 +228,77 @@ footer.footer .company-name {
         overflow-x: auto;
     }
 }
+/* === Delete Confirmation Modal === */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
 
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.confirm-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.confirm-btn:hover {
+    background: #c0392b;
+}
+
+.cancel-btn {
+    background: #bdc3c7;
+    color: black;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #95a5a6;
+}

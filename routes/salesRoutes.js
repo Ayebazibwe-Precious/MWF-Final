@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { ensureauthenticated, ensureAgent } = require("../middleware/auth");
+const { ensureauthenticated, ensureAgent } = require("../middleware/auth.js");
 //importing Models
 const salesModel = require("../models/salesModel");
 const StockModel = require("../models/stockModel");
@@ -85,15 +85,9 @@ router.post("/salesEntry", ensureauthenticated, ensureAgent, async (req, res) =>
 //printing in the terminal(should be before console.log(userId);)
 // console.log("saving a sale", sale);
 
-router.get("/saleslist", async (req, res) => {
+router.get("/saleslist",ensureauthenticated, async (req, res) => {
   try {
-    //sales agent only sees their sales
     const sales = await salesModel.find().populate("salesAgent", "email");
-    // req.session.user = currentUser
-    // const currentUser = req.session.user;
-    // console.log(currentUser);
-    //res.render("saleslist", { sales, currentUser });
-
     res.render("saleslist", { sales, currentUser: req.session.user });
 
   } catch (error) {
@@ -123,10 +117,11 @@ router.get("/receipt/:id", async (req, res) => {
 router.get("/editsale/:id", async (req, res) => {
   try {
     const sale = await salesModel.findById(req.params.id);
+    const stocks = await StockModel.find(); // fetch all available stock items
     if (!sale) {
       return res.status(404).send("sale not found");
     }
-    res.render("salesedit", { sale }); //send to pug
+    res.render("salesedit", { sale, stocks }); //send to pug
   } catch (error) {
    console.log(error.message);
    res.status(500).send("Server Error"); 
@@ -136,6 +131,7 @@ router.get("/editsale/:id", async (req, res) => {
 router.put("/editsale/:id", async (req, res) => {
   try {
     console.log(req.params.id);
+    req.body.transportfee = req.body.transportfee === "on";
     const sale = await salesModel.findByIdAndUpdate(
       req.params.id,
       req.body,

@@ -11,13 +11,16 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+body.sidebar-collapsed .main {
+  margin-left: 80px; /* content slides left */
+}
 /* ===== MAIN CONTENT ===== */
 .main {
     flex: 1;
     margin-left: 250px;
-    padding: 40px 20px 100px;
-    /* extra bottom padding so content never hides behind footer */
+    padding: 20px 90px 90px;
+    transition: margin-left 0.3s ease; /* smooth slide */
+
 }
 
 .form-container {
@@ -80,11 +83,15 @@ select:focus {
     display: flex;
     align-items: center;
     font-weight: 500;
-    margin-top: 10px;
+    margin-top: 35px;
 }
 
 .checkbox-label input[type="checkbox"] {
-    margin-right: 8px;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    accent-color: #27ae60; /* (optional) match theme color */
+     cursor: pointer;
 }
 
 #total {
@@ -97,6 +104,52 @@ select:focus {
     gap: 15px;
     margin-top: 20px;
 }
+/* Button Row Alignment */
+.button-row {
+  display: flex;
+  justify-content: flex-end; /* align to right */
+  gap: 10px; /* space between buttons */
+  margin-top: 20px;
+}
+/* Shared button styles */
+.button-row button,
+.button-row .cancel-btn {
+    display: inline-flex;
+        justify-content: center;
+        align-items: center;
+ padding: 10px 50px; /* controls both height and width */
+  text-align: center;     /* center text */
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;  /* remove underline from link */
+}
+
+/* Submit Button (Update Sale) */
+.button-row button[type="submit"] {
+  background-color: #4CAF50; /* green */
+  color: white;
+  border: none;
+  padding: 10px 50px;
+}
+
+.button-row button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Cancel Button */
+.button-row .cancel-btn {
+  background-color: #f44336; /* red */
+  color: white;
+  border: none;
+}
+
+.button-row .cancel-btn:hover {
+  background-color: #d32f2f; /* darker red */
+}
+
+
 
 button {
     flex: 1;
@@ -130,20 +183,19 @@ button[type="submit"]:hover {
     background-color: #d00000;
 }
 
+
+
+
+
 /* ===== FOOTER ===== */
 footer.footer {
-    position: fixed;
-    bottom: 0;
-    left: 250px;
-    /* aligns with sidebar */
-    width: calc(100% - 250px);
+    position: auto;
     background-color: #1f2937;
     color: #ecf0f1;
     text-align: center;
     padding: 15px 10px;
     font-size: 14px;
     line-height: 1.6;
-    z-index: 1000;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
 }
 

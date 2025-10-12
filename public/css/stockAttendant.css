@@ -16,12 +16,15 @@ body, html {
     margin-left: 350px; /* only push content, not footer */
     transition: margin-left 0.3s ease;
 }
-/* When sidebar is collapsed */
-.sidebar.collapsed ~ .main-content {
-    margin-left: 80px; /* ✅ shift content left */
-    transition: margin-left 0.3s ease;
+body.sidebar-collapsed .main-content {
+    margin-left: 150px; /* match your collapsed sidebar width */
 }
 
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 /* ===== Form Container ===== */
 .form-container {
     max-width: 700px;
@@ -124,6 +127,25 @@ textarea:focus {
 
 #clearButton:hover {
     background: #f20707;
+}
+/* Cancel button */
+.btn-cancel {
+    background-color: #eb3939; 
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 12px 100px;
+    text-align: center;
+    text-decoration: none; /* remove underline from link */
+    display: inline-block;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #d52c2c; /* darker gray on hover */
+    transform: scale(1.02);
 }
 
 

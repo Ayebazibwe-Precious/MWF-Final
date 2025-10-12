@@ -1,4 +1,9 @@
 /* ---------- BASE ---------- */
+:root {
+  --sidebar-width: 250px;         /* expanded width */
+  --sidebar-collapsed: 80px;      /* collapsed width */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -10,8 +15,12 @@ body {
     background: #f4f6f8;
     margin: 0;
     padding: 0;
+        margin-left: 250px;/* to account for sidebar */
+    transition: margin-left 0.3s ease;
 }
-
+    body.sidebar-collapsed {
+    margin-left: 80px; /* or whatever collapsed width you choose */
+}
 /* Page Wrapper Layout */
 .page-wrapper {
     min-height: 100vh;
@@ -21,9 +30,7 @@ body {
 
 .main {
     flex: 1; /* pushes footer down */
-    margin-left: 250px; /* sidebar offset */
     padding: 20px;
-    transition: margin-left 0.3s ease; /* smooth slide */
 }
 
 
@@ -186,22 +193,22 @@ a.btn-add:hover {
 
 /* ---------- FOOTER ---------- */
 footer.footer {
-    background: #27ae60;
+    background: #1f2937;
     color: white;
     text-align: center;
     padding: 15px 10px;
     margin-top: auto;
     font-size: 14px;
-    border-top: 3px solid #1e8449;
 }
 
 footer.footer .dev-name {
     font-weight: bold;
+    color: #facc15;
 }
 
 footer.footer .company-name {
     font-weight: bold;
-    color: #fff8dc;
+    color: #facc15;
 }
 
 /* ---------- RESPONSIVE ---------- */
