@@ -1,88 +1,88 @@
 /* Basic layout */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: "Inter", "Segoe UI", Arial, sans-serif;
-        background-image: url("/images/bg4.jpg");
-    /* Background image styling */
-    background-size: cover;           /* Scale image to cover entire area */
-    background-position: center center;      /* Center the image */
-    background-repeat: no-repeat;     /* Prevent repeating */                   
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background-image: url("/images/bg4.jpg");
+  /* Background image styling */
+  background-size: cover; /* Scale image to cover entire area */
+  background-position: center center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Card styling */
 .logout-card {
-    background-color: #fff;
-    padding: 2.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 420px;
-    width: 90%;
+  background-color: #fff;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
 }
 
 .logout-icon {
-    font-size: 3rem;
-    color: #1ba052;
-    margin-bottom: 1rem;
+  font-size: 3rem;
+  color: #1ba052;
+  margin-bottom: 1rem;
 }
 
 .logout-card h2 {
-    font-size: 1.5rem;
-    color: #1f2937;
-    margin: 0.5rem 0;
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin: 0.5rem 0;
 }
 
 .logout-card p {
-    color: #6b7280;
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
 }
 
 /* Button group */
 .btn-group {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 /* Buttons */
 .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    border: none;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out, transform 0.1s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s;
 }
 
 .btn:hover {
-    transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 .btn-cancel {
-    background-color: #f39c12;
-    color: #fff;
+  background-color: #f39c12;
+  color: #fff;
 }
 
 .btn-cancel:hover {
-    background-color: #d38508;
+  background-color: #d38508;
 }
 
 .btn-logout {
-    background-color: #1ca053;
-    color: #fff;
+  background-color: #1ca053;
+  color: #fff;
 }
 
 .btn-logout:hover {
-    background-color: #0f8f45;
+  background-color: #0f8f45;
 }

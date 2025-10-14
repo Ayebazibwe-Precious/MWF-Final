@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (searchInput) searchInput.addEventListener("input", filterTable);
 
-  // 🗑 Delete confirmation modal
+  //  Delete confirmation modal
   const modal = document.getElementById("confirmModal");
   const confirmMessage = document.getElementById("confirmMessage");
   const confirmYes = document.getElementById("confirmYes");

@@ -25,22 +25,19 @@ const port = 3000;
 //Configurations
 app.locals.moment = moment;
 //setting up mongoDB collection
-mongoose.connect(process.env.MONGODB_URL, {
-  // useNewUrlParser: true,
-  // useUnifiedTopology: true
-});
+mongoose.connect(process.env.MONGODB_URL, {});
 
 mongoose.connection
-  .on('open', () => {
-    console.log('Mongoose connected!');
+  .on("open", () => {
+    console.log("Mongoose connected!");
   })
-  .on('error', (err) => {
+  .on("error", (err) => {
     console.log(`Connection error: ${err.message}`);
   });
 
-  // Setting view engine to pug
-app.set('view engine', 'pug')
-app.set("views", path.join(__dirname, 'views'))
+// Setting view engine to pug
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
 
 //MIDDLE WARE
 //method override
@@ -60,7 +57,6 @@ app.use(
   })
 );
 
-
 //Connect-flash configs
 app.use(flash());
 // Make flash messages available to all views
@@ -73,30 +69,16 @@ app.use((req, res, next) => {
 //setting up chartroutes
 app.use("/", require("./routes/chartRoutes"));
 
-
-
-
 //Passport configs
 app.use(passport.initialize());
 app.use(passport.session());
-
-//authenticate with passport local strategy
-// passport.use(UserModel.createStrategy());
-// passport.serializeUser(UserModel.serializeUser());
-// passport.deserializeUser(UserModel.deserializeUser());
 require("./config/passport")(passport);
-
-
 
 //routes
 app.use("/", authRoutes);
 app.use("/", stockRoutes);
 app.use("/", salesRoutes);
 app.use("/", attendantRoutes);
-
-
-
-
 
 app.use("/", (req, res) => {
   res.status(404).send("Oops! Route not found.");

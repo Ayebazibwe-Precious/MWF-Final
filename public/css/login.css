@@ -1,134 +1,134 @@
 /* General Page Styling */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("/images/bg4.jpg");
-    /* Background image styling */
-    background-size: cover;           /* Scale image to cover entire area */
-    background-position: center center;      /* Center the image */
-    background-repeat: no-repeat;     /* Prevent repeating */                   
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/images/bg4.jpg");
+  /* Background image styling */
+  background-size: cover; /* Scale image to cover entire area */
+  background-position: center center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
 }
 
 /* Login Box */
 .login-box {
-    background: transparent;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+  background: transparent;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
 /* Heading */
 .login-box h2 {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: white;
+  font-size: 1.8rem;
 }
 
 /* Input Fields */
 .login-box input[type="text"],
 .login-box input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    outline: none;
-    transition: border 0.3s ease;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease;
 }
 
 .login-box input[type="text"]:focus,
 .login-box input[type="password"]:focus {
-    border-color: #0c532a;
+  border-color: #0c532a;
 }
 
 /* Show Password Checkbox */
 .show-password {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 5px;
-    font-size: 0.9rem;
-    color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: white;
 }
 
 .show-password input[type="checkbox"] {
-    margin-right: 8px;
-    cursor: pointer;
+  margin-right: 8px;
+  cursor: pointer;
 }
 
 /* Login Button */
 .login-box button {
-    width: 100%;
-    padding: 12px;
-    background-color: #27ae60;
-    border: none;
-    color: #fff;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background-color: #27ae60;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 15px;
 }
 
 .login-box button:hover {
-    background-color: #0ca44c;
+  background-color: #0ca44c;
 }
 
 /* Sign Up Text */
 .login-box p {
-    font-size: 0.9rem;
-    margin-top: 15px;
-    color: #555;
+  font-size: 0.9rem;
+  margin-top: 15px;
+  color: #555;
 }
 
 .login-box a {
-    color: #4facfe;
-    text-decoration: none;
+  color: #4facfe;
+  text-decoration: none;
 }
 
 .login-box a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 /* Sign Up Text */
 .signup-text {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #555;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
 }
 
 .signup-text a {
-    color: #4facfe;
-    text-decoration: none;
-    margin-left: 5px;
-    font-weight: bold;
+  color: #4facfe;
+  text-decoration: none;
+  margin-left: 5px;
+  font-weight: bold;
 }
 
 .signup-text a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Error message styling */
 .error-message {
-    color: red;
-    font-size: 0.8rem;
-    text-align: left;
-    margin-top: -5px;
-    margin-bottom: 8px;
+  color: red;
+  font-size: 0.8rem;
+  text-align: left;
+  margin-top: -5px;
+  margin-bottom: 8px;
 }
 
 /* Red border on invalid input */
 input.invalid {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 input.invalid {
   border: 2px solid red;
@@ -136,10 +136,19 @@ input.invalid {
 }
 
 @keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-4px); }
-  50% { transform: translateX(4px); }
-  75% { transform: translateX(-4px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
-

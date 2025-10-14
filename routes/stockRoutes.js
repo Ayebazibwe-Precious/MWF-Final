@@ -12,7 +12,7 @@ const { now } = require("mongoose");
 
 //Getting manager stock and dashboard
 //ensureauthenticated, ensureManager
-router.get("/stockManager",  (req, res) => {
+router.get("/stockManager", (req, res) => {
   res.render("stockManager");
 });
 
@@ -30,9 +30,6 @@ router.post("/stockManager", async (req, res) => {
 });
 
 //getting the Manager's dashboard
-// router.get("/managerDashboard",ensureauthenticated, ensureManager, async (req, res) => {
-//   res.render("managerDashboard");
-// });
 router.get("/managerDashboard", async (req, res) => {
   try {
     // 1 Total Stock Value & Quantity
@@ -109,22 +106,6 @@ router.get("/managerDashboard", async (req, res) => {
   }
 });
 
-//getting the Attendant's  dashboard
-// router.get("/attendantDashboard", async (req, res) => {
-//   res.render("attendantDashboard");
-// });
-
-//Getting stock from the DB.
-// router.get("/stocklist", async (req, res) => {
-//   try {
-//     let items = await StockModel.find().sort({ $natural: -1 });
-//     console.log(items);
-//     res.render("stocklist", { items });
-//   } catch (error) {
-//     res.status(400).send("Unable to get data from the database!");
-//   }
-// });
-
 router.get("/stocklist", async (req, res) => {
   try {
     // All individual entries
@@ -142,10 +123,10 @@ router.get("/stocklist", async (req, res) => {
           lastDate: { $last: "$dateReceived" },
           lastQuality: { $last: "$quality" },
           lastColor: { $last: "$color" },
-          lastMeasurements: { $last: "$measurements" }
-        }
+          lastMeasurements: { $last: "$measurements" },
+        },
       },
-      { $sort: { "_id.name": 1 } }
+      { $sort: { "_id.name": 1 } },
     ]);
 
     res.render("stocklist", { items, summary });
@@ -154,9 +135,6 @@ router.get("/stocklist", async (req, res) => {
     res.status(400).send("Unable to get data from the database!");
   }
 });
-
-
-
 
 //UPDATING STOCK
 router.get("/editstock/:id", async (req, res) => {
@@ -167,10 +145,10 @@ router.get("/editstock/:id", async (req, res) => {
     }
     res.render("stockedit", { item }); //send to pug
   } catch (error) {
-   console.log(error.message);
-   res.status(500).send("Server Error"); 
+    console.log(error.message);
+    res.status(500).send("Server Error");
   }
- });
+});
 
 router.put("/editstock/:id", async (req, res) => {
   try {
@@ -197,8 +175,6 @@ router.post("/deletestock", async (req, res) => {
     res.status(400).send("Unable to delete item from the DB!");
   }
 });
-
-
 
 // GET: Stock report data
 router.get("/stockreport", async (req, res) => {
@@ -236,34 +212,34 @@ router.get("/stockreport", async (req, res) => {
   }
 });
 
-   //Getting Suppliers Form
-   router.get("/supplier", (req, res) => {
-     res.render("supplier", { title: "supplier page" });
-   });
-   
-   router.post("/supplier", async (req, res) => {
-     try {
-       const supplier = new SupplierModel(req.body);
-       console.log(req.body);
-       await supplier.save();
-       res.redirect("/supplierlist");
-     } catch (error) {
-       console.error(error);
-       res.redirect("/managerDashboard");
-     }
-   });
+//Getting Suppliers Form
+router.get("/supplier", (req, res) => {
+  res.render("supplier", { title: "supplier page" });
+});
 
-   //getting Suppliers from the db
-     router.get("/supplierlist", async (req, res) => {
-       try {
-         let suppliers = await SupplierModel.find().sort({ $natural: -1 });
-         console.log(suppliers);
-         res.render("supplierlist", { suppliers });
-       } catch (error) {
-         res.status(400).send("Supplier not found!");
-       }
-     });
-   
+router.post("/supplier", async (req, res) => {
+  try {
+    const supplier = new SupplierModel(req.body);
+    console.log(req.body);
+    await supplier.save();
+    res.redirect("/supplierlist");
+  } catch (error) {
+    console.error(error);
+    res.redirect("/managerDashboard");
+  }
+});
+
+//getting Suppliers from the db
+router.get("/supplierlist", async (req, res) => {
+  try {
+    let suppliers = await SupplierModel.find().sort({ $natural: -1 });
+    console.log(suppliers);
+    res.render("supplierlist", { suppliers });
+  } catch (error) {
+    res.status(400).send("Supplier not found!");
+  }
+});
+
 //Supplierlist Actions
 //UPDATING SUPPLIERS
 //Edit
@@ -300,8 +276,5 @@ router.post("/editsupplier", async (req, res) => {
     res.status(400).send("Unable to delete supplier form the DB!");
   }
 });
-
-
-
 
 module.exports = router;

@@ -18,7 +18,6 @@ function renderTable(data) {
   data.forEach((sale) => {
     const row = `
       <tr>
-        <td>${sale.customerName}</td>
         <td>${sale.productName}</td>
         <td>${sale.productType}</td>
         <td>${sale.quantity}</td>
@@ -26,7 +25,6 @@ function renderTable(data) {
         <td>${new Date(sale.saleDate).toLocaleDateString("en-GB")}</td>
         <td>${sale.paymentType}</td>
         <td>${sale.salesAgent?.email || "N/A"}</td>
-        <td>${sale.transportfee ? "Yes" : "No"}</td>
         <td>${sale.total}</td>
       </tr>`;
     tbody.innerHTML += row;
@@ -69,7 +67,6 @@ function filterData(type, date) {
   });
 }
 
-
 // Form filter
 document.getElementById("filterForm").addEventListener("submit", (e) => {
   e.preventDefault();
@@ -77,9 +74,11 @@ document.getElementById("filterForm").addEventListener("submit", (e) => {
   const date = document.getElementById("filterDate").value;
   const filtered = filterData(type, date);
   renderTable(filtered);
-  
+
   const rangeText = type
-    ? `Showing ${type.charAt(0).toUpperCase() + type.slice(1)} Report for ${new Date(date).toLocaleDateString("en-GB")}`
+    ? `Showing ${
+        type.charAt(0).toUpperCase() + type.slice(1)
+      } Report for ${new Date(date).toLocaleDateString("en-GB")}`
     : "Showing All Records";
   document.getElementById("rangeDisplay").textContent = rangeText;
 });
@@ -88,4 +87,3 @@ document.getElementById("filterForm").addEventListener("submit", (e) => {
 document.getElementById("btnRefresh").addEventListener("click", () => {
   window.location.reload();
 });
-

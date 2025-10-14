@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /* ========== FORM VALIDATION ========== */
+  /*  FORM VALIDATION  */
   const form = document.getElementById("productForm");
 
   if (form) {

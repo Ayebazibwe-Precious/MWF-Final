@@ -4,7 +4,7 @@ const router = express.Router();
 const StockModel = require("../models/stockModel");
 const SalesModel = require("../models/salesModel");
 
-// --- Sales vs Stock Chart ---
+//  Sales vs Stock Chart
 router.get("/api/charts/sales-vs-stock", async (req, res) => {
   try {
     const stocks = await StockModel.find();

@@ -1,232 +1,228 @@
-/* ===== General Styling ===== */
-body, html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #dff2e8;
-    margin: 0;
-    padding: 20px;
-    color: #333;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0; /* remove padding here; handle inside container */
+/*  General Styling  */
+body,
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #dff2e8;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0; /* remove padding here; handle inside container */
 }
-
 
 .main-content {
-    padding: 20px;
-    margin-left: 350px; /* only push content, not footer */
-    transition: margin-left 0.3s ease;
+  padding: 20px;
+  margin-left: 350px;
+  transition: margin-left 0.3s ease;
 }
 body.sidebar-collapsed .main-content {
-    margin-left: 150px; /* match your collapsed sidebar width */
+  margin-left: 150px; /* match your collapsed sidebar width */
 }
 
 .page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-/* ===== Form Container ===== */
+/*  Form Container */
 .form-container {
-    max-width: 700px;
-    width: 100%;
-    box-sizing: border-box;
-    background: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-     margin-bottom: 60px; /* ✅ Adds space before footer */
+  max-width: 700px;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  margin-bottom: 60px; /* Adds space before footer */
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 10px;
-    color: #27ae60;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #27ae60;
 }
 
 .form-description {
-    text-align: center;
-    color: #666;
-    margin-bottom: 20px;
-    font-size: 14px;
+  text-align: center;
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 14px;
 }
 
-/* ===== Form Layout ===== */
+/*  Form Layout  */
 .form-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-bottom: 15px;
 }
 
 .form-group label {
-    margin-bottom: 5px;
-    font-weight: 500;
+  margin-bottom: 5px;
+  font-weight: 500;
 }
 
-/* ===== Inputs, Selects ===== */
+/*  Inputs, Selects  */
 input[type="text"],
 input[type="number"],
 input[type="date"],
 select,
 textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: border 0.3s ease;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.3s ease;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: #109246;
-    outline: none;
+  border-color: #109246;
+  outline: none;
 }
 
-/* ===== Buttons ===== */
+/*  Buttons */
 .form-actions {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 20px;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+  align-items: center;
 }
 
 .btn-submit {
-    background: #27ae60;
-    color: #fff;
-    padding: 12px 100px;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+  background: #27ae60;
+  color: #fff;
+  padding: 12px 100px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .btn-submit:hover {
-    background: #13b958;
+  background: #13b958;
 }
 
 /* Clear button */
 #clearButton {
-    background-color: #eb3939;
-    color: #f7f6f6;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 12px 100px;
-    transition: background 0.3s ease;
+  background-color: #eb3939;
+  color: #f7f6f6;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 12px 100px;
+  transition: background 0.3s ease;
 }
 
 #clearButton:hover {
-    background: #f20707;
+  background: #f20707;
 }
 /* Cancel button */
 .btn-cancel {
-    background-color: #eb3939; 
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 12px 100px;
-    text-align: center;
-    text-decoration: none; /* remove underline from link */
-    display: inline-block;
-    transition: background 0.3s ease, transform 0.2s ease;
+  background-color: #eb3939;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 12px 100px;
+  text-align: center;
+  text-decoration: none; /* remove underline from link */
+  display: inline-block;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn-cancel:hover {
-    background-color: #d52c2c; /* darker gray on hover */
-    transform: scale(1.02);
+  background-color: #d52c2c; /* darker gray on hover */
+  transform: scale(1.02);
 }
 
-
-
-/* ===== Footer Styling ===== */
+/*  Footer Styling */
 footer.footer {
-    position: relative;     /* normal flow, not fixed */
-    width: 100vw;           /* full viewport width */
-    left: 0;                /* align to left edge */
-    margin: 0;
-    background-color: #1f2937;
-    color: #f1f1f1;
-    text-align: center;
-    padding: 15px 20px;
-    font-size: 14px;
-    box-sizing: border-box;
-    z-index: 1;             /* behind sidebar if sidebar is fixed */
+  position: relative; /* normal flow, not fixed */
+  width: 100vw; /* full viewport width */
+  left: 0; /* align to left edge */
+  margin: 0;
+  background-color: #1f2937;
+  color: #f1f1f1;
+  text-align: center;
+  padding: 15px 20px;
+  font-size: 14px;
+  box-sizing: border-box;
+  z-index: 1; /* behind sidebar if sidebar is fixed */
 }
 
 footer.footer p {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
 footer .dev-name {
-    font-weight: bold;
-    color: #facc15;
+  font-weight: bold;
+  color: #facc15;
 }
 
 footer .company-name {
-    font-style: italic;
-    color: #facc15;
+  font-style: italic;
+  color: #facc15;
 }
 
-/* ===== Error Styles ===== */
+/*  Error Styles  */
 .error-msg {
-    display: block;
-    margin-top: 4px;
-    padding: 4px 8px;
-    background-color: white;
-    border-radius: 4px;
-    font-size: 12px;
-    color: #cc0000;
+  display: block;
+  margin-top: 4px;
+  padding: 4px 8px;
+  background-color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #cc0000;
 }
 
 input.error-input,
 select.error-input {
-    border-color: #ff4d4d !important;
-    background-color: white;
+  border-color: #ff4d4d !important;
+  background-color: white;
 }
 
-/* ===== Mobile Friendly ===== */
+/*  Mobile Friendly  */
 @media (max-width: 600px) {
-    .form-row {
-        flex-direction: column;
-    }
+  .form-row {
+    flex-direction: column;
+  }
 
-    .form-actions {
-        flex-direction: column;
-    }
+  .form-actions {
+    flex-direction: column;
+  }
 
-    .btn-submit,
-    #clearButton {
-        width: 100%;
-    }
+  .btn-submit,
+  #clearButton {
+    width: 100%;
+  }
 
-    footer.footer {
-        font-size: 13px;
-        padding: 15px;
-    }
+  footer.footer {
+    font-size: 13px;
+    padding: 15px;
+  }
 }
 @media (max-width: 600px) {
-    .main-content {
-        margin-left: 0;
-        /* sidebar collapses or hidden */
-        padding: 15px;
-    }
+  .main-content {
+    margin-left: 0; /* sidebar collapses or hidden */
+    padding: 15px;
+  }
 
-    footer.footer {
-        width: 100vw;
-        /* still full width */
-        font-size: 13px;
-        padding: 15px;
-    }
+  footer.footer {
+    width: 100vw; /* still full width */
+    font-size: 13px;
+    padding: 15px;
+  }
 }

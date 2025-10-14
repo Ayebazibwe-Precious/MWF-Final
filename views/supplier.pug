@@ -6,37 +6,37 @@ block css
 block content
   include includes/sidebar.pug
 
-  // --- Page Wrapper ---
+  //  Page Wrapper 
   div.page-wrapper
-    // --- Main Content ---
+    // Main Content 
     main.main-content
       .main
         .form-container
-          h2 Supplier Registration
+          h1 SUPPLIER REGISTRATION.
           form(action="/supplier", method="POST" novalidate)
-            // --- Row 1: Supplier & Company ---
+            //  Row 1: Supplier & Company 
             .form-row
               .form-group
                 label(for="name") Supplier Name
-                input#name(type="text", name="name", required='', placeholder="Enter supplier name")
+                input#name(type="text", name="name", required='')
               .form-group
                 label(for="company") Company Name
-                input#company(type="text", name="company", required='', placeholder="Enter company name")
+                input#company(type="text", name="company", required='')
 
             // --- Row 2: Email & Phone ---
             .form-row
               .form-group
                 label(for="email") Email Address
-                input#email(type="email", name="email", required='', placeholder="Enter email address")
+                input#email(type="email", name="email", required='')
               .form-group
                 label(for="phone") Phone Number
-                input#phone(type="tel", name="phone", required='', pattern="[0-9]{10,15}", placeholder="e.g. 0701234567")
+                input#phone(type="tel", name="phone", required='', pattern="[0-9]{10,15}")
 
             // --- Row 3: Address & Bank ---
             .form-row
               .form-group
                 label(for="address") Address
-                input#address(type="text", name="address", required='', placeholder="Enter address")
+                input#address(type="text", name="address", required='')
               .form-group
                 label(for="bank") Bank Details
                 input#bank(type="text", name="bank", required='', placeholder="Enter bank details")
@@ -45,10 +45,10 @@ block content
             .form-row
               .form-group
                 label(for="productName") Product Name
-                input#productName(type="text", name="productName", placeholder="Enter product name", required='')
+                input#productName(type="text", name="productName",  required='')
               .form-group
                 label(for="productType") Product Type
-                input#productType(type="text", name="productType", required='', placeholder="Enter product type")
+                input#productType(type="text", name="productType", required='')
 
             // --- Submit Button ---
             .form-group

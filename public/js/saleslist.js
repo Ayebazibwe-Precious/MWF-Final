@@ -1,4 +1,4 @@
-// === FILTER FUNCTIONALITY ===
+//  FILTER FUNCTIONALITY
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
   const table = document.getElementById("salesTable");
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // === DELETE CONFIRMATION MODAL ===
+  //  DELETE CONFIRMATION MODAL
   const deleteButtons = document.querySelectorAll(".action-btn.delete");
   const modal = document.getElementById("deleteModal");
   const confirmBtn = document.getElementById("confirmDeleteBtn");

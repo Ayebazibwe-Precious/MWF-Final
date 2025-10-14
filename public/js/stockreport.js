@@ -1,8 +1,8 @@
-//  Current Report Date 
+//  Current Report Date
 document.getElementById("reportDate").textContent =
   new Date().toLocaleDateString("en-GB");
 
-// Stock Data from Backend 
+// Stock Data from Backend
 const stockData = window.stockFromDB || [];
 
 // DOM Elements
@@ -79,7 +79,7 @@ function filterData(type, date) {
   let filtered = [];
   let start, end, rangeText;
 
-  //  DAY FILTER 
+  //  DAY FILTER
   if (type === "day") {
     start = new Date(selectedDate);
     end = new Date(selectedDate);
@@ -109,7 +109,7 @@ function filterData(type, date) {
     });
   }
 
-  //  MONTH FILTER 
+  //  MONTH FILTER
   if (type === "month") {
     const year = selectedDate.getFullYear();
     const month = selectedDate.getMonth();

@@ -1,304 +1,303 @@
-/* === General Styling === */
+/*  General Styling */
 body {
-    font-family: Arial, sans-serif;
-    background: #dff2e8;
-    margin: 0;
-    padding: 0;
-    color: #333;
+  font-family: Arial, sans-serif;
+  background: #dff2e8;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 .main {
-    margin-left: 250px; /* pushes only the main content, not the footer */
-    min-height: 100vh;  /* ensures page stretches full height */
-    display: flex;
-    flex-direction: column;/* justify-content: space-between; */
+  margin-left: 250px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* justify-content: space-between; */
 }
 /* When sidebar collapses */
 body.sidebar-collapsed .main {
-    margin-left: 80px; /* shift content left */
+  margin-left: 80px;
 }
 
-/* === Page Layout === */
+/*  Page Layout */
 .page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .page-content {
-    flex: 1;
+  flex: 1;
 }
 
-/* === Container === */
+/*  Container */
 .container {
-    width: 95%;
-    max-width: 1200px; /* ✅ ensures layout stays neat */
-    margin: 30px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 95%;
+  max-width: 1200px; /*  ensures layout stays neat */
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* === Title === */
+/*  Title  */
 h1 {
-    text-align: center;
-    color: #27ae60;
-    margin-bottom: 20px;
+  text-align: center;
+  color: #27ae60;
+  margin-bottom: 20px;
 }
 
-/* === Table Styling === */
+/*  Table Styling  */
 .table-section {
-    width: 100%;
+  width: 100%;
 }
 
 .table-section table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; /* ✅ ensures equal cell widths & prevents overflow */
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /*  ensures equal cell widths & prevents overflow */
 }
 
 .table-section th,
 .table-section td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-    font-size: 0.9rem;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
 }
 
 .table-section th {
-    background: #27ae60;
-    color: #fff;
+  background: #27ae60;
+  color: #fff;
 }
 /* --- Email Column Wrapping --- */
-.table-section td:nth-child(8) {  /* 8th column = Sales Agent Email */
-    word-wrap: break-word;
-    white-space: normal;    /* allow wrapping */
-    max-width: 160px;       /* limit width to avoid stretching table */
+.table-section td:nth-child(8) {
+  /* 8th column = Sales Agent Email */
+  word-wrap: break-word;
+  white-space: normal; /* allow wrapping */
+  max-width: 160px; /* limit width to avoid stretching table */
 }
 
-
-/* === Table Controls === */
+/*  Table Controls */
 .table-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .table-controls .search-box {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #f1f1f1;
-    padding: 6px 10px;
-    border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f1f1;
+  padding: 6px 10px;
+  border-radius: 6px;
 }
 
 .table-controls .search-box input {
-    border: none;
-    outline: none;
-    background: transparent;
-    font-size: 0.9rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.9rem;
 }
 
 .table-controls .search-box i {
-    color: #555;
+  color: #555;
 }
 
-/* === Action Buttons === */
+/*  Action Buttons */
 .action-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 8px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
 }
 
 /* Button Variants */
 .action-btn.edit {
-    background: #f39c12;
-    color: white;
+  background: #f39c12;
+  color: white;
 }
 
 .action-btn.edit:hover {
-    background: #e67e22;
-    
+  background: #e67e22;
 }
 
 .action-btn.delete {
-    padding: 4px 1px;
-    background: #e74c3c;
-    border: none;
-    color: white;
+  padding: 4px 1px;
+  background: #e74c3c;
+  border: none;
+  color: white;
 }
 
 .action-btn.delete:hover {
-    background: #c0392b;
+  background: #c0392b;
 }
 
 .action-btn.receipt {
-    background: #d2ab13;
-    color: white;
-        padding: 3px 0;       /* smaller padding */
-    font-size: 0.8rem;      /* slightly smaller text */
-    white-space: wrap;    /* keep text in one line */
+  background: #d2ab13;
+  color: white;
+  padding: 3px 0; /* smaller padding */
+  font-size: 0.8rem; /* slightly smaller text */
+  white-space: wrap; /* keep text in one line */
 }
 
 .action-btn.receipt:hover {
-    background: #facc15;
-    transform: translateY(-2px);
+  background: #facc15;
+  transform: translateY(-2px);
 }
 
 .action-btn.add {
-    background: #27ae60;
-    color: white;
-    font-weight: bold;
+  background: #27ae60;
+  color: white;
+  font-weight: bold;
 }
 
 .action-btn.add:hover {
-    background: #1e8449;
-    transform: translateY(-2px);
+  background: #1e8449;
+  transform: translateY(-2px);
 }
 
 footer.footer {
-    position: relative;
-    width: 100%;
-    background-color: #1f2937;
-    color: #ecf0f1;
-    padding: 15px 20px;
-    text-align: center;
-    margin-top: 40px;
-    font-size: 0.9rem;
-    box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  background-color: #1f2937;
+  color: #ecf0f1;
+  padding: 15px 20px;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
 }
 
 footer.footer p {
-    margin: 4px 0;
+  margin: 4px 0;
 }
 
 footer.footer .dev-name,
 footer.footer .company-name {
-    color: #facc15;
-    font-weight: bold;
+  color: #facc15;
+  font-weight: bold;
 }
 
-/* === Responsive Design === */
+/*  Responsive Design  */
 @media (max-width: 768px) {
-    footer.footer {
-        width: 100%;
-        margin-left: 0;
-        font-size: 0.85rem;
-        padding: 12px 10px;
-    }
+  footer.footer {
+    width: 100%;
+    margin-left: 0;
+    font-size: 0.85rem;
+    padding: 12px 10px;
+  }
 }
 
-/* === Responsive Design === */
+/*  Responsive Design  */
 @media (max-width: 768px) {
-    .container {
-        margin-left: 0;
-        padding: 15px;
-    }
+  .container {
+    margin-left: 0;
+    padding: 15px;
+  }
 
-    footer.footer {
-        margin-left: 0;
-    }
+  footer.footer {
+    margin-left: 0;
+  }
 
-    .table-section table {
-        font-size: 0.85rem;
-        min-width: 600px;
-    }
+  .table-section table {
+    font-size: 0.85rem;
+    min-width: 600px;
+  }
 
-    .action-btn {
-        padding: 4px 8px;
-        font-size: 0.8rem;
-    }
+  .action-btn {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 500px) {
-    .table-section table {
-        min-width: 500px;
-    }
+  .table-section table {
+    min-width: 500px;
+  }
 }
 @media (max-width: 768px) {
-    .table-section {
-        overflow-x: auto;
-    }
+  .table-section {
+    overflow-x: auto;
+  }
 }
-/* === Delete Confirmation Modal === */
+/*  Delete Confirmation Modal  */
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
 .modal.hidden {
-    display: none;
+  display: none;
 }
 
 .modal-content {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    animation: popIn 0.3s ease;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.3s ease;
 }
 
 @keyframes popIn {
-    from {
-        transform: scale(0.9);
-        opacity: 0;
-    }
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
 
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .modal-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 .confirm-btn {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.2s;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 .confirm-btn:hover {
-    background: #c0392b;
+  background: #c0392b;
 }
 
 .cancel-btn {
-    background: #bdc3c7;
-    color: black;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.2s;
+  background: #bdc3c7;
+  color: black;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 .cancel-btn:hover {
-    background: #95a5a6;
+  background: #95a5a6;
 }

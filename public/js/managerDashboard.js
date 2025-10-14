@@ -1,4 +1,4 @@
-// === Load Sales vs Stock Chart ===
+//  Load Sales vs Stock Chart
 async function loadSalesStockChart() {
   try {
     const res = await fetch("/api/charts/sales-vs-stock"); // <-- Your API endpoint
@@ -35,7 +35,7 @@ async function loadSalesStockChart() {
   }
 }
 
-// === Load Most Sold Products Chart ===
+//  Load Most Sold Products Chart
 async function loadTopProductsChart() {
   try {
     const res = await fetch("/api/charts/top-products"); // <-- Your API endpoint
@@ -66,11 +66,11 @@ async function loadTopProductsChart() {
   }
 }
 
-// === Initialize Charts ===
+//  Initialize Charts
 loadSalesStockChart();
 loadTopProductsChart();
 
-// === Optional: Auto-refresh every 30s ===
+//  Optional: Auto-refresh every 30s
 setInterval(() => {
   loadSalesStockChart();
   loadTopProductsChart();

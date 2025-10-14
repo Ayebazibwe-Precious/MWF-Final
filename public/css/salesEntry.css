@@ -14,7 +14,7 @@ body {
 body.sidebar-collapsed .main {
   margin-left: 80px; /* content slides left */
 }
-/* ===== MAIN CONTENT ===== */
+/*  MAIN CONTENT */
 .main {
   flex: 1;
   margin-left: 250px;
@@ -116,8 +116,8 @@ select:focus {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-   width: 350px;      
-  height: 45px; 
+  width: 350px;
+  height: 45px;
   border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
@@ -179,7 +179,7 @@ button[type="submit"]:hover {
   background-color: #d00000;
 }
 
-/* ===== FOOTER ===== */
+/*  FOOTER  */
 footer.footer {
   position: auto;
   background-color: #1f2937;
@@ -211,7 +211,7 @@ footer.footer .company-name:hover {
   text-decoration: underline;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+/*  RESPONSIVE DESIGN  */
 @media (max-width: 768px) {
   .main {
     margin-left: 0;

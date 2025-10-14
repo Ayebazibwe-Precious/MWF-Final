@@ -6,10 +6,10 @@ block css
 block content
   include includes/sidebar1.pug
 
-  // === Page Wrapper ===
+  //  Page Wrapper
   .page-wrapper
     .page-content
-      // === Main Container ===
+      // Main Container
       .container
         // Dashboard Cards
         .cards
@@ -33,7 +33,7 @@ block content
             h3 Low Stock Alerts
             p #{lowStockCount || 0}
 
-        // === Stock Summary (Aggregated) ===
+        // Stock Summary (Aggregated)
         section.panel
           .header-row
             h2 STOCK SUMMARY
@@ -60,7 +60,7 @@ block content
                   tr
                     td(colspan="5") No products in stock
 
-    // === Footer ===
+    // Footer 
     footer.footer
       p © 2025 MWF. All rights reserved.
       p

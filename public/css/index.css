@@ -1,73 +1,71 @@
- * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
- }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
- body {
-     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-         background-image: url("/images/bg4.jpg");
-    /* Background image styling */
-    background-size: cover;           /* Scale image to cover entire area */
-    background-position: center center;      /* Center the image */
-    background-repeat: no-repeat;     /* Prevent repeating */                   
-     color: white;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     min-height: 100vh;
- }
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url("/images/bg4.jpg");
+  /* Background image styling */
+  background-size: cover; /* Scale image to cover entire area */
+  background-position: center center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
- .container {
-     text-align: center;
-     padding: 2rem;
-     max-width: 600px;
- }
+.container {
+  text-align: center;
+  padding: 2rem;
+  max-width: 600px;
+}
 
- .logo {
-     font-size: 3rem;
-     font-weight: 700;
-     color: #27ae60;
-     margin-bottom: 0.5rem;
- }
+.logo {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #27ae60;
+  margin-bottom: 0.5rem;
+}
 
- .company-name {
-     font-size: 1.2rem;
-     color: #b8b8b8;
-     margin-bottom: 3rem;
- }
+.company-name {
+  font-size: 1.2rem;
+  color: #b8b8b8;
+  margin-bottom: 3rem;
+}
 
- .tagline {
-     font-size: 1.5rem;
-     margin-bottom: 1rem;
-     color: #ffffff;
- }
+.tagline {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
 
- .description {
-     font-size: 1rem;
-     color: #b8b8b8;
-     margin-bottom: 3rem;
-     line-height: 1.6;
- }
+.description {
+  font-size: 1rem;
+  color: #b8b8b8;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
 
- .btn {
-     display: inline-block;
-     padding: 1rem 2.5rem;
-     font-size: 1.1rem;
-     font-weight: 600;
-     color: #1a1a1a;
-     background: #27ae60;
-     border: none;
-     border-radius: 8px;
-     cursor: pointer;
-     text-decoration: none;
-     transition: all 0.3s ease;
- }
+.btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  background: #27ae60;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
 
- .btn:hover {
-     background: #099342;
-     transform: translateY(-2px);
-     box-shadow: 0 5px 15px #27ae60;
- }
-
- 
+.btn:hover {
+  background: #099342;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px #27ae60;
+}

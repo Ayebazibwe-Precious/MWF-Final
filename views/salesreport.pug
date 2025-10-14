@@ -40,7 +40,6 @@ block content
           table
             thead
               tr
-                th Customer Name
                 th Product Name
                 th Product Type
                 th Quantity
@@ -48,9 +47,22 @@ block content
                 th Date
                 th Payment Type
                 th Sales Agent
-                th Transport
                 th Total Price
             tbody
+              if sales.length
+                each sale in sales
+                  tr
+                    td #{sale.productName}
+                    td #{sale.productType}
+                    td #{sale.quantity}
+                    td #{sale.unitPrice}
+                    td #{moment(sale.saleDate).format("DD-MM-YYYY")}
+                     td #{sale.paymentType}
+                    td #{sale.salesAgent.email}
+                    td #{sale.total}
+              else
+                tr
+                  td(colspan="8") No stock data available
 
       // Footer Section
       footer.report-footer

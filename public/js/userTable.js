@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const rows = table.getElementsByTagName("tr");
   const noResults = document.getElementById("noResults");
 
-  // 🔎 Search functionality
+  //  Search functionality
   function filterUsers() {
     const searchValue = searchUser.value.toLowerCase();
     let visibleCount = 0;
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (searchUser) searchUser.addEventListener("input", filterUsers);
 
-  // 🗑 Delete confirmation modal
+  // Delete confirmation modal
   const modal = document.getElementById("confirmModal");
   const confirmMessage = document.getElementById("confirmMessage");
   const confirmYes = document.getElementById("confirmYes");

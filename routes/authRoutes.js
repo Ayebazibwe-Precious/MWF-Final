@@ -1,4 +1,4 @@
-  const express = require("express");
+const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
@@ -61,27 +61,27 @@ router.get("/logout", (req, res) => {
   res.render("logout");
 });
 
- router.post("/logout", (req, res, next) => {
-  req.logout(function (err){
+router.post("/logout", (req, res, next) => {
+  req.logout(function (err) {
     if (err) return next(err);
     req.session.destroy((error) => {
       if (err) return res.status(500).send("Error loggingOut");
-        res.clearCookie("connect.sid");
+      res.clearCookie("connect.sid");
       res.redirect("/");
     });
   });
-   });
+});
 
-  //getting user from the db
-  router.get("/usersTable", async (req, res) => {
-    try {
-      let users = await UserModel.find().sort({ $natural: -1 });
-      console.log(users);
-      res.render("usersTable", { users });
-    } catch (error) {
-      res.status(400).send("User not found!");
-    }
-  });
+//getting user from the db
+router.get("/usersTable", async (req, res) => {
+  try {
+    let users = await UserModel.find().sort({ $natural: -1 });
+    console.log(users);
+    res.render("usersTable", { users });
+  } catch (error) {
+    res.status(400).send("User not found!");
+  }
+});
 
 //Usetable Actions
 //UPDATING USERS
@@ -115,6 +115,5 @@ router.post("/deleteuser", async (req, res) => {
     res.status(400).send("Unable to delete user form the DB!");
   }
 });
-
 
 module.exports = router;

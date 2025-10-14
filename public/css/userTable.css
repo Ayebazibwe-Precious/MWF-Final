@@ -1,261 +1,257 @@
 /*  General Styling */
 html,
 body {
-    height: 100%;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #dff2e8;
-    color: #333;
+  height: 100%;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #dff2e8;
+  color: #333;
 }
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin-left: 250px; /* full sidebar width */
-    transition: margin-left 0.3s ease; /* smooth transition */
-    
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-left: 250px; /* full sidebar width */
+  transition: margin-left 0.3s ease; /* smooth transition */
 }
 /* When sidebar collapses */
 body.sidebar-collapsed {
-    margin-left: 80px; /* shift content left */
-}  
-.main{
-padding-left: 20px; /* small space from sidebar */
+  margin-left: 80px; /* shift content left */
+}
+.main {
+  padding-left: 20px; /* small space from sidebar */
 }
 
 /* Container */
 .container {
-    max-width: 1000px;
-    margin: 40px auto 40px auto;
-    margin-right: 30px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    transition: margin-left 0.3s ease; /* smooth shift */
+  max-width: 1000px;
+  margin: 40px auto 40px auto;
+  margin-right: 30px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: margin-left 0.3s ease; /* smooth shift */
 }
 
 /* Top Bar */
 .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .search-box input {
-    padding: 10px 15px;
-    width: 250px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+  padding: 10px 15px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
 .search-box input:focus {
-    border-color: #27ae60;
+  border-color: #27ae60;
 }
 
 .btn-add {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
-    background: #27ae60;
-    color: #fff;
-    border-radius: 6px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.3s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #27ae60;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn-add:hover {
-    background: #1e8449;
-    transform: translateY(-2px);
+  background: #1e8449;
+  transform: translateY(-2px);
 }
 
 .btn-add:active {
-    background: #145a32;
-    transform: translateY(0);
+  background: #145a32;
+  transform: translateY(0);
 }
 
 /* Table */
 .table-wrapper {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 #userTable {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #userTable th {
-    background: #27ae60;
-    color: #fff;
-    padding: 12px 15px;
-    border: 1px solid #057632;
-    text-align: left;
+  background: #27ae60;
+  color: #fff;
+  padding: 12px 15px;
+  border: 1px solid #057632;
+  text-align: left;
 }
 
 #userTable td {
-    font-size: 0.85rem;
-    padding: 12px 15px;
-    border: 1px solid #363434;
-    color: #555;
+  font-size: 0.85rem;
+  padding: 12px 15px;
+  border: 1px solid #363434;
+  color: #555;
 }
 
 #userTable tr:nth-child(even) {
-    background: #f9f9f9;
+  background: #f9f9f9;
 }
 
 #userTable tr:hover {
-    background: #f1f1f1;
+  background: #f1f1f1;
 }
 
 /* No Results Row */
 #noResults td {
-    text-align: center;
-    font-style: italic;
-    color: #e82f2f;
-    padding: 12px;
+  text-align: center;
+  font-style: italic;
+  color: #e82f2f;
+  padding: 12px;
 }
 
 /* Action Buttons */
 .action-buttons {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center; /* keep buttons aligned on the same level */
+  display: flex;
+  gap: 0.5rem;
+  align-items: center; /* keep buttons aligned on the same level */
 }
 
 .action-btn {
-    display: inline-flex;
-    justify-content: center; /* center text+icon horizontally */
-    align-items: center; /* center vertically */
-    gap: 4px;
-    padding: 6px 12px;
-    min-width: 90px; /*  ensures same width */
-    text-align: center;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    cursor: pointer;
-    border: none; /* remove black(default) border */
-    outline: none; /* remove focus outline */
+  display: inline-flex;
+  justify-content: center; /* center text+icon horizontally */
+  align-items: center; /* center vertically */
+  gap: 4px;
+  padding: 6px 12px;
+  min-width: 90px; /*  ensures same width */
+  text-align: center;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: none; /* remove black(default) border */
+  outline: none; /* remove focus outline */
 }
 
 .action-btn.edit {
-    background: rgb(210, 173, 24);
-    color: #fff;
+  background: rgb(210, 173, 24);
+  color: #fff;
 }
 
 .action-btn.edit:hover {
-    background: #f79a04;
+  background: #f79a04;
 }
 
 .action-btn.delete {
-    background: #e74c3c;
-    color: #fff;
+  background: #e74c3c;
+  color: #fff;
 }
 
 .action-btn.delete:hover {
-    background: #c0392b;
+  background: #c0392b;
 }
-
 
 /* Modal */
 .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
 }
 
 .modal-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    text-align: center;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
 }
 
 .modal-actions {
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-around;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
 }
 
 #confirmYes {
-    background: #e74c3c;
-    color: #fff;
-    padding: 8px 14px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+  background: #e74c3c;
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 #confirmNo {
-    background: #7f8c8d;
-    color: #fff;
-    padding: 8px 14px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+  background: #7f8c8d;
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
-/* ===== Footer Styling ===== */
+/*  Footer Styling  */
 footer.footer {
-    background-color: #1f2937;
-    color: #fff;
-    text-align: center;
-    padding: 15px 20px;
-    margin-top: 30px;
-    font-size: 0.9rem;
-    line-height: 1.5;
-     margin-top: auto; /* keeps it at bottom */
+  background-color: #1f2937;
+  color: #fff;
+  text-align: center;
+  padding: 15px 20px;
+  margin-top: 30px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-top: auto; /* keeps it at bottom */
 }
 
 footer.footer p {
-    margin: 4px 0;
+  margin: 4px 0;
 }
 
 footer.footer .dev-name {
-    font-weight: bold;
-    color: #facc15;
+  font-weight: bold;
+  color: #facc15;
 }
 
 footer.footer .company-name {
-    font-weight: bold;
-    color: #f39c12;
-    text-decoration: none;
+  font-weight: bold;
+  color: #f39c12;
+  text-decoration: none;
 }
 
 /* Sticky footer for short pages */
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 /* Footer responsive */
 @media (max-width: 768px) {
-    footer.footer {
-        font-size: 0.8rem;
-        padding: 12px 10px;
-    }
+  footer.footer {
+    font-size: 0.8rem;
+    padding: 12px 10px;
+  }
 }
-
-

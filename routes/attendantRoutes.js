@@ -7,13 +7,11 @@ const attendantStockModel = require("../models/attendantStockModel");
 const StockModel = require("../models/stockModel");
 const salesModel = require("../models/salesModel");
 
-
-
 //getting the Attendant's  dashboard
 router.get("/attendantDashboard", async (req, res) => {
   console.log("attendantDashboard called");
   try {
-    // --- Build today's date in MM/DD/YYYY format ---
+    //  Build today's date in MM/DD/YYYY format
     const now = new Date();
     const month = (now.getMonth() + 1).toString().padStart(2, "0"); // months are 0-indexed
     const day = now.getDate().toString().padStart(2, "0");
@@ -66,12 +64,6 @@ router.get("/attendantDashboard", async (req, res) => {
   }
 });
 
-
-
-
-
-
-
 //Getting manager stock and dashboard
 //ensureauthenticated, ensureManager
 router.get("/stockAttendant", (req, res) => {
@@ -91,15 +83,14 @@ router.post("/stockAttendant", async (req, res) => {
   }
 });
 
-
-
 //Getting stock from the DB.
 router.get("/attendantStocklist", async (req, res) => {
   try {
-    let items = await attendantStockModel.find()
-    .populate("receivedBy", "email")
-    .sort({ $natural: -1 });
-    
+    let items = await attendantStockModel
+      .find()
+      .populate("receivedBy", "email")
+      .sort({ $natural: -1 });
+
     console.log(items);
     res.render("attendantStocklist", { items });
   } catch (error) {
@@ -116,10 +107,10 @@ router.get("/attendantEditstock/:id", async (req, res) => {
     }
     res.render("attendantEditstock", { item }); //send to pug
   } catch (error) {
-   console.log(error.message);
-   res.status(500).send("Server Error"); 
+    console.log(error.message);
+    res.status(500).send("Server Error");
   }
- });
+});
 
 router.put("/attendanteditstock/:id", async (req, res) => {
   try {
@@ -146,7 +137,6 @@ router.post("/deleteAttendantstock", async (req, res) => {
     res.status(400).send("Unable to delete item from the DB!");
   }
 });
-
 
 // GET: Stock report data
 router.get("/attendantStockreport", async (req, res) => {
@@ -184,14 +174,6 @@ router.get("/attendantStockreport", async (req, res) => {
   }
 });
 
-
-
-
-
-
 module.exports = router;
 
-//getting the Attendant's  dashboard
-// router.get("/attendantDashboard", async (req, res) => {
-//   res.render("attendantDashboard");
-// });
+

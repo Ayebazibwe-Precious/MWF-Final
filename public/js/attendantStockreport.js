@@ -5,7 +5,7 @@ document.getElementById("reportDate").textContent =
 // Stock data injected from backend
 let stockData = window.stockFromDB || [];
 
-// -------------------- TABLE RENDERING --------------------
+//  TABLE RENDERING
 function renderTable(data) {
   const tbody = document.querySelector("tbody");
   tbody.innerHTML = "";
@@ -31,7 +31,7 @@ function renderTable(data) {
   updateSummary(data);
 }
 
-// -------------------- SUMMARY VALUES --------------------
+//  SUMMARY VALUES
 function updateSummary(data) {
   let totalValue = 0;
   let lowStockItems = 0;
@@ -48,7 +48,7 @@ function updateSummary(data) {
     lowStockItems > 0 ? "Yes" : "No";
 }
 
-// -------------------- DATE PARSER --------------------
+//  DATE PARSER
 // Converts dateReceived (string) into valid JS Date
 function parseDate(dateStr) {
   if (!dateStr) return null;
@@ -69,7 +69,7 @@ function parseDate(dateStr) {
   return null;
 }
 
-// -------------------- FILTER LOGIC --------------------
+//  FILTER LOGIC
 function filterData(type, date) {
   if (!type || !date) return stockData;
 
@@ -79,7 +79,7 @@ function filterData(type, date) {
     const stockDate = parseDate(s.dateReceived);
     if (!stockDate) return false;
 
-    // --- DAY FILTER ---
+    //  DAY FILTER
     if (type === "day") {
       return (
         stockDate.getFullYear() === selectedDate.getFullYear() &&
@@ -88,7 +88,7 @@ function filterData(type, date) {
       );
     }
 
-    // --- WEEK FILTER ---
+    //  WEEK FILTER
     if (type === "week") {
       const startOfWeek = new Date(selectedDate);
       startOfWeek.setDate(selectedDate.getDate() - selectedDate.getDay()); // Sunday
@@ -99,7 +99,7 @@ function filterData(type, date) {
       return stockDate >= startOfWeek && stockDate <= endOfWeek;
     }
 
-    // --- MONTH FILTER ---
+    //  MONTH FILTER
     if (type === "month") {
       const startOfMonth = new Date(
         selectedDate.getFullYear(),
@@ -119,7 +119,7 @@ function filterData(type, date) {
   });
 }
 
-// -------------------- FILTER TYPE SWITCH --------------------
+//  FILTER TYPE SWITCH
 document.getElementById("filterType").addEventListener("change", (e) => {
   const filterType = e.target.value;
   const filterDate = document.getElementById("filterDate");
@@ -131,7 +131,7 @@ document.getElementById("filterType").addEventListener("change", (e) => {
   }
 });
 
-// -------------------- FORM SUBMIT --------------------
+//  FORM SUBMIT
 document.getElementById("filterForm").addEventListener("submit", (e) => {
   e.preventDefault();
   const type = document.getElementById("filterType").value;
@@ -141,10 +141,10 @@ document.getElementById("filterForm").addEventListener("submit", (e) => {
   renderTable(filtered);
 });
 
-// -------------------- REFRESH BUTTON --------------------
+//  REFRESH BUTTON
 document.getElementById("btnRefresh").addEventListener("click", () => {
   window.location.reload();
 });
 
-// -------------------- INITIAL RENDER --------------------
+//  INITIAL RENDER
 renderTable(stockData);

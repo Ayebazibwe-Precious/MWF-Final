@@ -1,179 +1,177 @@
 :root {
-    --bg: #f4f6f8;
-    --card: #fff;
-    --accent: #0f62fe;
-    --muted: #6b7280;
-    --success: #27ae60;
-    --warning: #f39c12;
-    --danger: #e74c3c;
+  --bg: #f4f6f8;
+  --card: #fff;
+  --accent: #0f62fe;
+  --muted: #6b7280;
+  --success: #27ae60;
+  --warning: #f39c12;
+  --danger: #e74c3c;
 }
 
-/* === Global Reset === */
+/*  Global Reset*/
 * {
-    margin: 0;
-    box-sizing: border-box;
-    font-family: Inter, system-ui, Arial, sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, Arial, sans-serif;
 }
 
 body {
-    background: #dff2e8;
-    color: #111;
-    margin-left: 250px;/* to account for sidebar */
-    transition: margin-left 0.3s ease;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background: #dff2e8;
+  color: #111;
+  margin-left: 250px;
+  transition: margin-left 0.3s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-    body.sidebar-collapsed {
-    margin-left: 80px; /* or whatever collapsed width you choose */
+body.sidebar-collapsed {
+  margin-left: 80px;
 }
 
-
-/* === Page Layout === */
+/* Page Layout  */
 .page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .page-content {
-    flex: 1;
+  flex: 1;
 }
 
-/* === Container === */
+/*  Container  */
 .container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 20px auto;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
 }
 
-/* === Cards === */
+
+/*  Cards  */
 .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
-    margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 20px;
 }
 
 .card {
-    background: var(--card);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(9, 10, 12, 0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--card);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(9, 10, 12, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card i {
-    font-size: 26px;
-    margin-bottom: 10px;
+  font-size: 26px;
+  margin-bottom: 10px;
 }
 
 .card h3 {
-    margin: 0;
-    font-size: 14px;
-    color: var(--muted);
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
 }
 
 .card p {
-    margin: 6px 0 0;
-    font-size: 22px;
-    font-weight: 700;
+  margin: 6px 0 0;
+  font-size: 22px;
+  font-weight: 700;
 }
 
-/* === Specific Card Colors === */
+/*  Specific Card Colors */
 .card.total-sales {
-    border-left: 6px solid var(--success);
-    color: var(--success);
+  border-left: 6px solid var(--success);
+  color: var(--success);
 }
 
 .card.products {
-    border-left: 6px solid var(--accent);
-    color: var(--accent);
+  border-left: 6px solid var(--accent);
+  color: var(--accent);
 }
 
 .card.low-stock {
-    border-left: 6px solid var(--danger);
-    color: var(--danger);
+  border-left: 6px solid var(--danger);
+  color: var(--danger);
 }
 
 .card.sales-count {
-    border-left: 6px solid var(--warning);
-    color: var(--warning);
+  border-left: 6px solid var(--warning);
+  color: var(--warning);
 }
 
-/* === Hover Effect === */
+/*  Hover Effect  */
 .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
 }
 
-/* === Panel === */
+/*  Panel  */
 .panel {
-    background: var(--card);
-    padding: 18px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background: var(--card);
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .table-container {
-    overflow-x: auto;
-    max-height: 400px;
+  overflow-x: auto;
+  max-height: 400px;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 table th,
 table td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-    text-align: left;
-    font-size: 14px;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  font-size: 14px;
 }
 
 table th {
-    background: #27ae60;
-    font-weight: 600;
-    color: #333;
+  background: #31b96a;
+  font-weight: 600;
+  color: #f5f2f2;
 }
 
 table tr:hover {
-    background: #f9f9f9;
+  background: #f9f9f9;
 }
 
-/* === Responsive === */
+/*  Responsive  */
 @media (max-width: 900px) {
-    .cards {
-        grid-template-columns: 1fr;
-    }
+  .cards {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* === Footer === */
+/* Footer */
 .footer {
-    width: 100%;
-    background-color: #1f2937;
-    color: #fff;
-    text-align: center;
-    padding: 15px 10px;
-    font-size: 14px;
-    line-height: 1.6;
-    box-sizing: border-box;
-    margin-top: auto;
-    /* ensures footer stays at bottom */
+  width: 100%;
+  background-color: #1f2937;
+  color: #fff;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  box-sizing: border-box;
+  margin-top: auto; /* ensures footer stays at bottom */
 }
 
 .footer p {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
 .footer .dev-name,
 .footer .company-name {
-    font-weight: 600;
-    color: #facc15;
-    /* gold accent */
+  font-weight: 600;
+  color: #facc15;
 }

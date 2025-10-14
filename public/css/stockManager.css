@@ -40,10 +40,10 @@ body.sidebar-collapsed .main-content {
 .page-content {
   width: 100%;
   display: flex;
-  justify-content: center;              
+  justify-content: center;
 }
 
-/* ===== Form Styling ===== */
+/*  Form Styling  */
 .form-wrapper {
   width: 100%;
   max-width: 700px;
@@ -59,7 +59,7 @@ h2 {
   color: #27ae60;
 }
 
-/* ===== Fieldsets ===== */
+/*  Fieldsets  */
 fieldset {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -73,14 +73,14 @@ legend {
   color: #333;
 }
 
-/* ===== Grid Layout ===== */
+/*  Grid Layout  */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem 2rem;
 }
 
-/* ===== Inputs & Labels ===== */
+/*  Inputs & Labels */
 label {
   display: block;
   margin-bottom: 0.3rem;
@@ -110,7 +110,7 @@ textarea {
   resize: vertical;
 }
 
-/* ===== Buttons ===== */
+/*  Buttons  */
 .form-actions {
   display: flex;
   justify-content: space-between;
@@ -150,15 +150,15 @@ button[type="submit"]:hover {
   background: #cb0317;
   color: #fff;
 }
-/* ===== Update Cancel Button to Match Submit Button ===== */
+/*  Update Cancel Button to Match Submit Button  */
 .form-actions .btn-cancel {
-  flex: 1;                 /* Make it take equal space as submit */
-  padding: 0.8rem;         /* Same padding as submit */
-  font-size: 1rem;         /* Same font size */
-  border-radius: 8px;      /* Match border radius */
-  margin-left: 0;           /* Remove extra margin, handled by gap in flex */
-  text-align: center;      /* Center the text */
-  display: inline-flex;    /* Keep it inline-flex for centering */
+  flex: 1; /* Make it take equal space as submit */
+  padding: 0.8rem; /* Same padding as submit */
+  font-size: 1rem; /* Same font size */
+  border-radius: 8px; /* Match border radius */
+  margin-left: 0; /* Remove extra margin, handled by gap in flex */
+  text-align: center; /* Center the text */
+  display: inline-flex; /* Keep it inline-flex for centering */
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -180,8 +180,7 @@ button[type="submit"]:hover {
   background-color: #b71c1c;
 }
 
-
-/* ===== Validation ===== */
+/*  Validation */
 input.invalid,
 select.invalid,
 textarea.invalid {
@@ -210,7 +209,7 @@ small.error-message {
   }
 }
 
-/* ===== Footer Styling ===== */
+/*  Footer Styling  */
 .footer {
   background-color: #1f2937;
   color: #fff;
@@ -236,7 +235,7 @@ body.sidebar-collapsed .footer {
   color: #facc15;
 }
 
-/* ===== Responsive ===== */
+/*  Responsive  */
 @media (max-width: 768px) {
   .main-content {
     margin-left: 0;

@@ -1,119 +1,119 @@
-/* === Reset & Fonts === */
+/*  Reset & Fonts  */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background: #dff2e8;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-     margin-left: 250px; /* aligns with sidebar */
-    transition: margin-left 0.3s ease;
+  background: #dff2e8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px; /* aligns with sidebar */
+  transition: margin-left 0.3s ease;
 }
 /* When sidebar collapses */
 body.sidebar-collapsed {
-    margin-left: 80px; /* shift content left */
+  margin-left: 80px;
 }
 
-/* === Page Layout === */
+/*  Page Layout */
 .page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .page-content {
-    flex: 1;
+  flex: 1;
 }
 .main {
-    padding-left: 13rem; /* space between sidebar and form */
+  padding-left: 13rem; /* space between sidebar and form */
 }
 
-/* === Signup Container === */
+/*  Signup Container  */
 .signup-container {
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 20px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
-    align-self: center;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  align-self: center;
 }
 
-/* === Header === */
+/*  Header  */
 .header {
-    text-align: center;
-    margin-bottom: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .header h2 {
-    font-size: 1.6rem;
-    color: #27ae60;
+  font-size: 1.6rem;
+  color: #27ae60;
 }
 
 .header p {
-    font-size: 0.9rem;
-    color: #666;
+  font-size: 0.9rem;
+  color: #666;
 }
 
-/* === Form Layout === */
+/*  Form Layout  */
 form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
 }
 
 /* Make fields span both columns if needed */
 .form-group.full {
-    grid-column: span 2;
+  grid-column: span 2;
 }
 
-/* === Labels & Inputs === */
+/*  Labels & Inputs */
 label {
-    display: block;
-    font-size: 0.9rem;
-    color: #444;
-    margin-bottom: 0.2rem;
+  display: block;
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 0.2rem;
 }
 
 input,
 select {
-    width: 100%;
-    padding: 0.45rem 0.6rem;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 0.9rem;
-    transition: 0.2s ease-in-out;
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  transition: 0.2s ease-in-out;
 }
 
 input:focus,
 select:focus {
-    border-color: #28a745;
-    outline: none;
-    box-shadow: #1c9238;
+  border-color: #28a745;
+  outline: none;
+  box-shadow: #1c9238;
 }
 
-/* === Error Styling === */
+/*  Error Styling  */
 .error-msg {
-    display: block;
-    margin-top: 4px;
-    padding: 4px 8px;
-    background-color: white;
-    border-radius: 4px;
-    font-size: 12px;
-    color: #cc0000;
+  display: block;
+  margin-top: 4px;
+  padding: 4px 8px;
+  background-color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #cc0000;
 }
 
 input.error-input,
 select.error-input {
-    border-color: #ff4d4d !important;
-    background-color: white;
+  border-color: #ff4d4d !important;
+  background-color: white;
 }
 .password-wrapper {
   position: relative;
@@ -140,128 +140,127 @@ select.error-input {
   color: #000;
 }
 
-/* === Buttons === */
+/*  Buttons */
 .form-actions {
-    grid-column: span 2;
-    display: flex;
-    justify-content: center;
-    gap: 0.8rem;
-    margin-top: 1rem;
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
 }
 
 .btn {
-    padding: 0.5rem 1.2rem;
-    font-size: 0.85rem;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-    min-width: 100px;
-    text-align: center;
-    text-decoration: none;
-    border: none;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  min-width: 100px;
+  text-align: center;
+  text-decoration: none;
+  border: none;
 }
 
 /* Register Button */
 .btn-register {
-    background: #28a745;
-    color: #fff;
+  background: #28a745;
+  color: #fff;
 }
 
 .btn-register:hover {
-    background: #218838;
+  background: #218838;
 }
 
 /* Clear Button */
 .btn-clear {
-    background: #dc3545;
-    color: #fff;
+  background: #dc3545;
+  color: #fff;
 }
 
 .btn-clear:hover {
-    background: #c82333;
+  background: #c82333;
 }
 
 /* Common Button Styles */
 .btn {
-    display: inline-flex;
-    justify-content: center; /* center text horizontally */
-    align-items: center; /* center text vertically */
-    padding: 0.5rem 1.2rem;
-    font-size: 0.85rem;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-    text-decoration: none; /* for <a> tags */
-    border: none; /* remove default button border */
-    min-width: 120px; /* ensures all buttons are same width */
-    text-align: center;
+  display: inline-flex;
+  justify-content: center; /* center text horizontally */
+  align-items: center; /* center text vertically */
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-decoration: none; /* for <a> tags */
+  border: none; /* remove default button border */
+  min-width: 120px; /* ensures all buttons are same width */
+  text-align: center;
 }
 /* Save / Register Button */
 .btn-save {
-    background-color: #28a745;
-    color: #fff;
+  background-color: #28a745;
+  color: #fff;
 }
 
 .btn-save:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
 /* Cancel Button */
 .btn-cancel {
-    background-color: #dc3545;
-    color: #fff;
+  background-color: #dc3545;
+  color: #fff;
 }
 
 .btn-cancel:hover {
-    background-color: #c82333;
+  background-color: #c82333;
 }
 .form-actions2 {
-    grid-column: span 2;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;/* space between buttons */
-    margin-top: 1rem;
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* space between buttons */
+  margin-top: 1rem;
 }
 
-/* === Footer === */
+/*  Footer  */
 footer.footer {
-    background-color: #1f2937;
-    color: #ecf0f1;
-    padding: 15px 20px;
-    text-align: center;
-    font-size: 0.9rem;
-    margin-top: auto;
-    /* pushes footer to bottom */
+  background-color: #1f2937;
+  color: #ecf0f1;
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: auto; /* pushes footer to bottom */
 }
 
 footer.footer p {
-    margin: 4px 0;
+  margin: 4px 0;
 }
 
 footer.footer .dev-name {
-    color: #facc15;
-    font-weight: bold;
+  color: #facc15;
+  font-weight: bold;
 }
 
 footer.footer .company-name {
-    color: #facc15;
-    font-weight: bold;
+  color: #facc15;
+  font-weight: bold;
 }
 
-/* === Responsive Design === */
+/*  Responsive Design */
 @media (max-width: 768px) {
-    .signup-container {
-        margin-left: 0;
-        width: 90%;
-    }
+  .signup-container {
+    margin-left: 0;
+    width: 90%;
+  }
 
-    footer.footer {
-        margin-left: 0;
-    }
+  footer.footer {
+    margin-left: 0;
+  }
 
-    form {
-        grid-template-columns: 1fr;
-    }
+  form {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,207 +1,204 @@
-/* ===== Base Styles ===== */
+/*  Base Styles  */
 body {
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #dff2e8;
-    margin: 0;
-    padding: 0;
-    color: #2c3e50;
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #dff2e8;
+  margin: 0;
+  padding: 0;
+  color: #2c3e50;
 }
 
 .main {
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
 }
 
-/* ===== Receipt Container ===== */
+/*  Receipt Container */
 .receipt-container {
-    width: 100%;
-    max-width: 850px;
-    background: #ffffff;
-    padding: 40px 50px;
-    border-radius: 12px;
-    box-shadow: none;/* clean look */
-    
+  width: 100%;
+  max-width: 850px;
+  background: #ffffff;
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: none; /* clean look */
 }
 
 .receipt-header {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .receipt-header h2 {
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #27ae60;
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #27ae60;
 }
 
 .receipt-header p {
-    margin: 5px 0 0 0;
-    font-size: 0.95rem;
-    color: #555;
+  margin: 5px 0 0 0;
+  font-size: 0.95rem;
+  color: #555;
 }
 
-/* ===== Info Section ===== */
+/*  Info Section  */
 .receipt-info h3 {
-    margin: 20px 0 10px 0;
-    color: #27ae60;
-    font-weight: 700;
-    letter-spacing: 1px;
+  margin: 20px 0 10px 0;
+  color: #27ae60;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .info-grid {
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .info-grid p {
-    margin: 5px 0;
-    font-size: 0.95rem;
+  margin: 5px 0;
+  font-size: 0.95rem;
 }
 
-/* ===== Table ===== */
+/*  Table  */
 .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid #e0e0e0;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
 }
 
 .table thead {
-    background: #27ae60;
-    color: #fff;
-    font-size: 0.9rem;
-    text-transform: uppercase;
+  background: #27ae60;
+  color: #fff;
+  font-size: 0.9rem;
+  text-transform: uppercase;
 }
 
 .table th,
 .table td {
-    padding: 12px 15px;
-    border: 1px solid #e0e0e0;
-    text-align: left;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  text-align: left;
 }
 
 .table tbody tr:nth-child(even) {
-    background: #f7f9fc;
+  background: #f7f9fc;
 }
 
-/* ===== Summary Section ===== */
+/*  Summary Section  */
 .receipt-summary {
-    margin-top: 25px;
-    text-align: right;
+  margin-top: 25px;
+  text-align: right;
 }
 
 .receipt-summary p {
-    margin: 8px 0;
-    font-size: 0.95rem;
+  margin: 8px 0;
+  font-size: 0.95rem;
 }
 
 .balance-due {
-    background: #27ae60;
-    color: #fff;
-    padding: 12px 20px;
-    border-radius: 6px;
-    display: inline-block;
-    font-weight: 700;
-    margin-top: 10px;
+  background: #27ae60;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: 700;
+  margin-top: 10px;
 }
 
 .receipt-summary h4 {
-    margin-top: 25px;
-    text-align: center;
-    font-weight: 600;
-    color: #2c3e50;
-    border-top: 1px dashed #ccc;
-    padding-top: 12px;
+  margin-top: 25px;
+  text-align: center;
+  font-weight: 600;
+  color: #2c3e50;
+  border-top: 1px dashed #ccc;
+  padding-top: 12px;
 }
 
-/* ===== Buttons ===== */
+/*  Buttons  */
 .buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    gap: 20px;
-    /* space between buttons */
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 20px;
 }
 
 .btn-print,
 .btn-close,
 .btn-close-danger {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    /* space between icon and text */
-    font-weight: 600;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    padding: 12px 28px;
-    transition: all 0.3s ease;
-    text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* space between icon and text */
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 12px 28px;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 /* Print button */
 .btn-print {
-    background: #4a90e2;
-    color: #fff;
-    border: none;
-    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.25);
+  background: #4a90e2;
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 10px rgba(74, 144, 226, 0.25);
 }
 
 .btn-print:hover {
-    background: #357ABD;
-    transform: translateY(-2px);
+  background: #357abd;
+  transform: translateY(-2px);
 }
 
 /* Blue Close button */
 .btn-close {
-    background: #dc4038;
-    color: #fff;
-    border: 2px solid #e43c3c;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background: #dc4038;
+  color: #fff;
+  border: 2px solid #e43c3c;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .btn-close:hover {
-    background: #d52c20;
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+  background: #d52c20;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
 }
 
 /* Red "danger" Close button */
 .btn-close-danger {
-    background: #fff;
-    color: #e74c3c;
-    border: 2px solid #e74c3c;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .btn-close-danger:hover {
-    background: #e74c3c;
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+  background: #e74c3c;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
 }
 
-/* ===== Print Styles ===== */
+/*  Print Styles  */
 @media print {
-    body {
-        background: #fff;
-    }
+  body {
+    background: #fff;
+  }
 
-    .buttons,
-    .btn-close,
-    .btn-close-danger {
-        display: none !important;
-    }
+  .buttons,
+  .btn-close,
+  .btn-close-danger {
+    display: none !important;
+  }
 
-    .receipt-container {
-        border: none;
-        padding: 10px;
-    }
+  .receipt-container {
+    border: none;
+    padding: 10px;
+  }
 }
