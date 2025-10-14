@@ -16,7 +16,7 @@
 }
 
 body {
-    background: var(--bg);
+    background: #dff2e8;
     color: #111;
     margin-left: 250px;/* to account for sidebar */
     transition: margin-left 0.3s ease;

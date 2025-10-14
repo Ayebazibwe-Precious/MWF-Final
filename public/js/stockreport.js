@@ -1,105 +1,148 @@
-// --- Auto set current date ---
+//  Current Report Date 
 document.getElementById("reportDate").textContent =
   new Date().toLocaleDateString("en-GB");
 
-// Stock data injected from backend
-let stockData = window.stockFromDB || [];
+// Stock Data from Backend 
+const stockData = window.stockFromDB || [];
 
-// Render stock table
+// DOM Elements
+const tbody = document.getElementById("stock-table-body");
+const filterForm = document.getElementById("filterForm");
+const filterType = document.getElementById("filterType");
+const filterDate = document.getElementById("filterDate");
+const rangeDisplay = document.getElementById("rangeDisplay");
+const btnRefresh = document.getElementById("btnRefresh");
+
+// Optional summary section (create in Pug if you want)
+const summaryContainer = document.createElement("div");
+summaryContainer.classList.add("report-summary");
+summaryContainer.style.cssText =
+  "display:flex;gap:20px;justify-content:center;margin:15px 0;font-weight:bold;color:#2c3e50;";
+document.querySelector(".report-header").after(summaryContainer);
+
+// FUNCTION: Render Stock Table
+
 function renderTable(data) {
-  const tbody = document.getElementById("stock-table-body");
   tbody.innerHTML = "";
 
   if (!data || data.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; color:#888;">No records available</td></tr>`;
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="8" style="text-align:center;color:#888;">No stock data available</td>
+      </tr>`;
+    renderSummary([]);
     return;
   }
 
   data.forEach((item) => {
+    const formattedDate = new Date(item.dateReceived).toLocaleDateString(
+      "en-GB"
+    );
+    const lowStockClass = item.qty < 10 ? "low-stock" : "";
+
     const row = `
-      <tr class="${item.qty < 10 ? "low-stock" : ""}">
+      <tr class="${lowStockClass}">
         <td>${item.name}</td>
         <td>${item.type}</td>
         <td>${item.qty}</td>
-        <td>${item.cost}</td>
-        <td>${item.price}</td>
-        <td>${item.supplier}</td>
-        <td>${new Date(item.date).toLocaleDateString("en-GB")}</td>
-        <td>${item.quality}</td>
-        <td>${item.color}</td>
-        <td>${item.measurements}</td>
-      </tr>`;
-    tbody.innerHTML += row;
+        <td>${item.cost.toLocaleString()}</td>
+        <td>${item.price.toLocaleString()}</td>
+        <td>${formattedDate}</td>
+        <td>${item.quality || "-"}</td>
+        <td>${item.color || "-"}</td>
+      </tr>
+    `;
+    tbody.insertAdjacentHTML("beforeend", row);
   });
+
+  renderSummary(data);
+}
+// FUNCTION: Render Summary Stats
+function renderSummary(data) {
+  const totalProducts = data.length;
+  const totalValue = data.reduce((sum, item) => sum + item.qty * item.cost, 0);
+  const lowStockCount = data.filter((i) => i.qty < 5).length;
+
+  summaryContainer.innerHTML = `
+    <div> Total Products: <span style="color:#16a085;">${totalProducts}</span></div>
+    <div> Stock Value: <span style="color:#2980b9;">UGX${totalValue.toLocaleString()}</span></div>
+    <div> Low Stock: <span style="color:#e74c3c;">${lowStockCount}</span></div>
+  `;
 }
 
-// Filter logic
+// FUNCTION: Filter Logic (Day, Week, Month)
 function filterData(type, date) {
-  if (!type || !date) return { filtered: [], rangeText: "" };
+  if (!type || !date)
+    return { filtered: [], start: "", end: "", rangeText: "" };
+
   const selectedDate = new Date(date);
-  let rangeText = "";
   let filtered = [];
+  let start, end, rangeText;
 
+  //  DAY FILTER 
   if (type === "day") {
-    rangeText = `For ${selectedDate.toLocaleDateString("en-GB")}`;
-    filtered = stockData.filter(
-      (s) => new Date(s.date).toDateString() === selectedDate.toDateString()
-    );
+    start = new Date(selectedDate);
+    end = new Date(selectedDate);
+    rangeText = `Showing data for: ${start.toLocaleDateString("en-GB")}`;
+
+    filtered = stockData.filter((s) => {
+      const stockDate = new Date(s.dateReceived);
+      return stockDate.toDateString() === selectedDate.toDateString();
+    });
   }
 
+  //  WEEK FILTER
   if (type === "week") {
-    const startOfWeek = new Date(selectedDate);
-    startOfWeek.setDate(selectedDate.getDate() - selectedDate.getDay());
-    const endOfWeek = new Date(startOfWeek);
-    endOfWeek.setDate(startOfWeek.getDate() + 6);
-    rangeText = `Week Range: ${startOfWeek.toLocaleDateString(
+    const dayOfWeek = selectedDate.getDay(); // Sunday = 0
+    start = new Date(selectedDate);
+    start.setDate(selectedDate.getDate() - dayOfWeek);
+    end = new Date(start);
+    end.setDate(start.getDate() + 6);
+
+    rangeText = `Week Range: ${start.toLocaleDateString(
       "en-GB"
-    )} → ${endOfWeek.toLocaleDateString("en-GB")}`;
+    )} → ${end.toLocaleDateString("en-GB")}`;
 
     filtered = stockData.filter((s) => {
-      const stockDate = new Date(s.date);
-      return stockDate >= startOfWeek && stockDate <= endOfWeek;
+      const stockDate = new Date(s.dateReceived);
+      return stockDate >= start && stockDate <= end;
     });
   }
 
+  //  MONTH FILTER 
   if (type === "month") {
-    const month = selectedDate.toLocaleString("default", { month: "long" });
     const year = selectedDate.getFullYear();
-    const firstDay = new Date(year, selectedDate.getMonth(), 1);
-    const lastDay = new Date(year, selectedDate.getMonth() + 1, 0);
+    const month = selectedDate.getMonth();
+    start = new Date(year, month, 1);
+    end = new Date(year, month + 1, 0);
 
-    rangeText = `Month Range: ${firstDay.toLocaleDateString(
+    const monthName = start.toLocaleString("default", { month: "long" });
+    rangeText = `Month Range: ${start.toLocaleDateString(
       "en-GB"
-    )} → ${lastDay.toLocaleDateString("en-GB")} (${month} ${year})`;
+    )} → ${end.toLocaleDateString("en-GB")} (${monthName} ${year})`;
 
     filtered = stockData.filter((s) => {
-      const stockDate = new Date(s.date);
-      return stockDate >= firstDay && stockDate <= lastDay;
+      const stockDate = new Date(s.dateReceived);
+      return stockDate >= start && stockDate <= end;
     });
   }
 
-  return { filtered, rangeText };
+  return { filtered, start, end, rangeText };
 }
 
-// --- Form filter ---
-document.getElementById("filterForm").addEventListener("submit", (e) => {
+// EVENT: Filter Form Submit
+filterForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const type = document.getElementById("filterType").value;
-  const date = document.getElementById("filterDate").value;
+  const type = filterType.value;
+  const date = filterDate.value;
+
   const { filtered, rangeText } = filterData(type, date);
-
-  // Update table
   renderTable(filtered);
-
-  // Display range in header
-  const rangeDisplay = document.getElementById("rangeDisplay");
   rangeDisplay.textContent = rangeText || "";
 });
 
-// --- Refresh button → reloads entire page ---
-document.getElementById("btnRefresh").addEventListener("click", () => {
-  window.location.reload();
-});
+// EVENT: Refresh Page
+btnRefresh.addEventListener("click", () => window.location.reload());
 
-// --- Initial render ---
+// INITIAL RENDER
 renderTable(stockData);

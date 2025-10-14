@@ -26,7 +26,7 @@ block content
                 option(value="Hard Wood") Hard Wood
             .form-group
               label(for="productType") Product Type
-              select#productType(name="productType", required)
+              select#productType(name="th Quantity", required)
                 option(value) -- Select Type --
                 option(value="Raw Materials") Raw Materials
 
@@ -65,13 +65,18 @@ block content
           .form-row
             .form-group
               label(for="supplierName") Supplier Name
-              input#supplierName(type="text", name="supplierName", placeholder="Enter supplier name", required)
-            .form-group
-              label(for="reciever") Received by:
-              select#reciever(name="reciever", required)
-                option(value) -- Select Receiver --
-                option(value="Attendant") Attendant
-                option(value="Manager") Manager
+              select#supplierName(name="supplierName", required)
+                option(value) -- Select Name --
+                option(value="Capital Woods") Capital Woods
+                option(value="Gd Woods") Gd Woods
+                option(value="Tifa Timbers") Tifa Timbers
+                option(value="MY Woods") MY Woods
+            //- .form-group
+            //-   label(for="reciever") Received by:
+            //-   select#reciever(name="reciever", required)
+            //-     option(value) -- Select Receiver --
+            //-     option(value="Attendant") Attendant
+            //-     option(value="Manager") Manager
 
           // Submit and Reset
           .form-actions

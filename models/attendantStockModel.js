@@ -37,8 +37,9 @@ const attendantStockSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  reciever: {
-    type: String,
+  receivedBy: {
+   type: mongoose.Schema.Types.ObjectId,
+    ref: "UserModel",
   },
 });
 

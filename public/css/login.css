@@ -7,11 +7,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url("/images/bg4.jpg");
+    /* Background image styling */
+    background-size: cover;           /* Scale image to cover entire area */
+    background-position: center center;      /* Center the image */
+    background-repeat: no-repeat;     /* Prevent repeating */                   
 }
 
 /* Login Box */
 .login-box {
-    background: #fff;
+    background: transparent;
     padding: 30px 40px;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
@@ -42,7 +47,7 @@ body {
 
 .login-box input[type="text"]:focus,
 .login-box input[type="password"]:focus {
-    border-color: #27ae60;
+    border-color: #0c532a;
 }
 
 /* Show Password Checkbox */
@@ -52,7 +57,7 @@ body {
     justify-content: flex-start;
     margin-top: 5px;
     font-size: 0.9rem;
-    color: #333;
+    color: white;
 }
 
 .show-password input[type="checkbox"] {

@@ -36,7 +36,4 @@ const supplierSchema = new mongoose.Schema({
   },
 });
 
-// signupSchema.plugin(passportLocalMongoose, {
-//   usernameField: "email",
-// });
 module.exports = mongoose.model("SupplierModel", supplierSchema);

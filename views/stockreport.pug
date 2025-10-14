@@ -32,7 +32,7 @@ block content
           button.btn-refresh(type="button" id="btnRefresh")
             i.fa-solid.fa-rotate-right
             | Refresh
-          a.btn-close(href="/stockManager")
+          a.btn-close(href="/stocklist")
             i.fa-solid.fa-xmark
             | Close
 
@@ -48,11 +48,9 @@ block content
                 th Quantity
                 th Cost Price
                 th Selling Price
-                th Supplier Name
                 th Date Received
                 th Quality
                 th Color
-                th Measurements
             tbody#stock-table-body
               if items.length
                 each item in items
@@ -62,14 +60,12 @@ block content
                     td #{item.qty}
                     td #{item.cost}
                     td #{item.price}
-                    td #{item.supplier}
-                    td #{moment(item.date).format("DD-MM-YYYY")}
+                    td #{moment(item.dateReceived).format("DD-MM-YYYY")}
                     td #{item.quality}
                     td #{item.color}
-                    td #{item.measurements}
               else
                 tr
-                  td(colspan="10") No stock data available
+                  td(colspan="8") No stock data available
 
       // --- Footer Section ---
       footer.report-footer

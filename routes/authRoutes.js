@@ -21,7 +21,7 @@ router.post("/signup", async (req, res) => {
         if (error) {
           throw error;
         }
-        res.redirect("/login");
+        res.redirect("/usersTable");
       });
     }
     // user.save();

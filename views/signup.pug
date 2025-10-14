@@ -44,7 +44,9 @@ block content
 
           .form-group.full
             label(for="confirm_password") Confirm Password
-            input#confirm_password(type="password", name="confirm_password", required, minlength="6")
+            .password-wrapper
+              input#confirm_password(type="password", name="confirm_password", required, minlength="6")
+              button#toggleConfirmPwd(type="button" class="toggle-btn") 👁️
             small#error-msg(style="color:red; display:none;") Passwords do not match
 
           .form-actions

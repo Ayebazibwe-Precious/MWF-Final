@@ -7,7 +7,7 @@
 }
 
 body {
-    background: #f5f5dc;
+    background: #dff2e8;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -94,9 +94,9 @@ select {
 
 input:focus,
 select:focus {
-    border-color: #007bff;
+    border-color: #28a745;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    box-shadow: #1c9238;
 }
 
 /* === Error Styling === */
@@ -114,6 +114,30 @@ input.error-input,
 select.error-input {
     border-color: #ff4d4d !important;
     background-color: white;
+}
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 35px; /* space for the icon */
+}
+
+.toggle-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
+}
+
+.toggle-btn:hover {
+  color: #000;
 }
 
 /* === Buttons === */

@@ -77,6 +77,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!isValid) e.preventDefault(); // Stop form submission if invalid
   });
 
+  // Toggle confirm password visibility
+  const toggleBtn = document.getElementById("toggleConfirmPwd");
+  const confirmPwdInput = document.getElementById("confirm_password");
+
+  toggleBtn.addEventListener("click", () => {
+    const isPassword = confirmPwdInput.getAttribute("type") === "password";
+    confirmPwdInput.setAttribute("type", isPassword ? "text" : "password");
+  });
+
   // Clear button functionality
   document.getElementById("clearBtn").addEventListener("click", function () {
     form.reset();

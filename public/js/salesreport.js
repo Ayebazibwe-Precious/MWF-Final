@@ -36,30 +36,39 @@ function renderTable(data) {
 // Filter logic
 function filterData(type, date) {
   if (!type || !date) return [];
+
   const selectedDate = new Date(date);
 
   return salesData.filter((s) => {
     const saleDate = new Date(s.saleDate);
 
     if (type === "day") {
+      // Same day
       return saleDate.toDateString() === selectedDate.toDateString();
     }
+
     if (type === "week") {
+      // Get start (Sunday) and end (Saturday) of week
       const startOfWeek = new Date(selectedDate);
       startOfWeek.setDate(selectedDate.getDate() - selectedDate.getDay());
       const endOfWeek = new Date(startOfWeek);
       endOfWeek.setDate(startOfWeek.getDate() + 6);
+
       return saleDate >= startOfWeek && saleDate <= endOfWeek;
     }
+
     if (type === "month") {
+      // Compare year and month
       return (
-        saleDate.getMonth() === selectedDate.getMonth() &&
-        saleDate.getFullYear() === selectedDate.getFullYear()
+        saleDate.getFullYear() === selectedDate.getFullYear() &&
+        saleDate.getMonth() === selectedDate.getMonth()
       );
     }
+
     return false;
   });
 }
+
 
 // Form filter
 document.getElementById("filterForm").addEventListener("submit", (e) => {
@@ -68,6 +77,11 @@ document.getElementById("filterForm").addEventListener("submit", (e) => {
   const date = document.getElementById("filterDate").value;
   const filtered = filterData(type, date);
   renderTable(filtered);
+  
+  const rangeText = type
+    ? `Showing ${type.charAt(0).toUpperCase() + type.slice(1)} Report for ${new Date(date).toLocaleDateString("en-GB")}`
+    : "Showing All Records";
+  document.getElementById("rangeDisplay").textContent = rangeText;
 });
 
 // Refresh button → reloads entire page
@@ -75,5 +89,3 @@ document.getElementById("btnRefresh").addEventListener("click", () => {
   window.location.reload();
 });
 
-// ❌ Do NOT auto render table on load
-// renderTable(salesData);   <-- Removed

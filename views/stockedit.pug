@@ -29,8 +29,8 @@ block content
                     label Product Type
                     select(name="type", required='', value=item.type)
                       option(value="") Select Type
-                      option(value="Wood") Wood
-                      option(value="Furniture") Furniture
+                      option(value="Wood") Furniture
+                      option(value="Raw Material") Raw Material
 
               // === Stock & Pricing ===
               fieldset
@@ -50,9 +50,6 @@ block content
               fieldset
                 legend Supplier
                 .form-grid
-                  div
-                    label Supplier Name
-                    input(type="text", name="supplier", required='', value=item.supplier)
                   div
                     label Date Received
                     input(type="date", name="dateReceived", required='', value=item.dateReceived)

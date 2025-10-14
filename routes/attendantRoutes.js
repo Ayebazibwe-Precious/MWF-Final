@@ -96,7 +96,10 @@ router.post("/stockAttendant", async (req, res) => {
 //Getting stock from the DB.
 router.get("/attendantStocklist", async (req, res) => {
   try {
-    let items = await attendantStockModel.find().sort({ $natural: -1 });
+    let items = await attendantStockModel.find()
+    .populate("receivedBy", "email")
+    .sort({ $natural: -1 });
+    
     console.log(items);
     res.render("attendantStocklist", { items });
   } catch (error) {

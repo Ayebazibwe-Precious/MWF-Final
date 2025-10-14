@@ -3,7 +3,11 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Inter", "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        background-image: url("/images/bg4.jpg");
+    /* Background image styling */
+    background-size: cover;           /* Scale image to cover entire area */
+    background-position: center center;      /* Center the image */
+    background-repeat: no-repeat;     /* Prevent repeating */                   
     height: 100vh;
     display: flex;
     justify-content: center;

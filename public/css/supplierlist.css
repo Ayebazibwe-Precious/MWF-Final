@@ -8,7 +8,7 @@ html{
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #F5F5DC;
+    background-color: #dff2e8;
     color: #333;
     overflow-x: hidden; /* keep horizontal overflow hidden */
     overflow-y: auto;   /* allow content to extend naturally vertically */
@@ -20,13 +20,14 @@ body.sidebar-collapsed {
     --sidebar-width: 80px; /* dynamically reduce sidebar width */
 }
 
-/* === Page Layout === */
+/* Page Wrapper holds everything */
 .page-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
+/* Page Content takes all available vertical space */
 .page-content {
     flex: 1;
 }

@@ -6,8 +6,12 @@
 
  body {
      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-     color: #ffffff;
+         background-image: url("/images/bg4.jpg");
+    /* Background image styling */
+    background-size: cover;           /* Scale image to cover entire area */
+    background-position: center center;      /* Center the image */
+    background-repeat: no-repeat;     /* Prevent repeating */                   
+     color: white;
      display: flex;
      justify-content: center;
      align-items: center;

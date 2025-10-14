@@ -21,10 +21,6 @@ const stockSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  supplier: {
-    type: String,
-    required: true,
-  },
   dateReceived: {
     type: String,
     required: true,

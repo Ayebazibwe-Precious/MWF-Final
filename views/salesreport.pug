@@ -18,7 +18,7 @@ block content
         form#filterForm
           label(for="filterType") View By: 
           select#filterType(name="filterType")
-            option(value="" selected)
+            option(value="" selected) -- Select --
             option(value="day") Day
             option(value="week") Week
             option(value="month") Month
@@ -29,7 +29,7 @@ block content
           button.btn-refresh(type="button", id="btnRefresh")
             i.fa-solid.fa-rotate-right
             | Refresh
-          a.btn-close(href="/salesEntry")
+          a.btn-close(href="/saleslist")
             i.fa-solid.fa-xmark
             | Close
 

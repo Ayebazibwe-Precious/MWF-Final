@@ -19,7 +19,7 @@ block content
         form#filterForm
           label(for="filterType") View By: 
           select#filterType(name="filterType")
-            option(value="" selected)
+            option(value="" selected) -- Select --
             option(value="day") Day
             option(value="week") Week
             option(value="month") Month
@@ -42,9 +42,18 @@ block content
             thead
               tr
                 th Product Name
+                th  Product Type
                 th Quantity
-                th Supplier
+                th Date Recieved
+                th Supplier 
             tbody
+              if items.length
+                each item in items
+                  tr
+                    td #{item.productName}
+                    td #{item.productType}
+                    td #{item.quantity}
+                    td #{item.dateReceived}
 
       // Footer Section
       footer.report-footer
@@ -55,7 +64,7 @@ block content
 
   // Embed backend stock as JSON for frontend
   script.
-    window.stockFromDB = !{JSON.stringify(stock)};
+    window.stockFromDB = !{JSON.stringify(items)};
 
   // External JS
   script(src="/js/attendantStockreport.js")

@@ -48,7 +48,7 @@ block content
                       td #{item.color}
                       td #{item.measurements}
                       td #{item.supplierName}
-                      td #{item.receivedBy}
+                      td #{item.receivedBy ? item.receivedBy.email : '—'}
                       td.action-buttons
                         a.edit-btn(href=`/attendantEditstock/${item._id}`)
                           i.fa-solid.fa-pen-to-square

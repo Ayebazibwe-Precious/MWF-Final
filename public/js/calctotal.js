@@ -1,13 +1,26 @@
-document.getElementById("unitPrice").addEventListener("change", function () {
-  const unitPrice = parseFloat(document.getElementById("unitPrice").value);
-  const quantity = parseFloat(document.getElementById("quantity").value);
-  const total = document.getElementById("total");
-  if (!isNaN(quantity) && !isNaN(unitPrice)) {
-    const totalCost = (quantity * unitPrice).toFixed(0);
-    total.value = totalCost;
-  } else {
-    total.value = "";
+document.addEventListener("DOMContentLoaded", () => {
+  const qtyInput = document.getElementById("quantity");
+  const priceInput = document.getElementById("unitPrice");
+  const transportCheck = document.getElementById("transportfee");
+  const totalInput = document.getElementById("total");
+
+  function calculateTotal() {
+    const quantity = parseFloat(qtyInput.value) || 0;
+    const unitPrice = parseFloat(priceInput.value) || 0;
+    let totalCost = quantity * unitPrice;
+
+    // Apply transport fee if checked
+    if (transportCheck.checked) {
+      totalCost *= 1.05; // add 5%
+    }
+
+    totalInput.value = totalCost ? totalCost.toFixed(2) : "";
   }
+
+  // Listen for changes on all relevant fields
+  qtyInput.addEventListener("input", calculateTotal);
+  priceInput.addEventListener("input", calculateTotal);
+  transportCheck.addEventListener("change", calculateTotal);
 });
 
 //Form Validations
@@ -106,7 +119,3 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("clearButton").addEventListener("click", function () {
   window.location.reload(); // refreshes the page
 });
-
-
-
-
